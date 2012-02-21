@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build">
+	<path id="build.classpath">
+		<pathelement location="classes"/>
+	</path>
+	<target name="init">
+		<mkdir dir="classes"/>
+	</target>
+	<target name="clean">
+		<delete dir="classes"/>
+	</target>
+	<target depends="init" name="build">
+		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
+			<classpath refid="build.classpath"/>
+			<include name="calc/model/ModelEvent.java"/>
+			<include name="calc/model/InstructionType.java"/>
+			<include name="calc/model/IInstruction.java"/>
+			<include name="calc/model/ICoreComponent.java"/>
+			<include name="calc/model/ICore.java"/>
+			<include name="calc/model/IProcessor.java"/>
+			<include name="calc/model/InstructionParser.java"/>
+			<include name="calc/model/ProcessorConfiguration.java"/>
+			<include name="calc/model/BenchmarkResult.java"/>
+			<include name="calc/model/ModelListener.java"/>
+			<include name="calc/model/AbstractModel.java"/>
+			<include name="calc/model/Simulation.java"/>
+			<include name="calc/model/Model.java"/>
+			<include name="calc/model/ITypeInstruction.java"/>
+			<include name="calc/model/RTypeInstruction.java"/>
+			<include name="calc/model/JTypeInstruction.java"/>
+			<include name="calc/model/IALU.java"/>
+			<include name="calc/model/IFetchUnit.java"/>
+			<include name="calc/model/IIssueUnit.java"/>
+			<include name="calc/model/IWriteBack.java"/>
+			<include name="calc/model/IMemoryAccess.java"/>
+			<include name="calc/controller/StepByStepController.java"/>
+			<include name="calc/controller/SimulationController.java"/>
+			<include name="calc/controller/ConfigurationController.java"/>
+			<include name="calc/controller/AbstractController.java"/>
+			<include name="calc/controller/Controller.java"/>
+			<include name="calc/view/StepByStepView.java"/>
+			<include name="calc/view/SimulationView.java"/>
+			<include name="calc/view/View.java"/>
+			<include name="calc/view/JFrameView.java"/>
+		</javac>
+	</target>
+</project>

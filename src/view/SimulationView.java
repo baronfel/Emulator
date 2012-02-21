@@ -7,18 +7,19 @@
 
 package view;
 
+import interfaces.IController;
+import interfaces.IModel;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTextField;
 
-import model.Model;
 import model.Simulation;
-import controller.Controller;
 import controller.StepByStepController;
 import model.ModelEvent;
 
 public class SimulationView extends JFrameView {
-	public SimulationView(Model aModel, Controller aController) {
+	public SimulationView(IModel aModel, IController aController) {
 		super(aModel, aController);
 		// TODO Auto-generated constructor stub
 	}

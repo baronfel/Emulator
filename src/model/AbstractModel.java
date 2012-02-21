@@ -1,14 +1,16 @@
 /**
  * An Abstract class for all models in the MVC architecture. An intermediate class between the
  * Model interface and all specific models.
- * @see Model
+ * @see IModel
  */
 
 package model;
 
+import interfaces.IModel;
+
 import java.util.ArrayList;
 
-public abstract class AbstractModel implements Model {
+public abstract class AbstractModel implements IModel {
 	private ArrayList _listeners = new ArrayList(5);
 /**
  * Notifies all listeners that the model has changed.

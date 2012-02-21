@@ -7,16 +7,17 @@
 
 package view;
 
+import interfaces.IController;
+import interfaces.IModel;
+
 import javax.swing.JTextField;
 
-import model.Model;
 import model.Simulation;
-import controller.Controller;
 import controller.StepByStepController;
 import model.ModelEvent;
 
 public class ConfigurationView extends JFrameView {
-	public ConfigurationView(Model aModel, Controller aController) {
+	public ConfigurationView(IModel aModel, IController aController) {
 		super(aModel, aController);
 		// TODO Auto-generated constructor stub
 	}

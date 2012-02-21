@@ -7,6 +7,8 @@
 
 package model;
 
+import interfaces.IInstruction;
+
 public class RTypeInstruction implements IInstruction {
 
 	public int getFUNCT() {
@@ -65,11 +67,11 @@ public class RTypeInstruction implements IInstruction {
 		throw new UnsupportedOperationException();
 	}
 
-	public String getType() {
-		throw new UnsupportedOperationException();
+	public InstructionType getType() {
+		return InstructionType.R;
 	}
 
-	public void setType(String aType) {
+	public void setType(InstructionType type) {
 		throw new UnsupportedOperationException();
 	}
 

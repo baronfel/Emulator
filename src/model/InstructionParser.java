@@ -7,6 +7,8 @@
 
 package model;
 
+import interfaces.IInstruction;
+
 import java.util.List;
 
 public class InstructionParser {

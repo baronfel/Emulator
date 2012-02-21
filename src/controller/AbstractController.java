@@ -8,36 +8,37 @@
 
 package controller;
 
+import interfaces.IController;
+import interfaces.IModel;
 import view.View;
-import model.Model;
 
-public abstract class AbstractController implements Controller {
+public abstract class AbstractController implements IController {
 	private View _view;
-	private Model _model;
+	private IModel _model;
 /**
  * Added an exception to the setModel operation.
- * @see Controller
+ * @see IController
  */
-	public void setModel(Model aModel) {
+	public void setModel(IModel aModel) {
 		throw new UnsupportedOperationException();
 	}
 	/**
 	 * Added an exception to the getModel operation.
-	 * @see Controller
+	 * @see IController
 	 */
-	public Model getModel() {
+	public IModel getModel() {
 		throw new UnsupportedOperationException();
 	}
 	/**
 	 * Added an exception to the getView operation.
-	 * @see Controller
+	 * @see IController
 	 */
 	public View getView() {
 		throw new UnsupportedOperationException();
 	}
 	/**
 	 * Added an exception to the setView operation.
-	 * @see Controller
+	 * @see IController
 	 */
 	public void setView(View aView) {
 		throw new UnsupportedOperationException();

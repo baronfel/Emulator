@@ -7,6 +7,8 @@
 
 package model;
 
+import interfaces.IInstruction;
+
 public class ITypeInstruction implements IInstruction {
 
 	public int getFUNCT() {
@@ -65,12 +67,8 @@ public class ITypeInstruction implements IInstruction {
 		throw new UnsupportedOperationException();
 	}
 
-	public String getType() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setType(String aType) {
-		throw new UnsupportedOperationException();
+	public InstructionType getType() {
+		return InstructionType.I;
 	}
 
 	public int getJumpdest() {

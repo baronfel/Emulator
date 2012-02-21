@@ -7,15 +7,15 @@
 
 package view;
 
-import model.Model;
-import controller.Controller;
+import interfaces.IController;
+import interfaces.IModel;
 import model.ModelListener;
 
 public abstract class JFrameView implements View, ModelListener {
-	private Model _model;
-	private Controller _controller;
+	private IModel _model;
+	private IController _controller;
 
-	public JFrameView(Model aModel, Controller aController) {
+	public JFrameView(IModel aModel, IController aController) {
 		throw new UnsupportedOperationException();
 	}
 /**
@@ -26,19 +26,19 @@ public abstract class JFrameView implements View, ModelListener {
 		throw new UnsupportedOperationException();
 	}
 
-	public Controller getController() {
+	public IController getController() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setController(Controller aController) {
+	public void setController(IController aController) {
 		throw new UnsupportedOperationException();
 	}
 
-	public Model getModel() {
+	public IModel getModel() {
 		throw new UnsupportedOperationException();
 	}
 
-	public void setModel(Model aModel) {
+	public void setModel(IModel aModel) {
 		throw new UnsupportedOperationException();
 	}
 }

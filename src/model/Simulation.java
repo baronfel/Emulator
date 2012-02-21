@@ -8,6 +8,8 @@
 
 package model;
 
+import interfaces.IInstruction;
+
 import java.util.List;
 
 public class Simulation extends AbstractModel {
@@ -19,6 +21,13 @@ public class Simulation extends AbstractModel {
 	public InstructionParser _unnamed_InstructionParser_;
 	public ProcessorConfiguration _unnamed_ProcessorConfiguration_;
 	public BenchmarkResult _unnamed_BenchmarkResult_;
+	
+	public Simulation(ProcessorConfiguration config, List<IInstruction> program)
+	{
+		_instructionList = program;
+		_processorConfiguration = config;
+		_processor = CreateProcessor(_processorConfiguration);
+	}
 /**
  * Gets the benchmark results of the previous simulation.
  * @return The Benchmark Results of the previous Simulation.
@@ -31,7 +40,7 @@ public class Simulation extends AbstractModel {
  * @param aIn_Config The processor configuration.
  * @return The created processors.
  */
-	private IProcessor CreateProcessor(ProcessorConfiguration aIn_Config) {
+	private IProcessor CreateProcessor(ProcessorConfiguration config) {
 		throw new UnsupportedOperationException();
 	}
 }

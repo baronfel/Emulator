@@ -6,6 +6,8 @@
 
 package model;
 
+import interfaces.IInstruction;
+
 public class JTypeInstruction implements IInstruction {
 
 	public int getFUNCT() {
@@ -64,14 +66,10 @@ public class JTypeInstruction implements IInstruction {
 		throw new UnsupportedOperationException();
 	}
 
-	public String getType() {
-		throw new UnsupportedOperationException();
+	public InstructionType getType() {
+		return InstructionType.J;
 	}
-
-	public void setType(String aType) {
-		throw new UnsupportedOperationException();
-	}
-
+	
 	public int getJumpdest() {
 		throw new UnsupportedOperationException();
 	}

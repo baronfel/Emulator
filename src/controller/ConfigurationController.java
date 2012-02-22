@@ -7,13 +7,18 @@
 
 package controller;
 
+import model.ProcessorConfiguration;
+import interfaces.IModel;
+
 public class ConfigurationController extends AbstractController {
 
-	public ConfigurationController() {
-		throw new UnsupportedOperationException();
+	public ConfigurationController(ProcessorConfiguration model) {
+		super(model);
 	}
 
-	public void operation(String aOption) {
-		throw new UnsupportedOperationException();
+	@Override
+	public void setModel(IModel aModel) {
+		// TODO Auto-generated method stub
+		
 	}
 }

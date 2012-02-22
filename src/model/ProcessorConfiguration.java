@@ -5,6 +5,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
+import interfaces.IModel;
 
 /**
  * @author chusk3
@@ -15,7 +16,7 @@ import java.util.Map;
  * 		2) a map of ALU function names and the number of cycles each takes - Map<String, int>
  * 		3) the numbers of ALUs in the processor - int
  */
-public class ProcessorConfiguration {
+public class ProcessorConfiguration implements IModel {
 	
 	private int _aluCount = 0;
 	private Map<String, Integer> _cyclesRequiredByOpcode = new HashMap<String, Integer>(50);
@@ -98,5 +99,11 @@ public class ProcessorConfiguration {
 	public void AddCycleMapping(String opName, int cyclesRequired)
 	{
 			_cyclesRequiredByOpcode.put(opName, cyclesRequired);
+	}
+
+	@Override
+	public void notifyChanged(ModelEvent aE) {
+		// TODO Auto-generated method stub
+		
 	}
 }

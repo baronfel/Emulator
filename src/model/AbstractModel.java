@@ -7,11 +7,10 @@
 package model;
 
 import interfaces.IModel;
-
-import java.util.ArrayList;
+import javax.swing.event.EventListenerList;
 
 public abstract class AbstractModel implements IModel {
-	private ArrayList _listeners = new ArrayList(5);
+	private EventListenerList _listeners = new EventListenerList();
 /**
  * Notifies all listeners that the model has changed.
  */

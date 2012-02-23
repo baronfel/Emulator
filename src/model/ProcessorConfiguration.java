@@ -18,9 +18,9 @@ import interfaces.IModel;
  */
 public class ProcessorConfiguration implements IModel {
 	
-	private int _aluCount = 0;
+	private int _aluCount = 1;
 	private Map<String, Integer> _cyclesRequiredByOpcode = new HashMap<String, Integer>(50);
-	private String _configurationName = "Unknown";
+	private String _configurationName = "Unknown Configuration";
 	
 	
 	/* Constructors */

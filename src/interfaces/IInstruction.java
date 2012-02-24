@@ -19,7 +19,7 @@ public interface IInstruction {
  * Sets the FUNCT value of the instruction, the last six bits.
  * @param aFUNCT The FUNCT value of the instruction.
  */
-	public void setFUNCT(Object aFUNCT);
+	public void setFUNCT(int aFUNCT);
 /**
  * Gets the immediate value of the instruction, the last sixteen bits.
  * @return The immediate value of the instruction, the last sixteen bits.
@@ -29,7 +29,7 @@ public interface IInstruction {
 	 * Sets the immediate value of the instruction, the last sixteen bits.
 	 * @param aImmediate The immediate value of the instruction, the last sixteen bits.
 	 */
-	public void setImmediate(Object aImmediate);
+	public void setImmediate(int aImmediate);
 	/**
 	 * Gets the Opcode value of the instruction, the first six bits.
 	 * @return The Opcode value of the instruction, the first six bits.
@@ -50,7 +50,7 @@ public interface IInstruction {
 	 * @param aRD The Destination Register of the instruction, the bits 16-20 for R type or 11-15 for I type.
 	 */
 
-	public void setRD(Object aRD);
+	public void setRD(int aRD);
 	/**
 	 * Gets the Source Register of the instruction, the bits 6-10.
 	 * @return The Source Register of the instruction, the bits 6-10.

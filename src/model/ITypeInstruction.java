@@ -8,74 +8,106 @@
 package model;
 
 import interfaces.IInstruction;
+import interfaces.InstructionDoesNotHaveFieldException;
 
 public class ITypeInstruction implements IInstruction {
 
+	private int immediate;
+	private int opcode;
+	private int rd;
+	private int rs;
+
 	public int getFUNCT() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public void setFUNCT(Object aFUNCT) {
-		throw new UnsupportedOperationException();
+	public void setFUNCT(int aFUNCT) {
+		throw new InstructionDoesNotHaveFieldException();
 	}
-
+/**
+ * Returns the immediate field for this instruction.
+ */
 	public int getImmediate() {
-		throw new UnsupportedOperationException();
+		return immediate;
 	}
+	/**
+	 * Sets the immediate field for this instruction.
+	 * @param aImmediate The new immediate value for this function.
+	 */
 
-	public void setImmediate(Object aImmediate) {
-		throw new UnsupportedOperationException();
+	public void setImmediate(int aImmediate) {
+		immediate = aImmediate;
 	}
+	/**
+	 * Returns the OP Code field for this instruction.
+	 */
 
 	public int getOpcode() {
-		throw new UnsupportedOperationException();
+		return opcode;
 	}
+	/**
+	 * Sets the OP code field for this instruction.
+	 * @param aOpcode The new OP code for this instruction.
+	 */
 
 	public void setOpcode(int aOpcode) {
-		throw new UnsupportedOperationException();
+		opcode = aOpcode;
 	}
-
+/**
+ * Returns the Destination Register field for this instruction.
+ */
 	public int getRD() {
-		throw new UnsupportedOperationException();
+		return rd;
 	}
-
-	public void setRD(Object aRD) {
-		throw new UnsupportedOperationException();
+/**
+ * Sets the Destination Register field for this instruction.
+ * @param aRD The new Destination Register field for the instruction.
+ */
+	public void setRD(int aRD) {
+		rd = aRD;
 	}
-
+/**
+ * Returns the Source Register field for this instruction.
+ */
 	public int getRS() {
-		throw new UnsupportedOperationException();
+		return rs;
 	}
-
+/**
+ * Sets the Source Register field for this instruction.
+ * @param aRS the new Source Register for the instruction.
+ */
 	public void setRS(int aRS) {
-		throw new UnsupportedOperationException();
+		rs = aRS;
 	}
 
 	public int getRT() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public void setRT(int aRT) {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public int getSHAMT() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public void setSHAMT(int aSHAMT) {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
+	/**
+	 * Returns the type of instruction, I, J, or R. For this I type, it returns I.
+	 */
 
 	public InstructionType getType() {
 		return InstructionType.I;
 	}
 
 	public int getJumpdest() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public void setJumpdest(int aJumpdest) {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 }

@@ -8,78 +8,117 @@
 package model;
 
 import interfaces.IInstruction;
+import interfaces.InstructionDoesNotHaveFieldException;
 
 public class RTypeInstruction implements IInstruction {
 
+	private int rs;
+	private int rd;
+	private int opcode;
+	private int funct;
+	private int rt;
+	private int shamt;
+/**
+ * Returns the function code of the MIPS instruction.
+ */
 	public int getFUNCT() {
-		throw new UnsupportedOperationException();
+		return funct;
 	}
-
-	public void setFUNCT(Object aFUNCT) {
-		throw new UnsupportedOperationException();
+/**
+ * Sets the function code of the MIPS instruction.
+ * @param aFUNCT The new function code for the instruction.
+ */
+	public void setFUNCT(int aFUNCT) {
+		funct = aFUNCT;
 	}
 
 	public int getImmediate() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public void setImmediate(Object aImmediate) {
-		throw new UnsupportedOperationException();
+	public void setImmediate(int aImmediate) {
+		throw new InstructionDoesNotHaveFieldException();
 	}
+
+	/**
+	 * Returns the OP Code field for this instruction.
+	 */
 
 	public int getOpcode() {
-		throw new UnsupportedOperationException();
+		return opcode;
 	}
+	/**
+	 * Sets the OP code field for this instruction.
+	 * @param aOpcode The new OP code for this instruction.
+	 */
 
 	public void setOpcode(int aOpcode) {
-		throw new UnsupportedOperationException();
+		opcode = aOpcode;
 	}
-
+/**
+ * Returns the Destination Register field for this instruction.
+ */
 	public int getRD() {
-		throw new UnsupportedOperationException();
+		return rd;
 	}
-
-	public void setRD(Object aRD) {
-		throw new UnsupportedOperationException();
+/**
+ * Sets the Destination Register field for this instruction.
+ * @param aRD The new Destination Register for this instruction.
+ */
+	public void setRD(int aRD) {
+		rd = aRD;
 	}
-
+/**
+ * Returns the Source Register field for this instruction.
+ */
 	public int getRS() {
-		throw new UnsupportedOperationException();
+		return rs;
 	}
-
+/**
+ * Sets the Source Register field for this instruction.
+ * @param aRS The new Source Register for this instruction.
+ */
 	public void setRS(int aRS) {
-		throw new UnsupportedOperationException();
+		rs = aRS;
 	}
-
+	/**
+	 * Returns the third Register field for this instruction.
+	 */
 	public int getRT() {
-		throw new UnsupportedOperationException();
+		return rt;
 	}
-
+	/**
+	 * Sets the third Register field for this instruction.
+	 * @param aRS The new Source Register for this instruction.
+	 */
 	public void setRT(int aRT) {
-		throw new UnsupportedOperationException();
+		rt = aRT;
 	}
-
+/**
+ * Returns the shift amount for this instruction.
+ */
 	public int getSHAMT() {
-		throw new UnsupportedOperationException();
+		return shamt;
 	}
-
+/**
+ * Sets a new shift amount for this instruction.
+ * @param aSHAMT The new shift amount for this instruction.
+ */
 	public void setSHAMT(int aSHAMT) {
-		throw new UnsupportedOperationException();
+		shamt = aSHAMT;
 	}
-
+/**
+ * Returns the type of instruction, I, J, or R. For this R type, it returns R.
+ */
 	public InstructionType getType() {
 		return InstructionType.R;
 	}
 
-	public void setType(InstructionType type) {
-		throw new UnsupportedOperationException();
-	}
-
 	public int getJumpdest() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public void setJumpdest(int aJumpdest) {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 }

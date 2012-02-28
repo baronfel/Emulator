@@ -1,6 +1,6 @@
 /**
  * This is the interface that is assigned to all models in the MVC architecture.
- * @see View
+ * @see IView
  * @see IController
  */
 

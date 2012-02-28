@@ -8,8 +8,6 @@
 package view;
 
 import interfaces.IController;
-import interfaces.IModel;
-
 import javax.swing.JTextField;
 
 import model.Simulation;
@@ -17,8 +15,8 @@ import controller.StepByStepController;
 import model.ModelEvent;
 
 public class ConfigurationView extends JFrameView {
-	public ConfigurationView(IModel aModel, IController aController) {
-		super(aModel, aController);
+	public ConfigurationView(IController aController) {
+		super(aController);
 		// TODO Auto-generated constructor stub
 	}
 

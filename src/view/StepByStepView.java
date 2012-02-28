@@ -8,17 +8,15 @@
 package view;
 
 import interfaces.IController;
-import interfaces.IModel;
-
 import javax.swing.JTextField;
 
+import model.ModelEvent;
 import model.Simulation;
 import controller.StepByStepController;
-import model.ModelEvent;
 
 public class StepByStepView extends JFrameView {
-	public StepByStepView(IModel aModel, IController aController) {
-		super(aModel, aController);
+	public StepByStepView(IController aController) {
+		super(aController);
 		// TODO Auto-generated constructor stub
 	}
 

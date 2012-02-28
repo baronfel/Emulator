@@ -8,19 +8,18 @@
 package view;
 
 import interfaces.IController;
-import interfaces.IModel;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTextField;
 
+import model.ModelEvent;
 import model.Simulation;
 import controller.StepByStepController;
-import model.ModelEvent;
 
 public class SimulationView extends JFrameView {
-	public SimulationView(IModel aModel, IController aController) {
-		super(aModel, aController);
+	public SimulationView(IController aController) {
+		super(aController);
 		// TODO Auto-generated constructor stub
 	}
 	private JTextField _textField = new JTextField();

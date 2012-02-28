@@ -7,13 +7,17 @@
 
 package controller;
 
+import interfaces.IModel;
+
 public class StepByStepController extends AbstractController {
 
-	public StepByStepController() {
-		throw new UnsupportedOperationException();
+	public StepByStepController(IModel model) {
+		super(model);
 	}
 
-	public void operation(String aOption) {
-		throw new UnsupportedOperationException();
+	@Override
+	public void setModel(IModel aModel) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -17,6 +17,28 @@ public class ITypeInstruction implements IInstruction {
 	private int rd;
 	private int rs;
 
+	/**
+	 * The default constructor. It should be followed by initialization of the instruction.
+	 */
+	public ITypeInstruction() {
+		super();
+	}
+	
+	/**
+	 * The primary constructor for the IType Instructions, including all of the fields.
+	 * @param opc The Opcode of the Instruction.
+	 * @param rd The Destination Register for the instruction.
+	 * @param rs The Source Register for the instruction.
+	 * @param imm The immediate value of the instruction.
+	 */
+	public ITypeInstruction(int opc, int rd, int rs, int imm) {
+		super();
+		immediate = imm;
+		opcode = opc;
+		this.rd = rd;
+		this.rs = rs;
+	}
+	
 	public int getFUNCT() {
 		throw new InstructionDoesNotHaveFieldException();
 	}
@@ -109,5 +131,13 @@ public class ITypeInstruction implements IInstruction {
 
 	public void setJumpdest(int aJumpdest) {
 		throw new InstructionDoesNotHaveFieldException();
+	}
+	
+	
+	public String toString() {
+		String message = "" + opcode + " " + rd + ", " + rs + ", " + immediate + "\n";
+		
+		return message;
+		
 	}
 }

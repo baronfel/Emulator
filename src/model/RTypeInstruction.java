@@ -18,6 +18,35 @@ public class RTypeInstruction implements IInstruction {
 	private int funct;
 	private int rt;
 	private int shamt;
+	
+	
+	/**
+	 * The default constructor for the RTypeInstruction. It should be followed by
+	 * initialization of all of the fields of the instruction.
+	 */
+	public RTypeInstruction() {
+		super();
+	}
+	
+	/**
+	 * The primary constructor for the RTypeInsturction. It includes all fields of the instruction
+	 * in the order in which they appear in the assembly code.
+	 * @param opc The opcode for the instruction.
+	 * @param rd The destination register for the instruction.
+	 * @param rs The source register for the instruction.
+	 * @param rt The third register for the instruction.
+	 * @param shamt The shift amount for the instruction.
+	 * @param funct The function code for the instruction.
+	 */
+	public RTypeInstruction(int opc, int rd, int rs, int rt, int shamt, int funct) {
+		opcode = opc;
+		this.rd = rd;
+		this.rs = rs;
+		this.rt = rt;
+		this.shamt = shamt;
+		this.funct = funct;
+	}
+	
 /**
  * Returns the function code of the MIPS instruction.
  */
@@ -121,4 +150,14 @@ public class RTypeInstruction implements IInstruction {
 	public void setJumpdest(int aJumpdest) {
 		throw new InstructionDoesNotHaveFieldException();
 	}
+	
+	
+	
+	public String toString() {
+		String message = "" + opcode + ", " + rd + ", " + rs + ", " + rt + ", " + shamt + ", " + funct + "\n";
+		
+		return message;
+		
+	}
+
 }

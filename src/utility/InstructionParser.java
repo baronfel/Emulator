@@ -5,7 +5,7 @@
  */
 
 
-package model;
+package utility;
 
 import interfaces.IInstruction;
 

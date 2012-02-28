@@ -29,8 +29,32 @@ public class ProcessorConfiguration implements IModel {
 		_configurationName = name;
 		_cyclesRequiredByOpcode = cycleMap;
 		_aluCount = aluCount;
+		initHashMap();
 	}
 	
+	private void initHashMap() {
+		_cyclesRequiredByOpcode.put("add", 1);
+		_cyclesRequiredByOpcode.put("sub", 1);
+		_cyclesRequiredByOpcode.put("addi", 1);
+		_cyclesRequiredByOpcode.put("lodw", 2);
+		_cyclesRequiredByOpcode.put("stow", 2);
+		_cyclesRequiredByOpcode.put("and", 1);
+		_cyclesRequiredByOpcode.put("or", 1);
+		_cyclesRequiredByOpcode.put("nor", 1);
+		_cyclesRequiredByOpcode.put("andi", 1);
+		_cyclesRequiredByOpcode.put("ori", 1);
+		_cyclesRequiredByOpcode.put("shl", 1);
+		_cyclesRequiredByOpcode.put("shr", 1);
+		_cyclesRequiredByOpcode.put("beq", 1);
+		_cyclesRequiredByOpcode.put("bneq", 1);
+		_cyclesRequiredByOpcode.put("slt", 1);
+		_cyclesRequiredByOpcode.put("sltu", 1);
+		_cyclesRequiredByOpcode.put("slti", 1);
+		_cyclesRequiredByOpcode.put("sltiu", 1);
+		_cyclesRequiredByOpcode.put("jmp", 1);
+		_cyclesRequiredByOpcode.put("jmpr", 1);
+	}
+
 	public ProcessorConfiguration(int aluCount, Map<String, Integer> cycleMap)
 	{
 		this("New Configuration", aluCount, cycleMap);
@@ -77,7 +101,7 @@ public class ProcessorConfiguration implements IModel {
 	}
 	
 	/**
-	 * Returns the current Mapping of ALU Opcades to Cycles Required.
+	 * Returns the current Mapping of ALU Opcodes to Cycles Required.
 	 * @return
 	 */
 	public Map<String, Integer> GetCycleMap()

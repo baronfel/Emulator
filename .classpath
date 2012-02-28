@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="lib/jmock-2.5.1/jmock-junit4-2.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-1.4.2/lib/xstream-1.4.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/swt/swt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

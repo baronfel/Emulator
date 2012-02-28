@@ -44,12 +44,12 @@ public class JTypeInstruction implements IInstruction {
 		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public int getOpcode() {
-		throw new UnsupportedOperationException();
+	public String getOpcode() {
+		return "Jump";
 	}
 
-	public void setOpcode(int aOpcode) {
-		throw new UnsupportedOperationException();
+	public void setOpcode(String aOpcode) {
+		
 	}
 
 	public int getRD() {

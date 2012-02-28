@@ -14,7 +14,7 @@ public class RTypeInstruction implements IInstruction {
 
 	private int rs;
 	private int rd;
-	private int opcode;
+	private String opcode;
 	private int funct;
 	private int rt;
 	private int shamt;
@@ -38,7 +38,7 @@ public class RTypeInstruction implements IInstruction {
 	 * @param shamt The shift amount for the instruction.
 	 * @param funct The function code for the instruction.
 	 */
-	public RTypeInstruction(int opc, int rd, int rs, int rt, int shamt, int funct) {
+	public RTypeInstruction(String opc, int rd, int rs, int rt, int shamt, int funct) {
 		opcode = opc;
 		this.rd = rd;
 		this.rs = rs;
@@ -73,7 +73,7 @@ public class RTypeInstruction implements IInstruction {
 	 * Returns the OP Code field for this instruction.
 	 */
 
-	public int getOpcode() {
+	public String getOpcode() {
 		return opcode;
 	}
 	/**
@@ -81,7 +81,7 @@ public class RTypeInstruction implements IInstruction {
 	 * @param aOpcode The new OP code for this instruction.
 	 */
 
-	public void setOpcode(int aOpcode) {
+	public void setOpcode(String aOpcode) {
 		opcode = aOpcode;
 	}
 /**

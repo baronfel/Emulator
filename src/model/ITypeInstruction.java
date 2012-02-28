@@ -13,7 +13,7 @@ import interfaces.InstructionDoesNotHaveFieldException;
 public class ITypeInstruction implements IInstruction {
 
 	private int immediate;
-	private int opcode;
+	private String opcode;
 	private int rd;
 	private int rs;
 
@@ -31,7 +31,7 @@ public class ITypeInstruction implements IInstruction {
 	 * @param rs The Source Register for the instruction.
 	 * @param imm The immediate value of the instruction.
 	 */
-	public ITypeInstruction(int opc, int rd, int rs, int imm) {
+	public ITypeInstruction(String opc, int rd, int rs, int imm) {
 		super();
 		immediate = imm;
 		opcode = opc;
@@ -64,7 +64,7 @@ public class ITypeInstruction implements IInstruction {
 	 * Returns the OP Code field for this instruction.
 	 */
 
-	public int getOpcode() {
+	public String getOpcode() {
 		return opcode;
 	}
 	/**
@@ -72,7 +72,7 @@ public class ITypeInstruction implements IInstruction {
 	 * @param aOpcode The new OP code for this instruction.
 	 */
 
-	public void setOpcode(int aOpcode) {
+	public void setOpcode(String aOpcode) {
 		opcode = aOpcode;
 	}
 /**

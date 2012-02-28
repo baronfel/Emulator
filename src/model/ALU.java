@@ -42,6 +42,10 @@ public class ALU
     if (stallCycles == 0) {
     //go ahead and process the next instruction
     
+      
+      
+      
+      
       //add code
       
     }
@@ -137,12 +141,31 @@ public class ALU
   /**
    * Method to remove an instruction from the post-ALU buffer
    */
-  public void removeFromPostALU()
+  private void removeFromPostALU()
   {
     
   }
   
+  /**
+   * Method to retrieve a processed instruction from the post ALU buffer
+   */
+  public void getNextInstruction()
+  {
+    
+    
+    
+  }
   
+  
+  /**
+   * Method to advance the entries in a buffer
+   */
+  private void advanceBufferEntries()
+  {
+    
+  
+    
+  }
   
   
    

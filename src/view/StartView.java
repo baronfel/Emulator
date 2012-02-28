@@ -29,45 +29,16 @@ public class StartView {
 		
 		// A display is an SWT session, multiple Screens can be hooked up to one.
 		Display display = new Display();
-		GridLayout gLayout = new GridLayout();
-		gLayout.numColumns = 2;
 		
 		Shell shell = new Shell(display);
 		shell.setText(APPNAME);
-		shell.setLayout(gLayout);
 		
-		final ProcessorConfiguration editableConfig = new ProcessorConfiguration();
-		
-		Label nameLabel = new Label(shell, SWT.BORDER);
-		nameLabel.setText("Configuration Name: ");		
-		
-		Text configurationName = new Text(shell, SWT.BORDER);
-		configurationName.setText(editableConfig.GetName());
-		
-		Label opLabel = new Label(shell, SWT.BORDER);
-		opLabel.setText("Operation name: ");
-		
-		final Combo comboBox = new Combo(shell, SWT.BORDER);
-		comboBox.select(0);
-		
-		Label cycleCountLabel = new Label(shell, SWT.BORDER);
-		cycleCountLabel.setText("Cycles to complete: ");		
-		final Text opCycleCount = new Text(shell, SWT.BORDER);
-		opCycleCount.setText(Integer.toString(editableConfig.GetCycleMap().get("sub")));
-		
-		comboBox.setItems(editableConfig.GetCycleMap().keySet().toArray(new String[editableConfig.GetCycleMap().size()]));
-		
-		comboBox.addSelectionListener(new SelectionAdapter() {		
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				// Backup the new value of the selected item
-				editableConfig.AddCycleMapping(comboBox.getText(), Integer.parseInt((opCycleCount.getText())));
-				opCycleCount.setText(editableConfig.GetCycleMap().get(comboBox.getText()).toString());
-			}
-		});
-		
-		
-		
+		// Add a tab control
+		//Tab 1
+		ConfigurationView cView = new ConfigurationView(shell, 0);
+		// Tab 2 (play/pause controls)
+		//Tab 3 (reports!)
+		shell.pack();
 		shell.open();
 		while(!shell.isDisposed())
 		{

@@ -29,16 +29,31 @@ public class StartView {
 		
 		// A display is an SWT session, multiple Screens can be hooked up to one.
 		Display display = new Display();
+		GridLayout gLayout = new GridLayout();
+		gLayout.numColumns = 2;
+		
 		Shell shell = new Shell(display);
 		shell.setText(APPNAME);
-		shell.setLayout(new FillLayout(SWT.VERTICAL));
+		shell.setLayout(gLayout);
 		
 		final ProcessorConfiguration editableConfig = new ProcessorConfiguration();
 		
+		Label nameLabel = new Label(shell, SWT.BORDER);
+		nameLabel.setText("Configuration Name: ");		
+		
 		Text configurationName = new Text(shell, SWT.BORDER);
 		configurationName.setText(editableConfig.GetName());
+		
+		Label opLabel = new Label(shell, SWT.BORDER);
+		opLabel.setText("Operation name: ");
+		
 		final Combo comboBox = new Combo(shell, SWT.BORDER);
+		comboBox.select(0);
+		
+		Label cycleCountLabel = new Label(shell, SWT.BORDER);
+		cycleCountLabel.setText("Cycles to complete: ");		
 		final Text opCycleCount = new Text(shell, SWT.BORDER);
+		opCycleCount.setText(Integer.toString(editableConfig.GetCycleMap().get("sub")));
 		
 		comboBox.setItems(editableConfig.GetCycleMap().keySet().toArray(new String[editableConfig.GetCycleMap().size()]));
 		
@@ -46,7 +61,7 @@ public class StartView {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// Backup the new value of the selected item
-				editableConfig.AddCycleMapping(e.data.toString(), Integer.parseInt((opCycleCount.getText())));
+				editableConfig.AddCycleMapping(comboBox.getText(), Integer.parseInt((opCycleCount.getText())));
 				opCycleCount.setText(editableConfig.GetCycleMap().get(comboBox.getText()).toString());
 			}
 		});

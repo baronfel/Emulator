@@ -15,4 +15,5 @@ public interface ICore {
 	 * 		IALU, IFetchUnit, IIssueUnit, IMemoryAccess, IWriteBack
 	 */
 	public List<ICoreComponent> _components = new ArrayList<ICoreComponent>();
+	
 }

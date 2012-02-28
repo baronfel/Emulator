@@ -29,7 +29,6 @@ public class ProcessorConfiguration implements IModel {
 		_configurationName = name;
 		_cyclesRequiredByOpcode = cycleMap;
 		_aluCount = aluCount;
-		initHashMap();
 	}
 	
 	private void initHashMap() {
@@ -55,13 +54,21 @@ public class ProcessorConfiguration implements IModel {
 		_cyclesRequiredByOpcode.put("jmpr", 1);
 	}
 
-	public ProcessorConfiguration(int aluCount, Map<String, Integer> cycleMap)
+	public ProcessorConfiguration(int aluCount)
 	{
-		this("New Configuration", aluCount, cycleMap);
+		this("New Configuration", aluCount);
 	}
 	
-	public ProcessorConfiguration(){}
+	public ProcessorConfiguration(){
+		this("New Configuration", 1);
+	}
 	
+	public ProcessorConfiguration(String name, int aluCount) {
+		_configurationName = name;
+		_aluCount = aluCount;
+		initHashMap();
+	}
+
 	/* Getters/Setters */
 	
 	/**

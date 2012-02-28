@@ -79,7 +79,7 @@ public class ALU
       //return an error code
       
       //add code
-      
+      return -1;
     }
     else {
       return (op1 / op2);
@@ -102,7 +102,7 @@ public class ALU
    */
   public int addToPreALU(String opName, int seq, int op1, int op2, int dest)
   {
-    for (i = 0; i < bufferSize; i++) {  
+    for (int i = 0; i < bufferSize; i++) {  
       if (preALUBuffer[i].opName != "") {       //then add the new instruction here
         preALUBuffer[i].opName = opName;
         preALUBuffer[i].progSequenceNumber = seq;
@@ -119,7 +119,7 @@ public class ALU
   /**
    * Method to remove an instruction from the pre-ALU buffer
    */
-  private void removeFromPreALU
+  private void removeFromPreALU()
   {
     
   }
@@ -128,7 +128,7 @@ public class ALU
   /**
    * Method to add an instruction to the post-ALU buffer
    */
-  private void addToPostALU
+  private void addToPostALU()
   {
     
   }
@@ -137,7 +137,7 @@ public class ALU
   /**
    * Method to remove an instruction from the post-ALU buffer
    */
-  public void removeFromPostALU
+  public void removeFromPostALU()
   {
     
   }
@@ -166,8 +166,8 @@ public class ALU
       op1Value = 0;
       op2Value = 0;
       destinationRegister = 0;
-      opResult = 0;
     }
+  }
    
   /**
   * Class to store post-ALU instructions
@@ -184,5 +184,6 @@ public class ALU
       destinationRegister = 0;
       opResult = 0;
     }
+  }
    
-}
+}  //end of class ALU

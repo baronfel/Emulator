@@ -4,9 +4,11 @@
 package utility;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import model.ProcessorConfiguration;
 import com.thoughtworks.xstream.XStream;
@@ -59,8 +61,13 @@ public class Serializer {
 	 * @throws IOException
 	 */
 	public static boolean serializeConfigTo(String filePath, ProcessorConfiguration config) throws IOException {
+		FileOutputStream fOutStream = new FileOutputStream(filePath);
+		ObjectOutputStream oOutStream = new ObjectOutputStream(fOutStream);
+		
+		
+		
 		FileWriter writer = new FileWriter(filePath);
-		writer.write(initXStream().toXML(config));
+		//writer.write();
 		writer.close();
 		return true;
 	}

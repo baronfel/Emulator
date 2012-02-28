@@ -16,8 +16,10 @@ import interfaces.IModel;
 public class ConfigurationController extends AbstractController {
 
 	private ProcessorConfiguration model;
+	
 	public ConfigurationController(ProcessorConfiguration model) {
 		super(model);
+		this.model = model;
 	}
 
 	@Override
@@ -25,6 +27,9 @@ public class ConfigurationController extends AbstractController {
 		model = (ProcessorConfiguration) aModel;
 	}
 	
+	/**
+	 * Saves the current internal configuration to the default config directory.
+	 */
 	public void SaveConfig()
 	{
 		String pathToSave = ".\\" + model.GetName() + ".config";
@@ -36,9 +41,14 @@ public class ConfigurationController extends AbstractController {
 		}
 	}
 
-	public ProcessorConfiguration SelectNewConfig(String selected) {
+	/**
+	 * Loads the configuration located at the given path.
+	 * @param selected
+	 * @return
+	 */
+	public ProcessorConfiguration SelectNewConfig(String path) {
 		try {
-			model = Serializer.deserializeConfigFrom(selected);
+			model = Serializer.deserializeConfigFrom(path);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

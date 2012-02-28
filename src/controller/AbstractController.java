@@ -1,8 +1,6 @@
 /**
  * An abstract class that implements some of the controller interface. An intermediate class
  * between the Controller Interface and a specific controller.
- * 
- * 
  */
 
 
@@ -20,7 +18,7 @@ public abstract class AbstractController implements IController {
 	}
 
 	/**
-	 * Added an exception to the getModel operation.
+	 * Gets the IModel that this IController operates on.
 	 * @see IController
 	 */
 	public IModel getModel() {

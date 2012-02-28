@@ -48,7 +48,7 @@ public class ConfigurationView {
 		initControls(parent);
 	}
 	
-	public void initControls(final Shell parent)
+	private void initControls(final Shell parent)
 	{
 		GridLayout gLayout = new GridLayout();
 		gLayout.numColumns = 2;
@@ -113,6 +113,10 @@ public class ConfigurationView {
 		});
 	}
 	
+	/**
+	 * Opens a FileDialog to choose a config on the system to load into the simulation.
+	 * @param parent
+	 */
 	public void SelectConfig(Shell parent)
 	{
 		FileDialog fileChooseDialog = new FileDialog(parent);

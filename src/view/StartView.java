@@ -4,13 +4,12 @@
 
 package view;
 
-import model.ProcessorConfiguration;
-
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.*;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.*;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 
 
 /**
@@ -32,12 +31,13 @@ public class StartView {
 		
 		Shell shell = new Shell(display);
 		shell.setText(APPNAME);
+		shell.setLayout(new FillLayout());
 		
 		// Add a tab control
-		//Tab 1
+		// Tab 1
 		ConfigurationView cView = new ConfigurationView(shell, 0);
 		// Tab 2 (play/pause controls)
-		//Tab 3 (reports!)
+		// Tab 3 (reports!)
 		shell.pack();
 		shell.open();
 		while(!shell.isDisposed())

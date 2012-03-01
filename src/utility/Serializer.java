@@ -4,13 +4,12 @@
 package utility;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 import model.ProcessorConfiguration;
+
 import com.thoughtworks.xstream.XStream;
 
 /**
@@ -70,7 +69,7 @@ public class Serializer {
 	 * @param xml
 	 * @return
 	 */
-	public static ProcessorConfiguration deserializeMapFrom(String xml){
+	public static ProcessorConfiguration deserializeConfigFromXML(String xml){
 		return (ProcessorConfiguration) initXStream().fromXML(xml);
 	}
 

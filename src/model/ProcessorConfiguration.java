@@ -136,6 +136,17 @@ public class ProcessorConfiguration implements IModel, Serializable {
 	{
 			_cyclesRequiredByOpcode.put(opName, cyclesRequired);
 	}
+	
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if(!(obj instanceof ProcessorConfiguration)) return false;
+		ProcessorConfiguration other = (ProcessorConfiguration)obj;
+		
+		return _configurationName.equalsIgnoreCase(other.GetName()) && 
+				 other.GetALUCount() == _aluCount &&
+				other.GetCycleMap().equals(_cyclesRequiredByOpcode);
+	}
 
 	@Override
 	public void notifyChanged(ModelEvent aE) {

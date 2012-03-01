@@ -13,8 +13,6 @@ package view;
 
 import java.util.ArrayList;
 
-import model.ProcessorConfiguration;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -24,6 +22,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -31,7 +30,7 @@ import org.eclipse.swt.widgets.Text;
 
 import controller.ConfigurationController;
 
-public class ConfigurationView {
+public class ConfigurationView{
 	
 	private ConfigurationController controller;
 	Combo comboBox;
@@ -41,12 +40,12 @@ public class ConfigurationView {
 	Button saveConfig;
 	String previousOpName;
 	
-	public ConfigurationView(final Shell parent, int style) {
+	public ConfigurationView(final Composite parent, int style) {
 		controller = new ConfigurationController();
 		initControls(parent);
 	}
 	
-	private void initControls(final Shell parent)
+	private void initControls(final Composite parent)
 	{
 		GridLayout gLayout = new GridLayout();
 		gLayout.numColumns = 2;
@@ -116,12 +115,12 @@ public class ConfigurationView {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				SelectConfig(parent);
+				SelectConfig(parent.getShell());
 			}
 			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
-				SelectConfig(parent);
+				SelectConfig(parent.getShell());
 			}
 		});
 		

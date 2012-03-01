@@ -155,54 +155,39 @@ public class RTypeInstruction implements IInstruction {
 	
 	public String toString() {
 		String message = "" + opcode + ", " + rd + ", " + rs + ", " + rt + ", " + shamt + ", " + funct + "\n";
-		/*
+		
+		message = opcode + " " + rd + ", " + rs + ", " + rt + "\n";
 		switch (opcode.toLowerCase()) {
-		case "jr": JRInstruction();
+		case "jr": message = opcode + " " + rs + "\n";
 			break;
-		case "bne": BNEInstruction();
+		case "mul":
 			break;
-		case "j": JInstruction();
+		case "add":
 			break;
-		case "lw": LWInstruction();
+		case "sub": 
 			break;
-		case "beq": BEQInstruction();
+		case "sll": message = opcode + " " + rd + ", " + rs + ", " + shamt + "\n";
 			break;
-		case "addi": ADDIInstruction();
+		case "srl": message = opcode + " " + rd + ", " + rs + ", " + shamt + "\n";
 			break;
-		case "sw": SWInstruction();
+		case "nop": message = "NO-OP";
 			break;
-		case "mul": MULInstruction();
+		case "and": 
 			break;
-		case "add": ADDInstruction();
+		case "or": 
 			break;
-		case "sub": SUBInstruction();
+		case "slt": 
 			break;
-		case "sll": SLLInstruction();
+		case "sltu": 
 			break;
-		case "srl": SRLInstruction();
+		case "nor": 
 			break;
-		case "nop": NOPInstruction();
+		case "div": 
 			break;
-		case "and": ANDInstruction();
-			break;
-		case "or": ORInstruction();
-			break;
-		case "slt": SLTInstruction();
-			break;
-		case "slti": SLTIInstruction();
-			break;
-		case "sltu": SLTUInstruction();
-			break;
-		case "sltiu": SLTIUInstruction();
-			break;
-		case "nor": NORInstruction();
-			break;
-		case "div": DIVInstruction();
-			break;
-			default: InvalidInstruction();
+		default: 
 				break;
 		}
-		*/
+		
 		
 		
 		return message;

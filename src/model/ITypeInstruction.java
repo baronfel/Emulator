@@ -137,6 +137,23 @@ public class ITypeInstruction implements IInstruction {
 	public String toString() {
 		String message = "" + opcode + " " + rd + ", " + rs + ", " + immediate + "\n";
 		
+		message = opcode + " " + rd + ", " + rs + ", " + immediate + "\n";
+		switch (opcode.toLowerCase()) {
+		case "lw": message = opcode + " " + rd + ", " + immediate + "(" + rs + ")\n";
+			break;
+		case "addi":
+			break;
+		case "sw": message = opcode + " " + rs + ", " + immediate + "(" + rd + ")\n";
+			break;
+		case "slti": 
+			break;
+		case "sltiu":
+			break;
+			default: 
+				break;
+		}
+		
+
 		return message;
 		
 	}

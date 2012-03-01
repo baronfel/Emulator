@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.BranchInstruction;
 import model.ITypeInstruction;
 import model.JTypeInstruction;
 import model.Label;
@@ -352,7 +353,7 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLable(label);
 		String opc = "BEQ";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, label));
 
 	}
 
@@ -398,7 +399,7 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLable(label);
 		String opc = "BNE";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, label));
 	}
 
 	private int getImmediateFromLable(String label) {

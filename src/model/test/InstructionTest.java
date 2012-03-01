@@ -47,8 +47,8 @@ public class InstructionTest {
 		sub.setRT(10);
 		sub.setSHAMT(11);
 		
-		assertTrue(add.toString().equals("add, 2, 3, 4, 5, 6\n"));
-		assertTrue(sub.toString().equals("sub, 8, 9, 10, 11, 12\n"));
+		assertTrue(add.toString().equals("add, 2, 3, 4\n"));
+		assertTrue(sub.toString().equals("sub, 8, 9, 10\n"));
 	}
 	
 	@Test

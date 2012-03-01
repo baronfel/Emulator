@@ -9,6 +9,7 @@ package utility;
 
 import interfaces.IInstruction;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -38,7 +39,7 @@ public class InstructionParser {
 	 * @return A list of instructions that the simulation can use.
 	 */
 	public List<IInstruction> LoadInstructions(String aInfilePath) throws InvalidInstructionException {
-		file = new Scanner(aInfilePath);
+		file = new Scanner(new File(aInfilePath));
 		lineCounter = 1;
 		invalidFlag = false;
 		while(file.hasNext())

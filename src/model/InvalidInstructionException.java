@@ -21,14 +21,14 @@ public class InvalidInstructionException extends Exception{
 	}
 	
 	public InvalidInstructionException(List<String> list){
-		setInvalidlist(list);
+		setInvalidList(list);
 	}
 
-	public void setInvalidlist(List<String> invalidlist) {
+	public void setInvalidList(List<String> invalidlist) {
 		this.invalidlist = invalidlist;
 	}
 
-	public List<String> getInvalidlist() {
+	public List<String> getInvalidList() {
 		return invalidlist;
 	}
 }

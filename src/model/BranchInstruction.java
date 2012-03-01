@@ -34,7 +34,7 @@ public class BranchInstruction extends ITypeInstruction{
 	}
 	
 	public String toString(){
-		String message = getOpcode() + " " + getRS() + ", " + getRD() + ", " + label;
+		String message = getOpcode() + " " + getRS() + ", " + getRD() + ", " + label + "\n";
 		return message;
 	}
 }

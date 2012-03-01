@@ -15,11 +15,10 @@ import interfaces.IModel;
 
 public class ConfigurationController extends AbstractController {
 
-	private ProcessorConfiguration model;
+	private static ProcessorConfiguration model = new ProcessorConfiguration();
 	
-	public ConfigurationController(ProcessorConfiguration model) {
+	public ConfigurationController() {
 		super(model);
-		this.model = model;
 	}
 
 	@Override
@@ -32,11 +31,10 @@ public class ConfigurationController extends AbstractController {
 	 */
 	public void SaveConfig()
 	{
-		String pathToSave = ".\\" + model.GetName() + ".config";
+		String pathToSave = ".\\configs\\" + model.GetName() + ".config";
 		try {
 			Serializer.serializeConfigTo(pathToSave, model);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -46,13 +44,65 @@ public class ConfigurationController extends AbstractController {
 	 * @param selected
 	 * @return
 	 */
-	public ProcessorConfiguration SelectNewConfig(String path) {
+	public void SelectNewConfig(String path) {
 		try {
 			model = Serializer.deserializeConfigFrom(path);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return model;
+	}
+
+	/**
+	 * Sets the ALU count for the underlying model.
+	 * @param count
+	 */
+	public void setAluCount(int count) {
+		model.SetALUCount(count);
+	}
+
+	/**
+	 * Sets the Configuration name for the underlying model
+	 * @param newName
+	 */
+	public void setName(String newName) {
+		model.SetName(newName);
+	}
+
+	/**
+	 * Accessor for underlying model alu count
+	 * @return
+	 */
+	public int getAluCount() {
+		return model.GetALUCount();
+	}
+
+	/**
+	 * Lets views add a new cycle count mapping
+	 * @param opName
+	 * @param cycles
+	 */
+	public void addCycleMapping(String opName, int cycles) {
+		model.AddCycleMapping(opName, cycles);
+	}
+	
+	
+	/**
+	 * View accessor for the Config name.
+	 * @return
+	 */
+	public String getName() {
+		return model.GetName();
+	}
+
+	/**
+	 * Returns the list of operations this config supports.
+	 * @return
+	 */
+	public String[] getItemArray() {
+		return model.GetCycleMap().keySet().toArray(new String[model.GetCycleMap().size()]);
+	}
+
+	public Integer getCycleCountFor(String opName) {
+		return (Integer)model.GetCycleMap().get(opName);
 	}
 }

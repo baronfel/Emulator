@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import model.ProcessorConfiguration;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -30,8 +32,7 @@ import org.eclipse.swt.widgets.Text;
 import controller.ConfigurationController;
 
 public class ConfigurationView {
-
-	private ProcessorConfiguration editableConfig;
+	
 	private ConfigurationController controller;
 	Combo comboBox;
 	Text opCycleCount;
@@ -41,10 +42,7 @@ public class ConfigurationView {
 	String previousOpName;
 	
 	public ConfigurationView(final Shell parent, int style) {
-		
-		editableConfig = new ProcessorConfiguration();
-		controller = new ConfigurationController(editableConfig);
-		
+		controller = new ConfigurationController();
 		initControls(parent);
 	}
 	
@@ -54,34 +52,64 @@ public class ConfigurationView {
 		gLayout.numColumns = 2;
 		parent.setLayout(gLayout);
 		
+		
+		// Name Controls
 		Label nameLabel = new Label(parent, SWT.BORDER);
 		nameLabel.setText("Configuration Name: ");		
 		
-		Text configurationName = new Text(parent, SWT.BORDER);
-		configurationName.setText(editableConfig.GetName());
+		final Text configurationName = new Text(parent, SWT.BORDER);
+		configurationName.setText(controller.getName());
+		configurationName.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent arg0) {
+				controller.setName(configurationName.getText());
+			}
+		});
 		
+		// Operation Cycle Count Controls
 		Label opLabel = new Label(parent, SWT.BORDER);
 		opLabel.setText("Operation name: ");
 		
 		final Combo comboBox = new Combo(parent, SWT.BORDER);
-		comboBox.setItems(editableConfig.GetCycleMap().keySet().toArray(new String[editableConfig.GetCycleMap().size()]));
+		comboBox.setItems(controller.getItemArray());
 		comboBox.select(0);
 		previousOpName = comboBox.getText();
 		
 		Label cycleCountLabel = new Label(parent, SWT.BORDER);
 		cycleCountLabel.setText("Cycles to complete: ");		
 		final Text opCycleCount = new Text(parent, SWT.BORDER);
-		opCycleCount.setText(Integer.toString(editableConfig.GetCycleMap().get("sub")));
+		opCycleCount.setText(Integer.toString(controller.getCycleCountFor("sub")));
 		
 		comboBox.addSelectionListener(new SelectionAdapter() {		
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				editableConfig.AddCycleMapping(previousOpName, Integer.parseInt((opCycleCount.getText())));
-				opCycleCount.setText(editableConfig.GetCycleMap().get(comboBox.getText()).toString());
+				controller.addCycleMapping(previousOpName, Integer.parseInt((opCycleCount.getText())));
+				opCycleCount.setText(controller.getCycleCountFor(comboBox.getText()).toString());
 				previousOpName = comboBox.getText();
 			}
 		});
 		
+		// ALU Count Controls
+		Label aluCountLabel = new Label(parent, SWT.BORDER);
+		aluCountLabel.setText("Processor ALU Count: ");		
+		final Text aluCount = new Text(parent, SWT.BORDER);
+		aluCount.setText(Integer.toString(controller.getAluCount()));
+		aluCount.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent arg0) {
+				int possible = controller.getAluCount();
+				try
+				{
+					possible = Integer.parseInt(aluCount.getText());
+				}
+				finally{}
+				controller.setAluCount(possible);
+			}
+		});
+		
+		// Save/Load Controls
 		Button loadConfigBtn = new Button(parent, SWT.BORDER);
 		loadConfigBtn.setText("Load Configuration...");
 		loadConfigBtn.addSelectionListener(new SelectionListener() {
@@ -127,7 +155,7 @@ public class ConfigurationView {
 		
 		if(selected != null)
 		{
-			editableConfig = controller.SelectNewConfig(selected);
+			controller.SelectNewConfig(selected);
 		}
 	}
 }

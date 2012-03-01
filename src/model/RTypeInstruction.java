@@ -155,6 +155,55 @@ public class RTypeInstruction implements IInstruction {
 	
 	public String toString() {
 		String message = "" + opcode + ", " + rd + ", " + rs + ", " + rt + ", " + shamt + ", " + funct + "\n";
+		/*
+		switch (opcode.toLowerCase()) {
+		case "jr": JRInstruction();
+			break;
+		case "bne": BNEInstruction();
+			break;
+		case "j": JInstruction();
+			break;
+		case "lw": LWInstruction();
+			break;
+		case "beq": BEQInstruction();
+			break;
+		case "addi": ADDIInstruction();
+			break;
+		case "sw": SWInstruction();
+			break;
+		case "mul": MULInstruction();
+			break;
+		case "add": ADDInstruction();
+			break;
+		case "sub": SUBInstruction();
+			break;
+		case "sll": SLLInstruction();
+			break;
+		case "srl": SRLInstruction();
+			break;
+		case "nop": NOPInstruction();
+			break;
+		case "and": ANDInstruction();
+			break;
+		case "or": ORInstruction();
+			break;
+		case "slt": SLTInstruction();
+			break;
+		case "slti": SLTIInstruction();
+			break;
+		case "sltu": SLTUInstruction();
+			break;
+		case "sltiu": SLTIUInstruction();
+			break;
+		case "nor": NORInstruction();
+			break;
+		case "div": DIVInstruction();
+			break;
+			default: InvalidInstruction();
+				break;
+		}
+		*/
+		
 		
 		return message;
 		

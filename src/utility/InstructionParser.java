@@ -15,14 +15,18 @@ import java.util.Scanner;
 
 import model.ITypeInstruction;
 import model.JTypeInstruction;
+import model.Label;
 import model.RTypeInstruction;
 import model.Simulation;
 
 public class InstructionParser {
 	public Simulation _unnamed_Simulation_;
 	List<IInstruction> ilist = new ArrayList<IInstruction>();
-	Scanner file = new Scanner("aInfilePath");
-
+	Scanner file;
+	private static int lineCounter = 0;
+	List<String> invalidlist = new ArrayList<String>();
+	List<Label> labellist = new ArrayList<Label>();
+	boolean invalidFlag = false;
 
 
 	/**
@@ -32,61 +36,83 @@ public class InstructionParser {
 	 * @return A list of instructions that the simulation can use.
 	 */
 	public List<IInstruction> LoadInstructions(String aInfilePath) {
+		file = new Scanner(aInfilePath);
+		lineCounter = 1;
 		while(file.hasNext())
 		{
 		String name = file.next();
+		
+		if(name.charAt(name.length()-1) == ':')
+			Label(name);
 		
 		/**
 		 * This will work in JRE7, but errors in JRE6. I need to get that new library linked.
 		 */
 		switch (name.toLowerCase()) {
-		case "JR": JRInstruction();
+		case "jr": JRInstruction();
 			break;
-		case "BNE": BNEInstruction();
+		case "bne": BNEInstruction();
 			break;
-		case "J": JInstruction();
+		case "j": JInstruction();
 			break;
-		case "LW": LWInstruction();
+		case "lw": LWInstruction();
 			break;
-		case "BEQ": BEQInstruction();
+		case "beq": BEQInstruction();
 			break;
-		case "ADDI": ADDIInstruction();
+		case "addi": ADDIInstruction();
 			break;
-		case "SW": SWInstruction();
+		case "sw": SWInstruction();
 			break;
-		case "MUL": MULInstruction();
+		case "mul": MULInstruction();
 			break;
-		case "ADD": ADDInstruction();
+		case "add": ADDInstruction();
 			break;
-		case "SUB": SUBInstruction();
+		case "sub": SUBInstruction();
 			break;
-		case "SLL": SLLInstruction();
+		case "sll": SLLInstruction();
 			break;
-		case "SRL": SRLInstruction();
+		case "srl": SRLInstruction();
 			break;
-		case "NOP": NOPInstruction();
+		case "nop": NOPInstruction();
 			break;
-		case "AND": ANDInstruction();
+		case "and": ANDInstruction();
 			break;
-		case "OR": ORInstruction();
+		case "or": ORInstruction();
 			break;
-		case "SLT": SLTInstruction();
+		case "slt": SLTInstruction();
 			break;
-		case "SLTI": SLTIInstruction();
+		case "slti": SLTIInstruction();
 			break;
-		case "SLTU": SLTUInstruction();
+		case "sltu": SLTUInstruction();
 			break;
-		case "SLTIU": SLTIUInstruction();
+		case "sltiu": SLTIUInstruction();
 			break;
-		case "NOR": NORInstruction();
+		case "nor": NORInstruction();
 			break;
-		case "DIV": DIVInstruction();
-			default: break;
+		case "div": DIVInstruction();
+			break;
+			default: InvalidInstruction(name);
+				break;
 		}
-		
+		lineCounter++;
 		}
 		
 		return ilist;
+	}
+
+	private void Label(String name) {
+		// TODO Auto-generated method stub
+		String body = file.nextLine();
+		body = name + body;
+		labellist.add(new Label(name, lineCounter));
+	}
+
+
+	private void InvalidInstruction(String name) {
+		// TODO Auto-generated method stub
+		String body = "Line: " + lineCounter + "\t" + name + file.nextLine();
+		invalidlist.add(body);
+		invalidFlag = true;
 	}
 
 	private void DIVInstruction() {
@@ -121,22 +147,58 @@ public class InstructionParser {
 
 	private void SLTIUInstruction() {
 		// TODO Auto-generated method stub
-		
+		int rd = file.nextInt();
+		file.next();
+		int rs = file.nextInt();
+		file.next();
+		int imm = file.nextInt();
+		file.nextLine();
+		String opc = "SLTIU";
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+
 	}
 
 	private void SLTUInstruction() {
 		// TODO Auto-generated method stub
-		
+		int rd = file.nextInt();
+		file.next();
+		int rs = file.nextInt();
+		file.next();
+		int rt = file.nextInt();
+		file.nextLine();
+		int funct = 0;
+		int sa = 0;
+		String opc = "SLTU";
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+
 	}
 
 	private void SLTIInstruction() {
 		// TODO Auto-generated method stub
-		
+		int rd = file.nextInt();
+		file.next();
+		int rs = file.nextInt();
+		file.next();
+		int imm = file.nextInt();
+		file.nextLine();
+		String opc = "SLTI";
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+
 	}
 
 	private void SLTInstruction() {
 		// TODO Auto-generated method stub
-		
+		int rd = file.nextInt();
+		file.next();
+		int rs = file.nextInt();
+		file.next();
+		int rt = file.nextInt();
+		file.nextLine();
+		int funct = 0;
+		int sa = 0;
+		String opc = "SLT";
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+
 	}
 
 	private void ORInstruction() {
@@ -340,8 +402,9 @@ public class InstructionParser {
 	}
 
 	private int getImmediateFromLable(String label) {
-		// TODO Auto-generated method stub
-		return 0;
+		int index = 0;
+		for(int i = 0; !(label.equals(labellist.get(i).getName())); i++);
+		return labellist.get(index).getLineNumber() - lineCounter;
 	}
 
 }

@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 import model.BranchInstruction;
 import model.ITypeInstruction;
+import model.InvalidInstructionException;
 import model.JTypeInstruction;
 import model.Label;
 import model.RTypeInstruction;
@@ -36,9 +37,10 @@ public class InstructionParser {
 	 * @param aInfilePath The location of the instructions.
 	 * @return A list of instructions that the simulation can use.
 	 */
-	public List<IInstruction> LoadInstructions(String aInfilePath) {
+	public List<IInstruction> LoadInstructions(String aInfilePath) throws InvalidInstructionException {
 		file = new Scanner(aInfilePath);
 		lineCounter = 1;
+		invalidFlag = false;
 		while(file.hasNext())
 		{
 		String name = file.next();
@@ -97,6 +99,9 @@ public class InstructionParser {
 		}
 		lineCounter++;
 		}
+		
+		if(invalidFlag)
+			throw new InvalidInstructionException(invalidlist);
 		
 		return ilist;
 	}

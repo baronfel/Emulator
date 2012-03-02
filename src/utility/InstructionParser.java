@@ -31,6 +31,7 @@ public class InstructionParser {
 	List<String> invalidlist = new ArrayList<String>();
 	List<Label> labellist = new ArrayList<Label>();
 	boolean invalidFlag = false;
+	Package twolist = new Package();
 
 
 	/**
@@ -39,11 +40,12 @@ public class InstructionParser {
 	 * @param aInfilePath The location of the instructions.
 	 * @return A list of instructions that the simulation can use.
 	 */
-	public List<IInstruction> LoadInstructions(String aInfilePath) throws InvalidInstructionException {
+	public Package LoadInstructions(String aInfilePath){
 		try {
 			file = new Scanner(new File(aInfilePath));
 		} catch (FileNotFoundException e) {
-			return ilist;
+			twolist.setIlist(ilist);
+			return twolist;
 		}
 		lineCounter = 1;
 		invalidFlag = false;
@@ -106,10 +108,10 @@ public class InstructionParser {
 		lineCounter++;
 		}
 		
-		if(invalidFlag)
-			throw new InvalidInstructionException(invalidlist);
 		
-		return ilist;
+		twolist.setIlist(ilist);
+		twolist.setInvalidlist(invalidlist);
+		return twolist;
 	}
 
 	private void Label(String name) {

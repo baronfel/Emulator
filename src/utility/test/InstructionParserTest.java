@@ -14,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utility.InstructionParser;
+import utility.Package;
 
 
 /**
@@ -21,19 +22,20 @@ import utility.InstructionParser;
  *
  */
 public class InstructionParserTest {
-	private static InstructionParser testParser;
-	private static ArrayList<IInstruction> ilist;
-	private static ArrayList<String> invalidlist;
+	private static InstructionParser testParser = new InstructionParser();
+	private static ArrayList<IInstruction> ilist = new ArrayList<IInstruction>();
+	private static ArrayList<String> invalidlist = new ArrayList<String>();
+	private static Package pckg;
 
 	
 	@BeforeClass
 	public static void GetInstructionsAndInvalids(){
-		try {
-			ilist = (ArrayList<IInstruction>) testParser.LoadInstructions("ParserTestFile");
-		} catch (InvalidInstructionException e) {
-			invalidlist = (ArrayList<String>) e.getInvalidList();
-		}
+			pckg = testParser.LoadInstructions("ParserTestFile");
+			ilist = (ArrayList<IInstruction>) pckg.getIlist();
+			invalidlist = (ArrayList<String>) pckg.getInvalidlist();
+			
 	}
+	
 	
 	@Test
 	public void InstructionTest(){

@@ -10,6 +10,7 @@ package utility;
 import interfaces.IInstruction;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,7 +40,11 @@ public class InstructionParser {
 	 * @return A list of instructions that the simulation can use.
 	 */
 	public List<IInstruction> LoadInstructions(String aInfilePath) throws InvalidInstructionException {
-		file = new Scanner(new File(aInfilePath));
+		try {
+			file = new Scanner(new File(aInfilePath));
+		} catch (FileNotFoundException e) {
+			return ilist;
+		}
 		lineCounter = 1;
 		invalidFlag = false;
 		while(file.hasNext())

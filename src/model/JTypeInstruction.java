@@ -45,7 +45,7 @@ public class JTypeInstruction implements IInstruction {
 	}
 
 	public String getOpcode() {
-		return "Jump";
+		return "J";
 	}
 
 	public void setOpcode(String aOpcode) {

@@ -56,8 +56,8 @@ public class InstructionTest {
 	{
 		jmp2.setJumpdest(25000);
 		
-		assertTrue(jmp1.toString().equals("jump 50000\n"));
-		assertTrue(jmp2.toString().equals("jump 25000\n"));
+		assertTrue(jmp1.toString().equals("J 50000\n"));
+		assertTrue(jmp2.toString().equals("J 25000\n"));
 	}
 
 }

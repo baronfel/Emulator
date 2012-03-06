@@ -106,7 +106,7 @@ public class JTypeInstruction implements IInstruction {
 	
 	
 	public String toString() {
-		String message = "jump " + jumpdest + "\n";
+		String message = "J " + jumpdest + "\n";
 		
 		return message;
 		

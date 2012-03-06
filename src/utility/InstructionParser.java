@@ -43,6 +43,7 @@ public class InstructionParser {
 	public Package LoadInstructions(String aInfilePath){
 		try {
 			file = new Scanner(new File(aInfilePath));
+			file.useDelimiter("[, ()\r\n]+");
 		} catch (FileNotFoundException e) {
 			twolist.setIlist(ilist);
 			return twolist;
@@ -52,7 +53,12 @@ public class InstructionParser {
 		while(file.hasNext())
 		{
 		String name = file.next();
-		
+/*		String test1 = file.next();
+		String test2 = file.next();
+		String test3 = file.next();
+		String test4 = file.next();
+		String test5 = file.next();
+*/		
 		if(name.charAt(name.length()-1) == ':')
 			Label(name);
 		
@@ -116,8 +122,8 @@ public class InstructionParser {
 
 	private void Label(String name) {
 		// TODO Auto-generated method stub
-		String body = file.nextLine();
-		body = name + body;
+		//String body = file.nextLine();
+		//body = name + body;
 		labellist.add(new Label(name, lineCounter));
 	}
 
@@ -132,9 +138,7 @@ public class InstructionParser {
 	private void DIVInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 000000;
@@ -147,9 +151,7 @@ public class InstructionParser {
 	private void NORInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 100111;
@@ -162,9 +164,7 @@ public class InstructionParser {
 	private void SLTIUInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTIU";
@@ -175,9 +175,7 @@ public class InstructionParser {
 	private void SLTUInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 0;
@@ -190,9 +188,7 @@ public class InstructionParser {
 	private void SLTIInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTI";
@@ -203,9 +199,7 @@ public class InstructionParser {
 	private void SLTInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 0;
@@ -217,9 +211,7 @@ public class InstructionParser {
 
 	private void ORInstruction() {
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 100101;
@@ -232,9 +224,7 @@ public class InstructionParser {
 	private void ANDInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 100100;
@@ -260,9 +250,7 @@ public class InstructionParser {
 	private void SRLInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int sa = file.nextInt();
 		file.nextLine();
 		int funct = 000010;
@@ -275,9 +263,7 @@ public class InstructionParser {
 	private void SLLInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int sa = file.nextInt();
 		file.nextLine();
 		int funct = 000000;
@@ -290,9 +276,7 @@ public class InstructionParser {
 	private void SUBInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 100001;
@@ -305,9 +289,7 @@ public class InstructionParser {
 	private void ADDInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 100000;
@@ -320,9 +302,7 @@ public class InstructionParser {
 	private void MULInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int rt = file.nextInt();
 		file.nextLine();
 		int funct = 000000;
@@ -333,11 +313,9 @@ public class InstructionParser {
 	}
 
 	private void SWInstruction() {
-		int rd = file.nextInt();
-		file.next();
-		int imm = file.nextInt();
-		file.next("(");
 		int rs = file.nextInt();
+		int imm = file.nextInt();
+		int rd = file.nextInt();
 		file.nextLine();
 		String opc = "SW";
 		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
@@ -346,9 +324,7 @@ public class InstructionParser {
 	private void ADDIInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int rs = file.nextInt();
-		file.next();
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ADDI";
@@ -359,9 +335,7 @@ public class InstructionParser {
 	private void BEQInstruction() {
 		// TODO Auto-generated method stub
 		int rs = file.nextInt();
-		file.next();
 		int rd = file.nextInt();
-		file.next();
 		String label = file.next();
 		file.nextLine();
 		int imm = getImmediateFromLable(label);
@@ -373,9 +347,7 @@ public class InstructionParser {
 	private void LWInstruction() {
 		// TODO Auto-generated method stub
 		int rd = file.nextInt();
-		file.next();
 		int imm = file.nextInt();
-		file.next("(");
 		int rs = file.nextInt();
 		file.nextLine();
 		String opc = "LW";
@@ -405,9 +377,7 @@ public class InstructionParser {
 	private void BNEInstruction() {
 		// TODO Auto-generated method stub
 		int rs = file.nextInt();
-		file.next();
 		int rd = file.nextInt();
-		file.next();
 		String label = file.next();
 		file.nextLine();
 		int imm = getImmediateFromLable(label);
@@ -416,9 +386,10 @@ public class InstructionParser {
 	}
 
 	private int getImmediateFromLable(String label) {
-		int index = 0;
-		for(int i = 0; !(label.equals(labellist.get(i).getName())); i++);
-		return labellist.get(index).getLineNumber() - lineCounter;
+		//int index = 0;
+		//for(int i = 0; !(label.equals(labellist.get(i).getName())); i++);
+		//return labellist.get(index).getLineNumber() - lineCounter;
+		return 0;
 	}
 
 }

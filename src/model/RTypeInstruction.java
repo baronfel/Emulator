@@ -170,7 +170,7 @@ public class RTypeInstruction implements IInstruction {
 			break;
 		case "srl": message = opcode + " " + rd + ", " + rs + ", " + shamt + "\n";
 			break;
-		case "nop": message = "NO-OP";
+		case "nop": message = "NOP\n";
 			break;
 		case "and": 
 			break;

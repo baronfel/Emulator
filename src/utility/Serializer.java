@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import model.ProcessorConfiguration;
+
 import com.thoughtworks.xstream.XStream;
 
 /**
@@ -23,7 +24,7 @@ public class Serializer {
 		XStream streamer = new XStream();
 		
 		// Doing this makes the XML not have to worry with namespaces.
-		streamer.processAnnotations(ProcessorConfiguration.class);
+		streamer.alias("ProcessorConfiguration", ProcessorConfiguration.class);
 		return streamer;
 	}
 	
@@ -44,11 +45,10 @@ public class Serializer {
 	 * @return
 	 * @throws IOException
 	 */
-	public static boolean serializeConfigTo(File file, ProcessorConfiguration config) throws IOException {
+	public static void serializeConfigTo(File file, ProcessorConfiguration config) throws IOException {
 		FileWriter writer = new FileWriter(file);
 		writer.write(initXStream().toXML(config));
 		writer.close();
-		return true;
 	}
 
 	/**
@@ -58,11 +58,10 @@ public class Serializer {
 	 * @return
 	 * @throws IOException
 	 */
-	public static boolean serializeConfigTo(String filePath, ProcessorConfiguration config) throws IOException {
+	public static void serializeConfigTo(String filePath, ProcessorConfiguration config) throws IOException {
 		FileWriter writer = new FileWriter(filePath);
 		writer.write(initXStream().toXML(config));
 		writer.close();
-		return true;
 	}
 
 	/**
@@ -70,7 +69,7 @@ public class Serializer {
 	 * @param xml
 	 * @return
 	 */
-	public static ProcessorConfiguration deserializeMapFrom(String xml){
+	public static ProcessorConfiguration deserializeConfigFromXML(String xml){
 		return (ProcessorConfiguration) initXStream().fromXML(xml);
 	}
 

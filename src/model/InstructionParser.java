@@ -1,5 +1,5 @@
 /**
- * Reads in MIPS instructions from a file or from the view and parses them into instructions
+  * Reads in MIPS instructions from a file or from the view and parses them into instructions
  * readable by this simulator.
  * 
  */

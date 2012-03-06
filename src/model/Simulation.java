@@ -21,6 +21,7 @@ public class Simulation extends AbstractModel {
 	public InstructionParser _unnamed_InstructionParser_;
 	public ProcessorConfiguration _unnamed_ProcessorConfiguration_;
 	public BenchmarkResult _unnamed_BenchmarkResult_;
+	public Memory internalMemory;
 	
 	public Simulation(ProcessorConfiguration config, List<IInstruction> program)
 	{

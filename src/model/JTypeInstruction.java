@@ -7,43 +7,61 @@
 package model;
 
 import interfaces.IInstruction;
+import interfaces.InstructionDoesNotHaveFieldException;
 
 public class JTypeInstruction implements IInstruction {
 
+	private int jumpdest;
+	
+	/**
+	 * A default constructor for the JTypeInstruction. It should be followed by setting the jump
+	 * destination.
+	 */
+	public JTypeInstruction() {
+		super();
+	}
+	/**
+	 * The primary constructor for the JTypeInsturction.
+	 * @param jdst The jump destination for the instruction.
+	 */
+	public JTypeInstruction(int jdst) {
+		jumpdest = jdst;
+	}
+	
 	public int getFUNCT() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public void setFUNCT(Object aFUNCT) {
-		throw new UnsupportedOperationException();
+	public void setFUNCT(int aFUNCT) {
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public int getImmediate() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public void setImmediate(Object aImmediate) {
-		throw new UnsupportedOperationException();
+	public void setImmediate(int aImmediate) {
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public int getOpcode() {
-		throw new UnsupportedOperationException();
+	public String getOpcode() {
+		return "J";
 	}
 
-	public void setOpcode(int aOpcode) {
-		throw new UnsupportedOperationException();
+	public void setOpcode(String aOpcode) {
+		
 	}
 
 	public int getRD() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public void setRD(Object aRD) {
-		throw new UnsupportedOperationException();
+	public void setRD(int aRD) {
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public int getRS() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public void setRS(int aRS) {
@@ -51,30 +69,47 @@ public class JTypeInstruction implements IInstruction {
 	}
 
 	public int getRT() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public void setRT(int aRT) {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public int getSHAMT() {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
 
 	public void setSHAMT(int aSHAMT) {
-		throw new UnsupportedOperationException();
+		throw new InstructionDoesNotHaveFieldException();
 	}
+	/**
+	 * Returns the type of instruction, I, J, or R. For this J type, it returns J.
+	 */
 
 	public InstructionType getType() {
 		return InstructionType.J;
 	}
-	
+	/**
+	 * Returns the destination the jump instruction will jump to.
+	 */
 	public int getJumpdest() {
-		throw new UnsupportedOperationException();
+		return jumpdest;
+	}
+/**
+ * Sets the destination the jump instruction will jump to.
+ * @param aJumpdest The new destination for the jump instruction.
+ */
+	public void setJumpdest(int aJumpdest) {
+		jumpdest = aJumpdest;
+	}
+	
+	
+	public String toString() {
+		String message = "J " + jumpdest + "\n";
+		
+		return message;
+		
 	}
 
-	public void setJumpdest(int aJumpdest) {
-		throw new UnsupportedOperationException();
-	}
 }

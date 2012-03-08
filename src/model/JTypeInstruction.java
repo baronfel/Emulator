@@ -12,6 +12,22 @@ import interfaces.InstructionDoesNotHaveFieldException;
 public class JTypeInstruction implements IInstruction {
 
 	private int jumpdest;
+	
+	/**
+	 * A default constructor for the JTypeInstruction. It should be followed by setting the jump
+	 * destination.
+	 */
+	public JTypeInstruction() {
+		super();
+	}
+	/**
+	 * The primary constructor for the JTypeInsturction.
+	 * @param jdst The jump destination for the instruction.
+	 */
+	public JTypeInstruction(int jdst) {
+		jumpdest = jdst;
+	}
+	
 	public int getFUNCT() {
 		throw new InstructionDoesNotHaveFieldException();
 	}
@@ -28,12 +44,12 @@ public class JTypeInstruction implements IInstruction {
 		throw new InstructionDoesNotHaveFieldException();
 	}
 
-	public int getOpcode() {
-		throw new UnsupportedOperationException();
+	public String getOpcode() {
+		return "J";
 	}
 
-	public void setOpcode(int aOpcode) {
-		throw new UnsupportedOperationException();
+	public void setOpcode(String aOpcode) {
+		
 	}
 
 	public int getRD() {
@@ -87,4 +103,13 @@ public class JTypeInstruction implements IInstruction {
 	public void setJumpdest(int aJumpdest) {
 		jumpdest = aJumpdest;
 	}
+	
+	
+	public String toString() {
+		String message = "J " + jumpdest + "\n";
+		
+		return message;
+		
+	}
+
 }

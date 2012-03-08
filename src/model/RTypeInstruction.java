@@ -14,10 +14,39 @@ public class RTypeInstruction implements IInstruction {
 
 	private int rs;
 	private int rd;
-	private int opcode;
+	private String opcode;
 	private int funct;
 	private int rt;
 	private int shamt;
+	
+	
+	/**
+	 * The default constructor for the RTypeInstruction. It should be followed by
+	 * initialization of all of the fields of the instruction.
+	 */
+	public RTypeInstruction() {
+		super();
+	}
+	
+	/**
+	 * The primary constructor for the RTypeInsturction. It includes all fields of the instruction
+	 * in the order in which they appear in the assembly code.
+	 * @param opc The opcode for the instruction.
+	 * @param rd The destination register for the instruction.
+	 * @param rs The source register for the instruction.
+	 * @param rt The third register for the instruction.
+	 * @param shamt The shift amount for the instruction.
+	 * @param funct The function code for the instruction.
+	 */
+	public RTypeInstruction(String opc, int rd, int rs, int rt, int shamt, int funct) {
+		opcode = opc;
+		this.rd = rd;
+		this.rs = rs;
+		this.rt = rt;
+		this.shamt = shamt;
+		this.funct = funct;
+	}
+	
 /**
  * Returns the function code of the MIPS instruction.
  */
@@ -44,7 +73,7 @@ public class RTypeInstruction implements IInstruction {
 	 * Returns the OP Code field for this instruction.
 	 */
 
-	public int getOpcode() {
+	public String getOpcode() {
 		return opcode;
 	}
 	/**
@@ -52,7 +81,7 @@ public class RTypeInstruction implements IInstruction {
 	 * @param aOpcode The new OP code for this instruction.
 	 */
 
-	public void setOpcode(int aOpcode) {
+	public void setOpcode(String aOpcode) {
 		opcode = aOpcode;
 	}
 /**
@@ -121,4 +150,48 @@ public class RTypeInstruction implements IInstruction {
 	public void setJumpdest(int aJumpdest) {
 		throw new InstructionDoesNotHaveFieldException();
 	}
+	
+	
+	
+	public String toString() {
+		String message = "" + opcode + ", " + rd + ", " + rs + ", " + rt + ", " + shamt + ", " + funct + "\n";
+		
+		message = opcode + " " + rd + ", " + rs + ", " + rt + "\n";
+		switch (opcode.toLowerCase()) {
+		case "jr": message = opcode + " " + rs + "\n";
+			break;
+		case "mul":
+			break;
+		case "add":
+			break;
+		case "sub": 
+			break;
+		case "sll": message = opcode + " " + rd + ", " + rs + ", " + shamt + "\n";
+			break;
+		case "srl": message = opcode + " " + rd + ", " + rs + ", " + shamt + "\n";
+			break;
+		case "nop": message = "NOP\n";
+			break;
+		case "and": 
+			break;
+		case "or": 
+			break;
+		case "slt": 
+			break;
+		case "sltu": 
+			break;
+		case "nor": 
+			break;
+		case "div": 
+			break;
+		default: 
+				break;
+		}
+		
+		
+		
+		return message;
+		
+	}
+
 }

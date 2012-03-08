@@ -34,12 +34,12 @@ public interface IInstruction {
 	 * Gets the Opcode value of the instruction, the first six bits.
 	 * @return The Opcode value of the instruction, the first six bits.
 	 */
-	public int getOpcode();
+	public String getOpcode();
 	/**
 	 * Sets the Opcode value of the instruction, the first six bits.
 	 * @param aOpcode The Opcode value of the instruction, the first six bits.
 	 */
-	public void setOpcode(int aOpcode);
+	public void setOpcode(String aOpcode);
 	/**
 	 * Gets the Destination Register of the instruction, the bits 16-20 for R type or 11-15 for I type.
 	 * @return The Destination Register of the instruction, the bits 16-20 for R type or 11-15 for I type.

@@ -6,7 +6,7 @@
 package interfaces;
 
 /**
- * @author Bobo
+ * @author Bob
  *
  */
 public class InstructionDoesNotHaveFieldException extends

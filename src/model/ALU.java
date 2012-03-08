@@ -1,5 +1,8 @@
 package model;
- 
+
+import java.io.*;
+import java.lang.Integer;
+
 public class ALU
 {
   private int bufferSize;

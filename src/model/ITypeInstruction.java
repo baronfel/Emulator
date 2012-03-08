@@ -13,10 +13,32 @@ import interfaces.InstructionDoesNotHaveFieldException;
 public class ITypeInstruction implements IInstruction {
 
 	private int immediate;
-	private int opcode;
+	private String opcode;
 	private int rd;
 	private int rs;
 
+	/**
+	 * The default constructor. It should be followed by initialization of the instruction.
+	 */
+	public ITypeInstruction() {
+		super();
+	}
+	
+	/**
+	 * The primary constructor for the IType Instructions, including all of the fields.
+	 * @param opc The Opcode of the Instruction.
+	 * @param rd The Destination Register for the instruction.
+	 * @param rs The Source Register for the instruction.
+	 * @param imm The immediate value of the instruction.
+	 */
+	public ITypeInstruction(String opc, int rd, int rs, int imm) {
+		super();
+		immediate = imm;
+		opcode = opc;
+		this.rd = rd;
+		this.rs = rs;
+	}
+	
 	public int getFUNCT() {
 		throw new InstructionDoesNotHaveFieldException();
 	}
@@ -42,7 +64,7 @@ public class ITypeInstruction implements IInstruction {
 	 * Returns the OP Code field for this instruction.
 	 */
 
-	public int getOpcode() {
+	public String getOpcode() {
 		return opcode;
 	}
 	/**
@@ -50,7 +72,7 @@ public class ITypeInstruction implements IInstruction {
 	 * @param aOpcode The new OP code for this instruction.
 	 */
 
-	public void setOpcode(int aOpcode) {
+	public void setOpcode(String aOpcode) {
 		opcode = aOpcode;
 	}
 /**
@@ -109,5 +131,30 @@ public class ITypeInstruction implements IInstruction {
 
 	public void setJumpdest(int aJumpdest) {
 		throw new InstructionDoesNotHaveFieldException();
+	}
+	
+	
+	public String toString() {
+		String message = "" + opcode + " " + rd + ", " + rs + ", " + immediate + "\n";
+		
+		message = opcode + " " + rd + ", " + rs + ", " + immediate + "\n";
+		switch (opcode.toLowerCase()) {
+		case "lw": message = opcode + " " + rd + ", " + immediate + "(" + rs + ")\n";
+			break;
+		case "addi":
+			break;
+		case "sw": message = opcode + " " + rs + ", " + immediate + "(" + rd + ")\n";
+			break;
+		case "slti": 
+			break;
+		case "sltiu":
+			break;
+			default: 
+				break;
+		}
+		
+
+		return message;
+		
 	}
 }

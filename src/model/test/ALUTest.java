@@ -1,5 +1,8 @@
 package model.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import model.ALU;
 
 class ALUTest{
@@ -13,7 +16,13 @@ class ALUTest{
      //int buffSize = Integer.parseInt(args[1]);
        
      //create an ALU object
-     testALU = new ALU(aluNumber, buffSize);
+     Map<String, Integer> cycles = new HashMap<String, Integer>(50);
+     cycles.put("Mul", 4);
+     cycles.put("Add", 1);
+     cycles.put("Div", 6);
+     cycles.put("Sub", 2);
+     
+     testALU = new ALU(aluNumber, buffSize, cycles);
      System.out.println(testALU);
      System.out.println("ALU number: " + testALU.getALUNumber());
      System.out.println("Pre ALU buffer size: " + testALU.getBufferSize());
@@ -27,22 +36,22 @@ class ALUTest{
        //enter instructions while the buffer is not full
        //addToPreALU(String opName, int seq, int op1, int op2, int dest, int cycles)
        if (testALU.getPreALUOpName(3) == "" && added < 1) {
-         System.out.println("Insert prog sequence 100 result: " + testALU.addToPreALU("Mul", 100, 20, 15, 4, 4));
+         System.out.println("Insert prog sequence 100 result: " + testALU.addToPreALU("Mul", 100, 20, 15, 4));
          added++; }
        else if (testALU.getPreALUOpName(3) == "" && added < 2) {
-         System.out.println("Insert prog sequence 101 result: " + testALU.addToPreALU("Add", 101, 56, 14, 5, 1));
+         System.out.println("Insert prog sequence 101 result: " + testALU.addToPreALU("Add", 101, 56, 14, 5));
          added++; }
        else if (testALU.getPreALUOpName(3) == "" && added < 3) {
-         System.out.println("Insert prog sequence 102 result: " + testALU.addToPreALU("Div", 102, 1000, 40, 7, 6));
+         System.out.println("Insert prog sequence 102 result: " + testALU.addToPreALU("Div", 102, 1000, 40, 7));
          added++; }
        else if (testALU.getPreALUOpName(3) == "" && added < 4) {
-         System.out.println("Insert prog sequence 103 result: " + testALU.addToPreALU("Add", 103, 20, 15, 4, 1));
+         System.out.println("Insert prog sequence 103 result: " + testALU.addToPreALU("Add", 103, 20, 15, 4));
          added++; }
        else if (testALU.getPreALUOpName(3) == "" && added < 5) {
-         System.out.println("Insert prog sequence 104 result: " + testALU.addToPreALU("Div", 104, 12, 28, 5, 6));
+         System.out.println("Insert prog sequence 104 result: " + testALU.addToPreALU("Div", 104, 12, 28, 5));
          added++; }
        else if (testALU.getPreALUOpName(3) == "" && added < 6) {
-         System.out.println("Insert prog sequence 105 result: " + testALU.addToPreALU("Sub", 105, 9, 4, 6, 2));
+         System.out.println("Insert prog sequence 105 result: " + testALU.addToPreALU("Sub", 105, 9, 4, 6));
          added++; }
        else if (testALU.getPreALUOpName(3) != "") {
          System.out.println("Pre ALU buffer full - no insertion");

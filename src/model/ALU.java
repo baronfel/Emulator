@@ -2,6 +2,7 @@ package model;
 
 import java.io.*;
 import java.lang.Integer;
+import java.util.Map;
 
 public class ALU
 {
@@ -13,12 +14,13 @@ public class ALU
   private PreALUBufferEntry[] preALUBuffer;
   private PostALUBufferEntry postALUBuffer;
   private PreALUBufferEntry currentInstruction;
+  private Map<String, Integer> cycleCountByOpname;
   
   /**
    * Class constructor that takes the alu number within the core and the pre-ALU buffer size
    * as parameters
   */
-  public ALU(int alu, int buffSize)
+  public ALU(int alu, int buffSize, Map<String, Integer> cycleMap)
   {
     aluNumber = alu;
     stallCycles = 0;
@@ -31,6 +33,7 @@ public class ALU
     }
     postALUBuffer = new PostALUBufferEntry();
     currentInstruction =  new PreALUBufferEntry();
+    cycleCountByOpname = cycleMap;
   }
   
   /**
@@ -137,7 +140,7 @@ public class ALU
    * Method to add an instruction to the pre-ALU buffer. Returns 0 if the 
    * instruction was successfully added, otherwise returns -1 if buffer is full
    */
-  public int addToPreALU(String opName, int seq, int op1, int op2, int dest, int cycles)
+  public int addToPreALU(String opName, int seq, int op1, int op2, int dest)
   {
     for (int i = 0; i < preALUBuffer.length; i++) {  
       if (preALUBuffer[i].opName == "") {       //then add the new instruction here
@@ -146,7 +149,7 @@ public class ALU
         preALUBuffer[i].op1Value = op1;
         preALUBuffer[i].op2Value = op2;
         preALUBuffer[i].destinationRegister = dest;
-        preALUBuffer[i].numCycles = cycles;
+        preALUBuffer[i].numCycles = cycleCountByOpname.get(opName);
         return 0;
       }
     }

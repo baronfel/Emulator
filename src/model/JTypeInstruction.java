@@ -111,5 +111,10 @@ public class JTypeInstruction implements IInstruction {
 		return message;
 		
 	}
+	@Override
+	public int getSeqNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

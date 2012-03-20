@@ -106,4 +106,10 @@ public interface IInstruction {
 	 */
 
 	public void setJumpdest(int aJumpdest);
+	
+	/**
+	 * Gets the sequence number of the instruction.
+	 * @return The sequence number of the instruction.
+	 */
+	public int getSeqNum();
 }

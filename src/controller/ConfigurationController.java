@@ -20,6 +20,12 @@ public class ConfigurationController extends AbstractController {
 	public ConfigurationController() {
 		super(model);
 	}
+	
+	public ConfigurationController(ProcessorConfiguration config)
+	{
+		super(config);
+		model = config;
+	}
 
 	@Override
 	public void setModel(IModel aModel) {
@@ -104,5 +110,10 @@ public class ConfigurationController extends AbstractController {
 
 	public Integer getCycleCountFor(String opName) {
 		return (Integer)model.GetCycleMap().get(opName);
+	}
+	
+	public ProcessorConfiguration getConfig()
+	{
+		return model;
 	}
 }

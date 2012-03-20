@@ -13,6 +13,8 @@ package view;
 
 import java.util.ArrayList;
 
+import model.ProcessorConfiguration;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -45,11 +47,18 @@ public class ConfigurationView{
 		initControls(parent);
 	}
 	
+	public ConfigurationView(final Composite parent, int style, ProcessorConfiguration config)
+	{
+		controller = new ConfigurationController(config);
+		initControls(parent);
+	}
+	
 	private void initControls(final Composite parent)
 	{
 		GridLayout gLayout = new GridLayout();
 		gLayout.numColumns = 2;
 		parent.setLayout(gLayout);
+		
 		
 		
 		// Name Controls
@@ -156,5 +165,10 @@ public class ConfigurationView{
 		{
 			controller.SelectNewConfig(selected);
 		}
+	}
+	
+	public ProcessorConfiguration getConfig()
+	{
+		return controller.getConfig();
 	}
 }

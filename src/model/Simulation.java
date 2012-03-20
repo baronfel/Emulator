@@ -12,31 +12,34 @@ import interfaces.IInstruction;
 
 import java.util.List;
 
-import utility.InstructionParser;
+import utility.Package;
 
 public class Simulation extends AbstractModel {
 	private ProcessorConfiguration _processorConfiguration;
 	private IProcessor _processor;
-	private List<IInstruction> _instructionList;
+	public List<IInstruction> _instructionList;
 	public IInstruction _unnamed_IInstruction_;
 	public IProcessor _unnamed_IProcessor_;
-	public InstructionParser _unnamed_InstructionParser_;
 	public ProcessorConfiguration _unnamed_ProcessorConfiguration_;
-	public BenchmarkResult _unnamed_BenchmarkResult_;
+	public BenchmarkResult _result;
 	public Memory internalMemory;
+	public Package pack;
 	
-	public Simulation(ProcessorConfiguration config, List<IInstruction> program)
+	public Simulation(ProcessorConfiguration config, Package instructions)
 	{
-		_instructionList = program;
+		_instructionList = instructions.getIlist();
+		pack = instructions;
 		_processorConfiguration = config;
 		_processor = CreateProcessor(_processorConfiguration);
+		_result = new BenchmarkResult();
+		_result.simulation = this;
 	}
 /**
  * Gets the benchmark results of the previous simulation.
  * @return The Benchmark Results of the previous Simulation.
  */
 	public BenchmarkResult GetBenchmarkResult() {
-		throw new UnsupportedOperationException();
+		return _result;
 	}
 /**
  * Creates the processors from the given processor configuration.
@@ -44,6 +47,10 @@ public class Simulation extends AbstractModel {
  * @return The created processors.
  */
 	private IProcessor CreateProcessor(ProcessorConfiguration config) {
-		throw new UnsupportedOperationException();
+		return new Processor(config.GetALUCount(), config.GetCycleMap());
+	}
+	
+	public ProcessorConfiguration getProcessorConfig() {
+		return _processorConfiguration;
 	}
 }

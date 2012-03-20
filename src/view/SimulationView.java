@@ -33,7 +33,4 @@ public class SimulationView{
 		RegistryView regView = new RegistryView(parent, new RegisterController(sim.getRegistry()));
 		ProcessorView procView = new ProcessorView(parent, new ProcessorController(sim.getProcessor()));
 	}
-	
-	
-	
 }

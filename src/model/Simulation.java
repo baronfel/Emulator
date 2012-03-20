@@ -21,12 +21,11 @@ import utility.Package;
 public class Simulation extends AbstractController {
 	private ProcessorConfiguration _processorConfiguration;
 	private IProcessor _processor;
-	private List<IInstruction> _instructionList;
+	public List<IInstruction> _instructionList;
 	public IInstruction _unnamed_IInstruction_;
 	public IProcessor _unnamed_IProcessor_;
-	public InstructionParser _unnamed_InstructionParser_;
 	public ProcessorConfiguration _unnamed_ProcessorConfiguration_;
-	public BenchmarkResult _unnamed_BenchmarkResult_;
+	public BenchmarkResult _result;
 	public Memory internalMemory;
 	private Package programInfo;
 
@@ -36,6 +35,8 @@ public class Simulation extends AbstractController {
 		this.programInfo = programInfo;
 		_processorConfiguration = config;
 		_processor = CreateProcessor(_processorConfiguration);
+		_result = new BenchmarkResult();
+		_result.simulation = this;
 	}
 
 	/**
@@ -44,7 +45,7 @@ public class Simulation extends AbstractController {
 	 * @return The Benchmark Results of the previous Simulation.
 	 */
 	public BenchmarkResult GetBenchmarkResult() {
-		throw new UnsupportedOperationException();
+		return _result;
 	}
 
 	/**
@@ -77,5 +78,9 @@ public class Simulation extends AbstractController {
 
 	private void RestartSimulation() {
 		_processor = CreateProcessor(_processorConfiguration);
+	}
+	
+	public ProcessorConfiguration getProcessorConfig() {
+		return _processorConfiguration;
 	}
 }

@@ -194,4 +194,10 @@ public class RTypeInstruction implements IInstruction {
 		
 	}
 
+	@Override
+	public int getSeqNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -49,7 +49,7 @@ public class Simulation extends AbstractModel {
  * @return The created processors.
  */
 	private IProcessor CreateProcessor(ProcessorConfiguration config) {
-		return new Processor(config.GetALUCount(), config.GetCycleMap());
+		return new Processor(config.GetALUCount(), config.GetCycleMap(), _instructionList);
 	}
 	
 	public Registry getRegistry()

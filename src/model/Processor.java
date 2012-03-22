@@ -9,6 +9,7 @@ import java.util.Map;
 
 import interfaces.IALU;
 import interfaces.IFetchUnit;
+import interfaces.IInstruction;
 import interfaces.IIssueUnit;
 import interfaces.IMemoryAccess;
 import interfaces.IProcessor;
@@ -29,8 +30,9 @@ public class Processor implements IProcessor {
 	private Registry registers;
 	
 	private Map<String, Integer> cycleMapping;
+	private List<IInstruction> instructions;
 	
-	public Processor(int aluCount, Map<String, Integer> opCycles)
+	public Processor(int aluCount, Map<String, Integer> opCycles, List<IInstruction> instrs)
 	{
 		alus = new ArrayList<IALU>(aluCount);
 		for(int i = 0; i < aluCount; i++)
@@ -40,16 +42,17 @@ public class Processor implements IProcessor {
 		registers = new Registry();
 		memoryBanks = new Memory();
 		
+		instructions = instrs;
+		
 		fetch = new FetchUnit();
-		issue = new IssueUnit();
+		issue = new Issue(alus, instructions, registers);
 		memory = new MemoryAccess();
 		writeBack = new WriteBack();
-		cycleMapping = opCycles;
+		
 	}
 
 	@Override
 	public Registry getRegistry() {
 		return registers;
 	}
-	
 }

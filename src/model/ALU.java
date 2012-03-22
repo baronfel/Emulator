@@ -343,6 +343,12 @@ public Event PropertyChanged(Object aIn_propertyName) {
 	return null;
 }
 
+@Override
+public void Add(int aIn_RD, int aIn_RS, int aIn_RT, int aIn_Immediate) {
+	// TODO Auto-generated method stub
+	
+}
+
 
    
 }  //end of class ALU

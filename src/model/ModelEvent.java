@@ -35,4 +35,9 @@ public class ModelEvent {
 	{
 		return sender;
 	}
+	
+	public int getID()
+	{
+		return id;
+	}
 }

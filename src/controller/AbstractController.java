@@ -22,6 +22,6 @@ public abstract class AbstractController implements IController {
 	 * @see IController
 	 */
 	public IModel getModel() {
-		throw new UnsupportedOperationException();
+		return _model;
 	}
 }

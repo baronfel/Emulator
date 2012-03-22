@@ -44,6 +44,7 @@ public class Processor implements IProcessor {
 		issue = new IssueUnit();
 		memory = new MemoryAccess();
 		writeBack = new WriteBack();
+		cycleMapping = opCycles;
 	}
 
 	@Override

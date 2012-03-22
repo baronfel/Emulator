@@ -18,25 +18,23 @@ import java.util.List;
  */
 public class Issue implements IIssueUnit{
 	private int index = 0;
-	private List<IInstruction> ilist = new ArrayList<IInstruction>();// THIS SHOULD BE SET IN A CONSTRUCTOR
-	private List<IALU> alus; // THIS SHOULD BE SET IN A CONSTRUCTOR
+	private List<IALU> alus; 
 	private Registry registry;
 	
 	
-	public Issue(List<IALU> alus, List<IInstruction> instructionList, Registry registry)
+	public Issue(List<IALU> alus, Registry registry)
 	{
 		this.alus = alus;
-		this.ilist = instructionList;
 		this.registry = registry;
 	}
 	
 	/**
 	 * This method issues an instruction from the list of waiting instructions to the ALU.
 	 */
-	public void IssueInstruction()
+	public void IssueInstruction(IInstruction instruction)
 	{
-		IInstruction instruction = ilist.get(index);
-		index++;
+//		IInstruction instruction = ilist.get(index);  THIS  SHOULD BE DONE IN THE FETCH
+//		index++;
 		int op1 = 0;
 		int op2 = 0;
 		int dst = 0;
@@ -118,5 +116,6 @@ public class Issue implements IIssueUnit{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

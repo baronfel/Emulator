@@ -44,8 +44,8 @@ public class Processor implements IProcessor {
 		
 		instructions = instrs;
 		
-		fetch = new FetchUnit();
-		issue = new Issue(alus, instructions, registers);
+		fetch = new FetchUnit(instructions);
+		issue = new Issue(alus, registers);
 		memory = new MemoryAccess();
 		writeBack = new WriteBack();
 		

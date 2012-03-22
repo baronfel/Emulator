@@ -8,6 +8,22 @@ import interfaces.IInstruction;
 
 public class FetchUnit implements IFetchUnit {
 
+	private List<IInstruction> ilist;
+	private int index;
+
+	public FetchUnit(List<IInstruction> instructions)
+	{
+		ilist = instructions;
+		index = 0;
+	}
+	public IInstruction FetchInstruction()
+	{
+		IInstruction instruction = ilist.get(index);
+		index++;
+		return instruction;
+		
+	}
+	
 	@Override
 	public String GetStatus() {
 		// TODO Auto-generated method stub

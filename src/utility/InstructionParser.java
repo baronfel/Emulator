@@ -18,21 +18,18 @@ import java.util.Scanner;
 
 import model.BranchInstruction;
 import model.ITypeInstruction;
-import model.InvalidInstructionException;
 import model.JTypeInstruction;
 import model.Label;
 import model.RTypeInstruction;
-import model.Simulation;
 
 public class InstructionParser {
-	public Simulation _unnamed_Simulation_;
-	List<IInstruction> ilist = new ArrayList<IInstruction>();
-	Scanner file;
+	static List<IInstruction> ilist = new ArrayList<IInstruction>();
+	static Scanner file;
 	private static int lineCounter = 0;
-	List<String> invalidlist = new ArrayList<String>();
-	List<Label> labellist = new ArrayList<Label>();
-	boolean invalidFlag = false;
-	Package twolist = new Package();
+	static List<String> invalidlist = new ArrayList<String>();
+	static List<Label> labellist = new ArrayList<Label>();
+	static boolean invalidFlag = false;
+	static Package twolist = new Package();
 
 
 	/**
@@ -41,7 +38,7 @@ public class InstructionParser {
 	 * @param aInfilePath The location of the instructions.
 	 * @return A list of instructions that the simulation can use.
 	 */
-	public Package LoadInstructions(String aInfilePath){
+	public static Package LoadInstructions(String aInfilePath){
 		try {
 			file = new Scanner(new File(aInfilePath));
 			file.useDelimiter("[, ()\r\n]+");
@@ -54,12 +51,6 @@ public class InstructionParser {
 		while(file.hasNext())
 		{
 		String name = file.next();
-/*		String test1 = file.next();
-		String test2 = file.next();
-		String test3 = file.next();
-		String test4 = file.next();
-		String test5 = file.next();
-*/		
 		if(name.charAt(name.length()-1) == ':')
 			Label(name);
 		
@@ -115,29 +106,23 @@ public class InstructionParser {
 		lineCounter++;
 		}
 		
-		
 		twolist.setIlist(ilist);
 		twolist.setInvalidlist(invalidlist);
 		return twolist;
 	}
 
-	private void Label(String name) {
-		// TODO Auto-generated method stub
-		//String body = file.nextLine();
-		//body = name + body;
+	private static void Label(String name) {
 		labellist.add(new Label(name, lineCounter));
 	}
 
 
-	private void InvalidInstruction(String name) {
-		// TODO Auto-generated method stub
+	private static void InvalidInstruction(String name) {
 		String body = "Line: " + lineCounter + "\t" + name + file.nextLine();
 		invalidlist.add(body);
 		invalidFlag = true;
 	}
 
-	private void DIVInstruction() {
-		// TODO Auto-generated method stub
+	private static void DIVInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -149,8 +134,7 @@ public class InstructionParser {
 
 	}
 
-	private void NORInstruction() {
-		// TODO Auto-generated method stub
+	private static void NORInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -162,8 +146,7 @@ public class InstructionParser {
 
 	}
 
-	private void SLTIUInstruction() {
-		// TODO Auto-generated method stub
+	private static void SLTIUInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int imm = file.nextInt();
@@ -173,8 +156,7 @@ public class InstructionParser {
 
 	}
 
-	private void SLTUInstruction() {
-		// TODO Auto-generated method stub
+	private static void SLTUInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -186,8 +168,7 @@ public class InstructionParser {
 
 	}
 
-	private void SLTIInstruction() {
-		// TODO Auto-generated method stub
+	private static void SLTIInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int imm = file.nextInt();
@@ -197,8 +178,7 @@ public class InstructionParser {
 
 	}
 
-	private void SLTInstruction() {
-		// TODO Auto-generated method stub
+	private static void SLTInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -210,7 +190,7 @@ public class InstructionParser {
 
 	}
 
-	private void ORInstruction() {
+	private static void ORInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -222,8 +202,7 @@ public class InstructionParser {
 		
 	}
 
-	private void ANDInstruction() {
-		// TODO Auto-generated method stub
+	private static void ANDInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -235,8 +214,7 @@ public class InstructionParser {
 
 	}
 
-	private void NOPInstruction() {
-		// TODO Auto-generated method stub
+	private static void NOPInstruction() {
 		int rd = 0;
 		int rs = 0;
 		int rt = 0;
@@ -248,8 +226,7 @@ public class InstructionParser {
 
 	}
 
-	private void SRLInstruction() {
-		// TODO Auto-generated method stub
+	private static void SRLInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int sa = file.nextInt();
@@ -261,8 +238,7 @@ public class InstructionParser {
 
 	}
 
-	private void SLLInstruction() {
-		// TODO Auto-generated method stub
+	private static void SLLInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int sa = file.nextInt();
@@ -274,8 +250,7 @@ public class InstructionParser {
 
 	}
 
-	private void SUBInstruction() {
-		// TODO Auto-generated method stub
+	private static void SUBInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -287,8 +262,7 @@ public class InstructionParser {
 
 	}
 
-	private void ADDInstruction() {
-		// TODO Auto-generated method stub
+	private static void ADDInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -300,8 +274,7 @@ public class InstructionParser {
 
 	}
 
-	private void MULInstruction() {
-		// TODO Auto-generated method stub
+	private static void MULInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int rt = file.nextInt();
@@ -313,7 +286,7 @@ public class InstructionParser {
 
 	}
 
-	private void SWInstruction() {
+	private static void SWInstruction() {
 		int rs = file.nextInt();
 		int imm = file.nextInt();
 		int rd = file.nextInt();
@@ -322,8 +295,7 @@ public class InstructionParser {
 		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
 	}
 
-	private void ADDIInstruction() {
-		// TODO Auto-generated method stub
+	private static void ADDIInstruction() {
 		int rd = file.nextInt();
 		int rs = file.nextInt();
 		int imm = file.nextInt();
@@ -333,20 +305,18 @@ public class InstructionParser {
 
 	}
 
-	private void BEQInstruction() {
-		// TODO Auto-generated method stub
+	private static void BEQInstruction() {
 		int rs = file.nextInt();
 		int rd = file.nextInt();
 		String label = file.next();
 		file.nextLine();
-		int imm = getImmediateFromLable(label);
+		int imm = getImmediateFromLabel(label);
 		String opc = "BEQ";
 		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, label));
 
 	}
 
-	private void LWInstruction() {
-		// TODO Auto-generated method stub
+	private static void LWInstruction() {
 		int rd = file.nextInt();
 		int imm = file.nextInt();
 		int rs = file.nextInt();
@@ -355,15 +325,13 @@ public class InstructionParser {
 		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
 	}
 
-	private void JInstruction() {
-		// TODO Auto-generated method stub
+	private static void JInstruction() {
 		int jdst = file.nextInt();
 		file.nextLine();
 		ilist.add((IInstruction) new JTypeInstruction(jdst));
 	}
 
-	private void JRInstruction() {
-		// TODO Auto-generated method stub
+	private static void JRInstruction() {
 		int rs= file.nextInt();
 		file.nextLine();
 		int rd = 0;
@@ -375,18 +343,17 @@ public class InstructionParser {
 
 	}
 
-	private void BNEInstruction() {
-		// TODO Auto-generated method stub
+	private static void BNEInstruction() {
 		int rs = file.nextInt();
 		int rd = file.nextInt();
 		String label = file.next();
 		file.nextLine();
-		int imm = getImmediateFromLable(label);
+		int imm = getImmediateFromLabel(label);
 		String opc = "BNE";
 		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, label));
 	}
 
-	private int getImmediateFromLable(String label) {
+	private static int getImmediateFromLabel(String label) {
 		//int index = 0;
 		//for(int i = 0; !(label.equals(labellist.get(i).getName())); i++);
 		//return labellist.get(index).getLineNumber() - lineCounter;

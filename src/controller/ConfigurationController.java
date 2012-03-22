@@ -105,4 +105,9 @@ public class ConfigurationController extends AbstractController {
 	public Integer getCycleCountFor(String opName) {
 		return (Integer)model.GetCycleMap().get(opName);
 	}
+	
+	public ProcessorConfiguration getConfig()
+	{
+		return model;
+	}
 }

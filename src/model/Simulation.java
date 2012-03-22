@@ -9,10 +9,12 @@
 package model;
 
 import interfaces.IInstruction;
+import interfaces.IProcessor;
 
 import java.util.List;
 
 import utility.InstructionParser;
+import utility.Package;
 
 public class Simulation extends AbstractModel {
 	private ProcessorConfiguration _processorConfiguration;
@@ -24,10 +26,13 @@ public class Simulation extends AbstractModel {
 	public ProcessorConfiguration _unnamed_ProcessorConfiguration_;
 	public BenchmarkResult _unnamed_BenchmarkResult_;
 	public Memory internalMemory;
+	private Package programInfo;
 	
-	public Simulation(ProcessorConfiguration config, List<IInstruction> program)
+	
+	public Simulation(ProcessorConfiguration config, Package programInfo)
 	{
-		_instructionList = program;
+		_instructionList = programInfo.getIlist();
+		this.programInfo = programInfo; 
 		_processorConfiguration = config;
 		_processor = CreateProcessor(_processorConfiguration);
 	}
@@ -44,6 +49,11 @@ public class Simulation extends AbstractModel {
  * @return The created processors.
  */
 	private IProcessor CreateProcessor(ProcessorConfiguration config) {
-		throw new UnsupportedOperationException();
+		return new Processor(config.GetALUCount(), config.GetCycleMap(), _instructionList);
+	}
+	
+	public Registry getRegistry()
+	{
+		return _processor.getRegistry();
 	}
 }

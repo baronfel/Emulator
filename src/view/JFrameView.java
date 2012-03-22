@@ -8,10 +8,10 @@
 package view;
 
 import interfaces.IController;
+import interfaces.IModelListener;
 import interfaces.IView;
-import model.ModelListener;
 
-public abstract class JFrameView implements IView, ModelListener {
+public abstract class JFrameView implements IView, IModelListener {
 	private IController _controller;
 
 	public JFrameView(IController controller) {

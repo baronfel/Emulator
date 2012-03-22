@@ -4,6 +4,7 @@
  */
 package model;
 
+import interfaces.IALU;
 import interfaces.IInstruction;
 import interfaces.IIssueUnit;
 
@@ -18,13 +19,13 @@ import java.util.List;
 public class Issue implements IIssueUnit{
 	private int index = 0;
 	private List<IInstruction> ilist = new ArrayList<IInstruction>();// THIS SHOULD BE SET IN A CONSTRUCTOR
-	private ALU alu = new ALU(1); // THIS SHOULD BE SET IN A CONSTRUCTOR
+	private List<IALU> alus; // THIS SHOULD BE SET IN A CONSTRUCTOR
 	private Registry registry;
 	
 	
-	public Issue(ALU alu, List<IInstruction> instructionList, Registry registry)
+	public Issue(List<IALU> alus, List<IInstruction> instructionList, Registry registry)
 	{
-		this.alu = alu;
+		this.alus = alus;
 		this.ilist = instructionList;
 		this.registry = registry;
 	}
@@ -86,7 +87,12 @@ public class Issue implements IIssueUnit{
 				break;
 		}
 
-		alu.addToPreALU(instruction.getOpcode(), instruction.getSeqNum(), op1, op2, dst);
+		GetFirstAvailableALU().addToPreALU(instruction.getOpcode(), instruction.getSeqNum(), op1, op2, dst);
+	}
+
+	private ALU GetFirstAvailableALU() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

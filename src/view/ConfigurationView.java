@@ -13,6 +13,8 @@ package view;
 
 import java.util.ArrayList;
 
+import model.ProcessorConfiguration;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -156,5 +158,10 @@ public class ConfigurationView{
 		{
 			controller.SelectNewConfig(selected);
 		}
+	}
+	
+	public ProcessorConfiguration getConfig()
+	{
+		return controller.getConfig();
 	}
 }

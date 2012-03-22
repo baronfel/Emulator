@@ -19,10 +19,7 @@ import interfaces.IModel;
  */
 public class ProcessorConfiguration implements IModel, Serializable {
 	
-	/**
-	 * Do not touch this number.
-	 */
-	private static final long serialVersionUID = 1381448922069077176L;
+	
 	private int _aluCount = 1;
 	private Map<String, Integer> _cyclesRequiredByOpcode = new HashMap<String, Integer>(50);
 	private String _configurationName = "Unknown Configuration";

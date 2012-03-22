@@ -37,6 +37,13 @@ public class Processor implements IProcessor {
 		{
 			alus.add(new ALU(i, 1, opCycles));
 		}
+		registers = new Registry();
+		memoryBanks = new Memory();
+		
+		fetch = new FetchUnit();
+		issue = new IssueUnit();
+		memory = new MemoryAccess();
+		writeBack = new WriteBack();
 	}
 
 	@Override

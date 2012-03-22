@@ -4,6 +4,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author chusk3
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Memory {
 	
-	private ArrayList<Integer> _memory = new ArrayList<Integer>();
+	private List<Integer> _memory = new ArrayList<Integer>();
 	
 	public Memory()
 	{

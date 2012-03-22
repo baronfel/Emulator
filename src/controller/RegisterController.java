@@ -30,7 +30,7 @@ public class RegisterController extends AbstractController {
 
 	public int getRegisterValue(int watchedRegister) {
 		return registers.getValue(watchedRegister);
-	}
+	}	
 	
 	public void addListener(int registerToWatch, IModelListener listener)
 	{

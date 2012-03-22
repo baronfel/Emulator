@@ -18,6 +18,15 @@ public class Registry extends AbstractModel {
 	public Registry()
 	{
 		super();
+		InitRegisters();
+	}
+	
+	private void InitRegisters()
+	{
+		for(int i = 0; i < 32; i++)
+		{
+			registers.add(new Register());
+		}
 	}
 	
 	/**
@@ -28,6 +37,11 @@ public class Registry extends AbstractModel {
 	public int getValue(int registerNumber)
 	{
 		return registers.get(registerNumber).getValue();
+	}
+	
+	public void setValue(int registerToUpdate, int value)
+	{
+		registers.get(registerToUpdate).setValue(value);
 	}
 	
 	/**

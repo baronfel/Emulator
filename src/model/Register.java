@@ -8,10 +8,10 @@ package model;
  *
  */
 public class Register extends AbstractModel {
-	private int value = 0;
+	private int value;
 
 	public Register(){
-		
+		value = 0;
 	}
 	
 	public int getValue() {

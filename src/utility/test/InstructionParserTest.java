@@ -3,12 +3,10 @@
  */
 package utility.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import interfaces.IInstruction;
 
 import java.util.ArrayList;
-
-import model.InvalidInstructionException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,7 +20,6 @@ import utility.Package;
  *
  */
 public class InstructionParserTest {
-	private static InstructionParser testParser = new InstructionParser();
 	private static ArrayList<IInstruction> ilist = new ArrayList<IInstruction>();
 	private static ArrayList<String> invalidlist = new ArrayList<String>();
 	private static Package pckg;
@@ -30,7 +27,7 @@ public class InstructionParserTest {
 	
 	@BeforeClass
 	public static void GetInstructionsAndInvalids(){
-			pckg = testParser.LoadInstructions("ParserTestFile");
+			pckg = InstructionParser.LoadInstructions("ParserTestFile");
 			ilist = (ArrayList<IInstruction>) pckg.getIlist();
 			invalidlist = (ArrayList<String>) pckg.getInvalidlist();
 			

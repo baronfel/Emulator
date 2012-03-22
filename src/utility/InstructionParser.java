@@ -20,7 +20,6 @@ import model.ITypeInstruction;
 import model.JTypeInstruction;
 import model.Label;
 import model.RTypeInstruction;
-import model.Simulation;
 
 public class InstructionParser {
 	static List<IInstruction> ilist = new ArrayList<IInstruction>();

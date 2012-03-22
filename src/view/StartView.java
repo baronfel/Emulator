@@ -7,19 +7,13 @@ package view;
 import model.Simulation;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.custom.CTabItem;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
-
-import com.sun.xml.internal.ws.api.pipe.NextAction;
 
 import utility.InstructionParser;
 
@@ -61,7 +55,7 @@ public class StartView {
 				newShell.setText(shell.getText());
 				newShell.setLayout(shell.getLayout());
 				
-				Group newGroup = new Group(shell, SWT.NONE);
+				Group newGroup = new Group(newShell, SWT.NONE);
 				newGroup.setText("Simulation");
 				
 				Simulation sim = new Simulation(cView.getConfig(), InstructionParser.LoadInstructions(cView.getConfig().GetName()));

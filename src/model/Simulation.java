@@ -9,6 +9,7 @@
 package model;
 
 import interfaces.IInstruction;
+import interfaces.IProcessor;
 
 import java.util.List;
 
@@ -49,5 +50,10 @@ public class Simulation extends AbstractModel {
  */
 	private IProcessor CreateProcessor(ProcessorConfiguration config) {
 		return new Processor(config.GetALUCount(), config.GetCycleMap());
+	}
+	
+	public Registry getRegistry()
+	{
+		return _processor.getRegistry();
 	}
 }

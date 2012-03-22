@@ -11,6 +11,7 @@ import interfaces.IALU;
 import interfaces.IFetchUnit;
 import interfaces.IIssueUnit;
 import interfaces.IMemoryAccess;
+import interfaces.IProcessor;
 import interfaces.IWriteBack;
 
 /**
@@ -36,6 +37,11 @@ public class Processor implements IProcessor {
 		{
 			alus.add(new ALU(i, 1, opCycles));
 		}
+	}
+
+	@Override
+	public Registry getRegistry() {
+		return registers;
 	}
 	
 }

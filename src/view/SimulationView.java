@@ -7,7 +7,11 @@
 
 package view;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+
+import controller.RegisterController;
 
 import model.Simulation;
 
@@ -18,6 +22,16 @@ public class SimulationView{
 	public SimulationView(Simulation mySim, final Composite parent)
 	{
 		sim = mySim;
+		InitControls(parent);
 	}
+	
+	private void InitControls(final Composite parent)
+	{
+		Group mainContainer = new Group(parent, SWT.NONE);
+		mainContainer.setText("Simulation");
+		RegistryView regView = new RegistryView(parent, new RegisterController(sim.getRegistry()));
+	}
+	
+	
 	
 }

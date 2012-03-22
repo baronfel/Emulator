@@ -27,7 +27,7 @@ public interface ICoreComponent {
 /**
  * Creates an Event when some component is changed to send to the listeners.
  * @return 
- * @see ModelListener
+ * @see IModelListener
  */
 	public Event PropertyChanged(Object aIn_propertyName);
 }

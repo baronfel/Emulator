@@ -9,7 +9,30 @@ package model;
 
 public class ModelEvent {
 
+	private Object sender;
+	private int id;
+	private String message;
+	private int extraData;
+	
 	public ModelEvent(Object aObj, int aId, String aMessage, int aAmount) {
-		throw new UnsupportedOperationException();
+		sender = aObj;
+		id = aId;
+		message = aMessage;
+		extraData = aAmount;
+	}
+	
+	public String getMessage()
+	{
+		return message;
+	}
+	
+	public int getExtraData()
+	{
+		return extraData;
+	}
+	
+	public Object getSender()
+	{
+		return sender;
 	}
 }

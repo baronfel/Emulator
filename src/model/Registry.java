@@ -3,19 +3,21 @@
  */
 package model;
 
+import interfaces.IModelListener;
+
 import java.util.ArrayList;
 
 /**
  * @author chusk3
  * This class is used by the Simulation, WriteBack, and Issue units to provide a common access into the registers.
  */
-public class Registry {
+public class Registry extends AbstractModel {
 	
-	private ArrayList<Integer> registers = new ArrayList<Integer>(32);
+	private ArrayList<Register> registers = new ArrayList<Register>(32);
 
 	public Registry()
 	{
-		
+		super();
 	}
 	
 	/**
@@ -25,7 +27,7 @@ public class Registry {
 	 */
 	public int getValue(int registerNumber)
 	{
-		return registers.get(registerNumber);
+		return registers.get(registerNumber).getValue();
 	}
 	
 	/**
@@ -35,8 +37,16 @@ public class Registry {
 	 */
 	public void setRegister(int regNumber, int value)
 	{
-		registers.set(regNumber, value);
+		registers.get(regNumber).setValue(value);
 	}
 	
+	public void addListener(int registerToWatch, IModelListener listener)
+	{
+		registers.get(registerToWatch).addModelListener(listener);
+	}
 	
+	public void removeListener(int registerToWatch, IModelListener listener)
+	{
+		registers.get(registerToWatch).removeModelListener(listener);
+	}
 }

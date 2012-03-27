@@ -1,10 +1,14 @@
 package model;
 
+import interfaces.IMemoryAccess;
+import interfaces.IInstruction;
+
+import java.awt.Event;
 import java.util.ArrayList;
 import java.util.List;
 //import model.Memory;
 
-public class MEM
+public class MEM implements IMemoryAccess
 {
   private int bufferSize;
   private int stallCycles;    //stalls the MEM unit for the number of cycles specified
@@ -246,5 +250,46 @@ public class MEM
       opResult = 0;
     }
   }
+
+@Override
+public String GetStatus() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+@Override
+public void Cycle(int aIn_numToCycle) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public List<IInstruction> CurrentInstructions() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+@Override
+public Event PropertyChanged(Object aIn_propertyName) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+@Override
+public void LoadWord(int aIn_RD, int aIn_memaddr) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void StoreWord(int aIn_RS, int aIn_memaddr) {
+	// TODO Auto-generated method stub
+	
+}
    
 }  //end of class MEM

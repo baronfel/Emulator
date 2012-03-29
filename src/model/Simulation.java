@@ -9,14 +9,17 @@
 package model;
 
 import interfaces.IInstruction;
+import interfaces.IModel;
 import interfaces.IProcessor;
 
 import java.util.List;
 
+import controller.AbstractController;
+
 import utility.InstructionParser;
 import utility.Package;
 
-public class Simulation extends AbstractModel {
+public class Simulation extends AbstractController {
 	private ProcessorConfiguration _processorConfiguration;
 	private IProcessor _processor;
 	private List<IInstruction> _instructionList;
@@ -31,6 +34,7 @@ public class Simulation extends AbstractModel {
 	
 	public Simulation(ProcessorConfiguration config, Package programInfo)
 	{
+		super(config);
 		_instructionList = programInfo.getIlist();
 		this.programInfo = programInfo; 
 		_processorConfiguration = config;
@@ -55,5 +59,20 @@ public class Simulation extends AbstractModel {
 	public Registry getRegistry()
 	{
 		return _processor.getRegistry();
+	}
+	public IProcessor getProcessor() {
+		return _processor;
+	}
+	@Override
+	public void setModel(IModel aModel) {
+		if(aModel instanceof ProcessorConfiguration)
+		{
+			_processorConfiguration = (ProcessorConfiguration)aModel;
+			RestartSimulation();
+		}
+	}
+	private void RestartSimulation() {
+		// TODO Auto-generated method stub
+		
 	}
 }

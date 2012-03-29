@@ -55,4 +55,10 @@ public class Processor implements IProcessor {
 	public Registry getRegistry() {
 		return registers;
 	}
+
+	@Override
+	public void notifyChanged(ModelEvent aE) {
+		// TODO Auto-generated method stub
+		
+	}
 }

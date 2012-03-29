@@ -91,8 +91,18 @@ public class Issue implements IIssueUnit{
 	}
 
 	private ALU GetFirstAvailableALU() {
-		// TODO Auto-generated method stub
-		return null;
+		int PreALUQueueSize = Integer.MAX_VALUE;
+		ALU aluToUse = (ALU) alus.get(0);
+		for(int i = 0; i < alus.size(); i++)
+		{
+			if(( (ALU) alus.get(i)).getAmountInPreALU() < PreALUQueueSize)
+			{
+				PreALUQueueSize = (int) ((ALU) alus.get(i)).getAmountInPreALU();
+				aluToUse = (ALU) alus.get(i);
+			}
+				
+		}
+		return aluToUse;
 	}
 
 	@Override
@@ -102,8 +112,8 @@ public class Issue implements IIssueUnit{
 	}
 
 	@Override
-	public void Cycle(int aIn_numToCycle) {
-		// TODO Auto-generated method stub
+	public void Cycle() {
+		IssueInstructions(PreIssueBuffer.poll());
 		
 	}
 
@@ -126,10 +136,6 @@ public class Issue implements IIssueUnit{
 		return false;
 	}
 
-	@Override
-	public void IssueInstruction() {
-		IssueInstructions(PreIssueBuffer.poll());
-	}
 
 
 }

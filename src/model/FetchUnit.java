@@ -34,8 +34,8 @@ public class FetchUnit implements IFetchUnit {
 	}
 
 	@Override
-	public void Cycle(int aIn_numToCycle) {
-		// TODO Auto-generated method stub
+	public void Cycle() {
+		FetchInstruction();
 
 	}
 

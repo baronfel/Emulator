@@ -159,6 +159,17 @@ public class ALU implements IALU
     return -1;
   }
   
+  public int getAmountInPreALU()
+  {
+	  int count = 0;
+	  for(int i = 0; i < preALUBuffer.length; i++)
+	  {
+		  if (!(preALUBuffer[i].opName == ""))
+			  count++;
+	  }
+	  return count;
+  }
+  
   
   /**
    * Method to get the next instruction from the pre-ALU buffer
@@ -324,7 +335,7 @@ public class ALU implements IALU
 	}
 	
 	@Override
-	public void Cycle(int aIn_numToCycle) {
+	public void Cycle() {
 		// TODO Auto-generated method stub
 		
 	}

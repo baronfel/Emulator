@@ -8,5 +8,5 @@ package interfaces;
 
 public interface IIssueUnit extends ICoreComponent {
 
-	public void IssueInstruction();
+	public void IssueInstructions(IInstruction instruction);
 }

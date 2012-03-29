@@ -15,10 +15,10 @@ public interface ICoreComponent {
  */
 	public String GetStatus();
 /**
- * Defines the number of cycles this component takes to complete.
- * @param aIn_numToCycle The number of cycles this component takes to complete.
+ * Executes one cycle of the ICoreComponent.
+ * 
  */
-	public void Cycle(int aIn_numToCycle);
+	public void Cycle();
 /**
  * A list of the current instructions.
  * @return A list of the current instructions.

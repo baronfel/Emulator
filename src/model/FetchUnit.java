@@ -5,22 +5,25 @@ import java.util.List;
 
 import interfaces.IFetchUnit;
 import interfaces.IInstruction;
+import interfaces.IIssueUnit;
 
 public class FetchUnit implements IFetchUnit {
 
 	private List<IInstruction> ilist;
 	private int index;
+	private Issue issue;
 
-	public FetchUnit(List<IInstruction> instructions)
+	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue)
 	{
+		this.issue = (Issue) issue;
 		ilist = instructions;
 		index = 0;
 	}
-	public IInstruction FetchInstruction()
+	public void FetchInstruction()
 	{
 		IInstruction instruction = ilist.get(index);
 		index++;
-		return instruction;
+		issue.addToPreIssue(instruction);
 		
 	}
 	
@@ -48,10 +51,6 @@ public class FetchUnit implements IFetchUnit {
 		return null;
 	}
 
-	@Override
-	public void FetchInstructions() {
-		// TODO Auto-generated method stub
 
-	}
 
 }

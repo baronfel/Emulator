@@ -11,15 +11,17 @@ import interfaces.IIssueUnit;
 import java.awt.Event;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * @author Bob
  *
  */
 public class Issue implements IIssueUnit{
-	private int index = 0;
 	private List<IALU> alus; 
 	private Registry registry;
+	private int buffSize = 4;
+	private ArrayBlockingQueue<IInstruction> PreIssueBuffer = new ArrayBlockingQueue<IInstruction>(buffSize);
 	
 	
 	public Issue(List<IALU> alus, Registry registry)
@@ -31,7 +33,7 @@ public class Issue implements IIssueUnit{
 	/**
 	 * This method issues an instruction from the list of waiting instructions to the ALU.
 	 */
-	public void IssueInstruction(IInstruction instruction)
+	public void IssueInstructions(IInstruction instruction)
 	{
 //		IInstruction instruction = ilist.get(index);  THIS  SHOULD BE DONE IN THE FETCH
 //		index++;
@@ -115,6 +117,18 @@ public class Issue implements IIssueUnit{
 	public Event PropertyChanged(Object aIn_propertyName) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public boolean addToPreIssue(IInstruction instruction)
+	{
+		if(PreIssueBuffer.offer(instruction))
+			return true;
+		return false;
+	}
+
+	@Override
+	public void IssueInstruction() {
+		IssueInstructions(PreIssueBuffer.poll());
 	}
 
 

@@ -10,5 +10,5 @@ public interface IFetchUnit extends ICoreComponent {
 	/**
 	 * Gets the next instruction to be sent through the pipeline from the list of instructions.
 	 */
-	public void FetchInstructions();
+	public void FetchInstruction();
 }

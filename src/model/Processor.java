@@ -44,11 +44,11 @@ public class Processor implements IProcessor {
 		
 		instructions = instrs;
 		
-		fetch = new FetchUnit(instructions);
-		issue = new Issue(alus, registers);
-		memory = new MemoryAccess();
+
 		writeBack = new WriteBack();
-		
+		memory = new MemoryAccess();
+		issue = new Issue(alus, registers);
+		fetch = new FetchUnit(instructions, issue);
 	}
 
 	@Override

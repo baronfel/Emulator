@@ -63,9 +63,9 @@ public class InstructionParserTest {
 	@Test
 	public void InvalidTest(){
 		assertTrue(invalidlist.get(0).equals("Line: 6\tAND1"));
-		assertTrue(invalidlist.get(1).equals("Line: 11\tLBL1:"));
-		assertTrue(invalidlist.get(2).equals("Line: 15\tSERIAL"));
-		assertTrue(invalidlist.get(3).equals("Line: 22\tSUPER CERIAL"));
+		//assertTrue(invalidlist.get(1).equals("Line: 11\tLBL1:"));
+		assertTrue(invalidlist.get(1).equals("Line: 15\tSERIAL"));
+		assertTrue(invalidlist.get(2).equals("Line: 22\tSUPER CERIAL"));
 	}
 
 }

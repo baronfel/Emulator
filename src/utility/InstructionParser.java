@@ -31,14 +31,17 @@ public class InstructionParser {
 	static boolean invalidFlag = false;
 	static Package twolist = new Package();
 
-
 	/**
-	 * Reads from the indicated location a set of MIPS instructions in the MIPS format and outputs
-	 * them as a list of instructions that the simulator can read.
-	 * @param aInfilePath The location of the instructions.
+	 * Reads from the indicated location a set of MIPS instructions in the MIPS
+	 * format and outputs them as a list of instructions that the simulator can
+	 * read.
+	 * 
+	 * @param aInfilePath
+	 *            The location of the instructions.
 	 * @return A list of instructions that the simulation can use.
 	 */
-	public static Package LoadInstructions(String aInfilePath){
+	public static Package LoadInstructions(String aInfilePath) {
+		LoadLabels(aInfilePath);
 		try {
 			file = new Scanner(new File(aInfilePath));
 			file.useDelimiter("[, ()\r\n]+");
@@ -48,73 +51,115 @@ public class InstructionParser {
 		}
 		lineCounter = 1;
 		invalidFlag = false;
-		while(file.hasNext())
-		{
-		String name = file.next();
-		if(name.charAt(name.length()-1) == ':')
-			Label(name);
-		
-		/**
-		 * This will work in JRE7, but errors in JRE6. I need to get that new library linked.
-		 */
-		switch (name.toLowerCase()) {
-		case "jr": JRInstruction();
-			break;
-		case "bne": BNEInstruction();
-			break;
-		case "j": JInstruction();
-			break;
-		case "lw": LWInstruction();
-			break;
-		case "beq": BEQInstruction();
-			break;
-		case "addi": ADDIInstruction();
-			break;
-		case "sw": SWInstruction();
-			break;
-		case "mul": MULInstruction();
-			break;
-		case "add": ADDInstruction();
-			break;
-		case "sub": SUBInstruction();
-			break;
-		case "sll": SLLInstruction();
-			break;
-		case "srl": SRLInstruction();
-			break;
-		case "nop": NOPInstruction();
-			break;
-		case "and": ANDInstruction();
-			break;
-		case "or": ORInstruction();
-			break;
-		case "slt": SLTInstruction();
-			break;
-		case "slti": SLTIInstruction();
-			break;
-		case "sltu": SLTUInstruction();
-			break;
-		case "sltiu": SLTIUInstruction();
-			break;
-		case "nor": NORInstruction();
-			break;
-		case "div": DIVInstruction();
-			break;
-			default: InvalidInstruction(name);
-				break;
+		while (file.hasNext()) {
+			String name = file.next();
+			if (name.charAt(name.length() - 1) == ':')
+				;
+			// Label(name);
+			else {
+				/**
+				 * This will work in JRE7, but errors in JRE6. I need to get
+				 * that new library linked.
+				 */
+				switch (name.toLowerCase()) {
+				case "jr":
+					JRInstruction();
+					break;
+				case "bne":
+					BNEInstruction();
+					break;
+				case "j":
+					JInstruction();
+					break;
+				case "lw":
+					LWInstruction();
+					break;
+				case "beq":
+					BEQInstruction();
+					break;
+				case "addi":
+					ADDIInstruction();
+					break;
+				case "sw":
+					SWInstruction();
+					break;
+				case "mul":
+					MULInstruction();
+					break;
+				case "add":
+					ADDInstruction();
+					break;
+				case "sub":
+					SUBInstruction();
+					break;
+				case "sll":
+					SLLInstruction();
+					break;
+				case "srl":
+					SRLInstruction();
+					break;
+				case "nop":
+					NOPInstruction();
+					break;
+				case "and":
+					ANDInstruction();
+					break;
+				case "or":
+					ORInstruction();
+					break;
+				case "slt":
+					SLTInstruction();
+					break;
+				case "slti":
+					SLTIInstruction();
+					break;
+				case "sltu":
+					SLTUInstruction();
+					break;
+				case "sltiu":
+					SLTIUInstruction();
+					break;
+				case "nor":
+					NORInstruction();
+					break;
+				case "div":
+					DIVInstruction();
+					break;
+				default:
+					InvalidInstruction(name);
+					break;
+				}
+			}
+			lineCounter++;
+
 		}
-		lineCounter++;
-		}
-		
 		twolist.setIlist(ilist);
 		twolist.setInvalidlist(invalidlist);
 		return twolist;
 	}
 
-	private static void Label(String name) {
-		labellist.add(new Label(name, lineCounter));
+	private static void LoadLabels(String aInfilePath) {
+		try {
+			file = new Scanner(new File(aInfilePath));
+			file.useDelimiter("[, ()\r\n]+");
+		} catch (FileNotFoundException e) {
+			twolist.setIlist(ilist);
+			return;
+		}
+		lineCounter = 1;
+		while (file.hasNext()) {
+			String name = file.next();
+			if (name.charAt(name.length() - 1) == ':')
+				Label(name);
+			lineCounter++;
+		}
+		file = null;
 	}
 
+	private static void Label(String name) {
+		labellist.add(new Label(name.substring(0, name.length() - 1),
+				lineCounter));
+	}
 
 	private static void InvalidInstruction(String name) {
 		String body = "Line: " + lineCounter + "\t" + name + file.nextLine();
@@ -130,7 +175,8 @@ public class InstructionParser {
 		int funct = 000000;
 		int sa = 0;
 		String opc = "DIV";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -142,7 +188,8 @@ public class InstructionParser {
 		int funct = 100111;
 		int sa = 0;
 		String opc = "NOR";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -164,7 +211,8 @@ public class InstructionParser {
 		int funct = 0;
 		int sa = 0;
 		String opc = "SLTU";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -186,7 +234,8 @@ public class InstructionParser {
 		int funct = 0;
 		int sa = 0;
 		String opc = "SLT";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -198,8 +247,9 @@ public class InstructionParser {
 		int funct = 100101;
 		int sa = 0;
 		String opc = "OR";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
-		
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
+
 	}
 
 	private static void ANDInstruction() {
@@ -210,7 +260,8 @@ public class InstructionParser {
 		int funct = 100100;
 		int sa = 0;
 		String opc = "AND";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -222,7 +273,8 @@ public class InstructionParser {
 		int funct = 0;
 		int sa = 0;
 		String opc = "NOP";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -234,7 +286,8 @@ public class InstructionParser {
 		int funct = 000010;
 		int rt = 0;
 		String opc = "SRL";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -246,7 +299,8 @@ public class InstructionParser {
 		int funct = 000000;
 		int rt = 0;
 		String opc = "SLL";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -258,7 +312,8 @@ public class InstructionParser {
 		int funct = 100001;
 		int sa = 0;
 		String opc = "SUB";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -270,7 +325,8 @@ public class InstructionParser {
 		int funct = 100000;
 		int sa = 0;
 		String opc = "ADD";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -282,7 +338,8 @@ public class InstructionParser {
 		int funct = 000000;
 		int sa = 0;
 		String opc = "MUL";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -332,14 +389,15 @@ public class InstructionParser {
 	}
 
 	private static void JRInstruction() {
-		int rs= file.nextInt();
+		int rs = file.nextInt();
 		file.nextLine();
 		int rd = 0;
 		int rt = 0;
 		int funct = 001000;
 		int sa = 0;
 		String opc = "JR";
-		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa, funct));
+		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
+				funct));
 
 	}
 
@@ -354,10 +412,10 @@ public class InstructionParser {
 	}
 
 	private static int getImmediateFromLabel(String label) {
-		//int index = 0;
-		//for(int i = 0; !(label.equals(labellist.get(i).getName())); i++);
-		//return labellist.get(index).getLineNumber() - lineCounter;
-		return 0;
+		int index = 0;
+		for (int i = 0; !(label.equals(labellist.get(i).getName())); i++)
+			index = i;
+		return labellist.get(index).getLineNumber() - lineCounter;
 	}
 
 }

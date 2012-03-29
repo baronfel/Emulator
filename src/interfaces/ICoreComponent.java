@@ -8,7 +8,7 @@ package interfaces;
 import java.awt.Event;
 import java.util.List;
 
-public interface ICoreComponent {
+public interface ICoreComponent{
 /**
  * Gets the status of the component.
  * @return The status of the component.
@@ -16,7 +16,6 @@ public interface ICoreComponent {
 	public String GetStatus();
 /**
  * Executes one cycle of the ICoreComponent.
- * 
  */
 	public void Cycle();
 /**

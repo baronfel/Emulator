@@ -28,7 +28,9 @@ public class WriteBack implements IWriteBack {
 	 * @see interfaces.ICoreComponent#Cycle(int)
 	 */
 	@Override
+
 	public void Cycle() {
+
 		// TODO Auto-generated method stub
 
 	}

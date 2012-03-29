@@ -9,6 +9,11 @@ package interfaces;
 import model.ModelEvent;
 
 public interface IModel {
+
+	public void addListener(IModelListener listener);
+	public void removeListener(IModelListener listener);
+	
+
 /**
  * Notifies all listeners that this model has changed.
  * @param aE The event notification to send to all listeneers.

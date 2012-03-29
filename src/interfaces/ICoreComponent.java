@@ -18,6 +18,7 @@ public interface ICoreComponent{
  * Executes one cycle of the ICoreComponent.
  */
 	public void Cycle();
+
 /**
  * A list of the current instructions.
  * @return A list of the current instructions.

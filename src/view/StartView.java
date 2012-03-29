@@ -7,13 +7,17 @@ package view;
 import model.Simulation;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 import utility.InstructionParser;
 
@@ -24,9 +28,6 @@ import utility.InstructionParser;
  * This class is the entry point for the app.  When this is run, the main UI is set up and shown to the user.
  */
 public class StartView {
-
-
-	
 	/**
 	 * @param args
 	 */
@@ -36,6 +37,46 @@ public class StartView {
 		Group host = new Group(shell, SWT.NONE);
 		final ConfigurationView cView = new ConfigurationView(host, 0);
 		host.setText("Configuration View");
+		
+		Group programArea = new Group(shell, SWT.NONE);
+		GridData programLayoutData = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		programArea.setLayoutData(programLayoutData);
+		programArea.setLayout(new GridLayout(3, false));
+		programArea.setText("Program to Run");
+		
+		GridData pathLayoutData = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		final Text programPath = new Text(programArea, SWT.BORDER);
+		programPath.setLayoutData(pathLayoutData);
+		programPath.setText("Please select a program!");
+		
+		GridData selectorLayoutData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		final Button programSelector = new Button(programArea, SWT.NONE);
+		programSelector.setLayoutData(selectorLayoutData);
+		programSelector.setText("...");
+		programSelector.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				FileDialog fileChooseDialog = new FileDialog(shell);
+				String selected = fileChooseDialog.open();
+				
+				if(selected != null)
+				{
+					programPath.setText(selected);
+				}
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				FileDialog fileChooseDialog = new FileDialog(shell);
+				String selected = fileChooseDialog.open();
+				
+				if(selected != null)
+				{
+					programPath.setText(selected);
+				}
+			}
+		});
 		
 		Group nav = new Group(shell, SWT.NONE);
 		GridData navLayoutData = new GridData(SWT.CENTER, SWT.CENTER, true, true);
@@ -58,8 +99,8 @@ public class StartView {
 				Group newGroup = new Group(newShell, SWT.NONE);
 				newGroup.setText("Simulation");
 				
-				Simulation sim = new Simulation(cView.getConfig(), InstructionParser.LoadInstructions(cView.getConfig().GetName()));
-				SimulationView simView = new SimulationView(sim, newGroup);
+				Simulation sim = new Simulation(cView.getConfig(), InstructionParser.LoadInstructions(programPath.getText()));
+				new SimulationView(sim, newGroup);
 				
 				newShell.pack();
 				newShell.open();

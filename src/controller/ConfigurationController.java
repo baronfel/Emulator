@@ -7,11 +7,12 @@
 
 package controller;
 
+import interfaces.IModel;
+
 import java.io.IOException;
 
-import utility.Serializer;
 import model.ProcessorConfiguration;
-import interfaces.IModel;
+import utility.Serializer;
 
 public class ConfigurationController extends AbstractController {
 
@@ -31,7 +32,7 @@ public class ConfigurationController extends AbstractController {
 	 */
 	public void SaveConfig()
 	{
-		String pathToSave = ".\\configs\\" + model.GetName() + ".config";
+		String pathToSave = model.GetName() + ".config";
 		try {
 			Serializer.serializeConfigTo(pathToSave, model);
 		} catch (IOException e) {
@@ -46,6 +47,7 @@ public class ConfigurationController extends AbstractController {
 	 */
 	public void SelectNewConfig(String path) {
 		try {
+			
 			model = Serializer.deserializeConfigFrom(path);
 		} catch (IOException e) {
 			e.printStackTrace();

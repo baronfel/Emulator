@@ -14,11 +14,11 @@ public class ModelEvent {
 	private String message;
 	private int extraData;
 	
-	public ModelEvent(Object aObj, int aId, String aMessage, int aAmount) {
-		sender = aObj;
-		id = aId;
-		message = aMessage;
-		extraData = aAmount;
+	public ModelEvent(Object sender, int id, String message, int extraData) {
+		this.sender = sender;
+		this.id = id;
+		this.message = message;
+		this.extraData = extraData;
 	}
 	
 	public String getMessage()

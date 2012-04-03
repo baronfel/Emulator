@@ -35,9 +35,6 @@ public class Issue implements IIssueUnit {
 	 * to the ALU.
 	 */
 	public void IssueInstructions(IInstruction instruction) {
-		// IInstruction instruction = ilist.get(index); THIS SHOULD BE DONE IN
-		// THE FETCH
-		// index++;
 		int op1 = 0;
 		int op2 = 0;
 		int dst = 0;

@@ -4,6 +4,8 @@ import interfaces.IInstruction;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Label;
 /**
  * 
  */
@@ -15,6 +17,7 @@ import java.util.List;
 public class Package {
 	private List<IInstruction> ilist = new ArrayList<IInstruction>();
 	private List<String> invalidlist = new ArrayList<String>();
+	private List<Label> labellist = new ArrayList<Label>();
 	public List<IInstruction> getIlist() {
 		return ilist;
 	}
@@ -26,6 +29,12 @@ public class Package {
 	}
 	public void setInvalidlist(List<String> invalidlist) {
 		this.invalidlist = invalidlist;
+	}
+	public List<Label> getLabellist() {
+		return labellist;
+	}
+	public void setLabellist(List<Label> labellist) {
+		this.labellist = labellist;
 	}
 
 }

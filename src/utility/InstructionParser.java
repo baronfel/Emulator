@@ -147,13 +147,14 @@ public class InstructionParser {
 			return;
 		}
 		lineCounter = 1;
-		while (file.hasNext()) {
-			String name = file.next();
+		while (file.hasNextLine()) {
+			String name = file.nextLine();
 			if (name.charAt(name.length() - 1) == ':')
 				Label(name);
 			lineCounter++;
 		}
 		file = null;
+		twolist.setLabellist(labellist);
 	}
 
 	private static void Label(String name) {

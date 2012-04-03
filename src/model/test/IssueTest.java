@@ -25,7 +25,7 @@ public class IssueTest {
 	{
 		Map<String, Integer> cycleMap = new HashMap<String, Integer>();
 		cycleMap.put("nop", 1);
-		IInstruction instruction = new ITypeInstruction("nop", 0, 0, 0);
+		IInstruction instruction = new ITypeInstruction("nop", 0, 0, 0, 0);
 		issue.addToPreIssue(instruction);
 		IALU alu = new ALU(0, 4, cycleMap);
 		alus.add(alu);

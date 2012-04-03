@@ -19,10 +19,10 @@ import model.RTypeInstruction;
 public class InstructionTest {
 	
 	private ITypeInstruction addi = new ITypeInstruction();
-	private ITypeInstruction subi = new ITypeInstruction("subi", 4, 5, 324);
-	private RTypeInstruction add = new RTypeInstruction("add", 2, 3, 4, 5, 6);
+	private ITypeInstruction subi = new ITypeInstruction("subi", 4, 5, 324, 2);
+	private RTypeInstruction add = new RTypeInstruction("add", 2, 3, 4, 5, 6, 3);
 	private RTypeInstruction sub = new RTypeInstruction();
-	private JTypeInstruction jmp1 = new JTypeInstruction(50000);
+	private JTypeInstruction jmp1 = new JTypeInstruction(50000, 5);
 	private JTypeInstruction jmp2 = new JTypeInstruction();
 	
 	@Test

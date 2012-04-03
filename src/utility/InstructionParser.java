@@ -177,7 +177,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "DIV";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -190,7 +190,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "NOR";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -200,7 +200,7 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTIU";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 
 	}
 
@@ -213,7 +213,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "SLTU";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -223,7 +223,7 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTI";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 
 	}
 
@@ -236,7 +236,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "SLT";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -249,7 +249,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "OR";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -262,7 +262,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "AND";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -275,7 +275,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "NOP";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -288,7 +288,7 @@ public class InstructionParser {
 		int rt = 0;
 		String opc = "SRL";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -301,7 +301,7 @@ public class InstructionParser {
 		int rt = 0;
 		String opc = "SLL";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -314,7 +314,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "SUB";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -327,7 +327,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "ADD";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -340,7 +340,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "MUL";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -350,7 +350,7 @@ public class InstructionParser {
 		int rd = file.nextInt();
 		file.nextLine();
 		String opc = "SW";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 	}
 
 	private static void ADDIInstruction() {
@@ -359,7 +359,7 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ADDI";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 
 	}
 
@@ -370,7 +370,7 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
 		String opc = "BEQ";
-		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, label));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, lineCounter, label));
 
 	}
 
@@ -380,13 +380,13 @@ public class InstructionParser {
 		int rs = file.nextInt();
 		file.nextLine();
 		String opc = "LW";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 	}
 
 	private static void JInstruction() {
 		int jdst = file.nextInt();
 		file.nextLine();
-		ilist.add((IInstruction) new JTypeInstruction(jdst));
+		ilist.add((IInstruction) new JTypeInstruction(jdst, lineCounter));
 	}
 
 	private static void JRInstruction() {
@@ -398,7 +398,7 @@ public class InstructionParser {
 		int sa = 0;
 		String opc = "JR";
 		ilist.add((IInstruction) new RTypeInstruction(opc, rd, rs, rt, sa,
-				funct));
+				funct, lineCounter));
 
 	}
 
@@ -409,7 +409,7 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
 		String opc = "BNE";
-		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, label));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, lineCounter, label));
 	}
 
 	private static int getImmediateFromLabel(String label) {

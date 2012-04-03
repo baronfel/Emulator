@@ -40,14 +40,14 @@ public class Processor implements IProcessor {
 			alus.add(new ALU(i, 1, opCycles));
 		}
 		registers = new Registry();
-		memoryBanks = new Memory();
+		memoryBanks = new Memory(1000000);
 		
 		instructions = instrs;
 		
 		fetch = new FetchUnit();
 		issue = new Issue(alus, instructions, registers);
-		memory = new MemoryAccess();
-		writeBack = new WriteBack();
+		memory = new MemoryAccess(memoryBanks, 1, opCycles);
+		writeBack = new WriteBack(memory, alus, registers);
 		
 	}
 

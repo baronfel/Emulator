@@ -12,8 +12,9 @@ public class ALU implements IALU
   private int bufferSize;
   private int aluNumber;      //which ALU within the core is it
   private int stallCycles;    //stalls the ALU for the number of cycles specified
-  private boolean isPreBuffFull;
-  private int currentInstrIndex;    //holds the index in the preALUBuffer of the current instruction
+  private int cyclesProcessed;    //for testing purposes
+  //private boolean isPreBuffFull;
+  //private int currentInstrIndex;    //holds the index in the preALUBuffer of the current instruction
   private PreALUBufferEntry[] preALUBuffer;
   private PostALUBufferEntry postALUBuffer;
   private PreALUBufferEntry currentInstruction;
@@ -27,9 +28,10 @@ public class ALU implements IALU
   {
     aluNumber = alu;
     stallCycles = 0;
+    cyclesProcessed = 0;
     bufferSize = buffSize;
-    isPreBuffFull = false; 
-    currentInstrIndex = 0;
+    //isPreBuffFull = false; 
+    //currentInstrIndex = 0;
     preALUBuffer = new PreALUBufferEntry[bufferSize];
     for (int i = 0; i < bufferSize; i++){
       preALUBuffer[i] = new PreALUBufferEntry();
@@ -40,22 +42,15 @@ public class ALU implements IALU
   }
   
   /**
-   * Class constructor that takes the alu number as a parameter.
-   * PreALUBuffer size is set to 1 as a default
+   * Class constructor for testing the WriteBack unit.
+   * Creates a skeleton ALU with only the post-ALU buffer set
   */
-  public ALU(int alu)
+  public ALU(int seq, int reg, double value)
   {
-    aluNumber = alu;
-    stallCycles = 0;
-    bufferSize = 1;
-    isPreBuffFull = false; 
-    currentInstrIndex = 0;
-    preALUBuffer = new PreALUBufferEntry[bufferSize];
-    for (int i = 0; i < bufferSize; i++){
-      preALUBuffer[i] = new PreALUBufferEntry();
-    }
     postALUBuffer = new PostALUBufferEntry();
-    currentInstruction =  new PreALUBufferEntry();
+    postALUBuffer.progSequenceNumber = seq;
+    postALUBuffer.destinationRegister = reg;
+    postALUBuffer.opResult = value;
   }
   
 
@@ -77,10 +72,10 @@ public class ALU implements IALU
       //go ahead and process the instruction
       String tmpStr = currentInstruction.opName;
       double operationResult = 0;
-      if (tmpStr == "Mul") operationResult = mult(currentInstruction.op1Value,currentInstruction.op2Value);
-      else if (tmpStr == "Div") operationResult = div(currentInstruction.op1Value,currentInstruction.op2Value);
-      else if (tmpStr == "Add") operationResult = add(currentInstruction.op1Value,currentInstruction.op2Value);
-      else if (tmpStr == "Sub") operationResult = sub(currentInstruction.op1Value,currentInstruction.op2Value);
+      if (tmpStr == "mul") operationResult = mult(currentInstruction.op1Value,currentInstruction.op2Value);
+      else if (tmpStr == "div") operationResult = div(currentInstruction.op1Value,currentInstruction.op2Value);
+      else if (tmpStr == "add") operationResult = add(currentInstruction.op1Value,currentInstruction.op2Value);
+      else if (tmpStr == "sub") operationResult = sub(currentInstruction.op1Value,currentInstruction.op2Value);
       //add more instructions here
       
       //add the result to the post ALU buffer
@@ -94,6 +89,9 @@ public class ALU implements IALU
       //just decrement the stallCycles and wait for the next clock cycle
       stallCycles--;
     }
+    
+    cyclesProcessed++;
+    
   }  //end processClockCycle
   
   
@@ -251,7 +249,7 @@ public class ALU implements IALU
   }
   
   /**
-   * Methods to return contents of the pre ALU buffer. Used only for class testing.
+   * Methods to get/set contents of the ALU buffers. Used only for class testing.
    */
   public String getPreALUOpName(int index){return this.preALUBuffer[index].opName; } 
   public int getPreALUProgSeqNum(int index){return this.preALUBuffer[index].progSequenceNumber; }  
@@ -260,6 +258,8 @@ public class ALU implements IALU
   public int getPreALUDestReg(int index){return this.preALUBuffer[index].destinationRegister; }
   public int getPreALUNumCycles(int index){return this.preALUBuffer[index].numCycles; }
   public String getCurrentInstrOpName(){return this.currentInstruction.opName; }
+  public int getCyclesProcessed(){return this.cyclesProcessed; }
+  
   
    /**
    * Class to store pre-ALU instructions
@@ -317,33 +317,33 @@ public class ALU implements IALU
     }
   }
 
-	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public void Cycle(int aIn_numToCycle) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public void Add(int aIn_RD, int aIn_RS, int aIn_RT, int aIn_Immediate) {
-		// TODO Auto-generated method stub
-	}
+ @Override
+ public String GetStatus() {
+  // TODO Auto-generated method stub
+  return null;
+ }
+ 
+ @Override
+ public void Cycle(int aIn_numToCycle) {
+  // TODO Auto-generated method stub
+  
+ }
+ 
+ @Override
+ public List<IInstruction> CurrentInstructions() {
+  // TODO Auto-generated method stub
+  return null;
+ }
+ 
+ @Override
+ public Event PropertyChanged(Object aIn_propertyName) {
+  // TODO Auto-generated method stub
+  return null;
+ }
+ 
+ @Override
+ public void Add(int aIn_RD, int aIn_RS, int aIn_RT, int aIn_Immediate) {
+  // TODO Auto-generated method stub
+ }
    
 }  //end of class ALU

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import model.Registry;
 
-public interface IProcessor {
+public interface IProcessor extends IModel{
 	public List<ICore> _cores = new ArrayList<ICore>();
 
 	Registry getRegistry();

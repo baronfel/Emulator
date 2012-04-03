@@ -10,33 +10,27 @@ import java.util.List;
  * @author chusk3
  * This class is used by the Simulation and MEmory Write Back classes to provide a common reference to the data section of the program.
  */
+public class Memory {
 
-public class Memory extends AbstractModel {
-	
 	private List<Integer> _memory = new ArrayList<Integer>();
-	
-	public Memory()
+	//private List<Integer> _memory;
+
+	public Memory(int cap)
 	{
-		
+		Integer tmp = new Integer(0);
+
+		for (int i = 1; i < cap; i++){
+			_memory.add(tmp);
+		}
 	}
-	
+
 	public int getValueAt(int location)
 	{
 		return _memory.get(location);
 	}
-	
-	/**
-	 * Sets the value of a particular location in memory to a given integer. Notifies any listeners at the end.
-	 * 
-	 * ModelEvent.ExtraData contains the location that was modified, which can be retrieved by listeners.
-	 * @param location the location in memory to set.
-	 * @param value the value to set at the previously mentioned location.
-	 */
-	public void setValueAt(int location, int value)
+
+	public void setValueAt(int location, Integer value)
 	{
 		_memory.set(location, value);
-		notifyChanged(new ModelEvent(this, 0, "Updated memory at location", location));
-
 	}
-
 }

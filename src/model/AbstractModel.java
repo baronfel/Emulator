@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractModel implements IModel {
-	private List<IModelListener> _listeners = new ArrayList<IModelListener>();
+	private transient List<IModelListener> _listeners = new ArrayList<IModelListener>();
 /**
  * Notifies all listeners that the model has changed.
  */

@@ -45,7 +45,7 @@ public class Processor extends AbstractModel implements IProcessor {
 		instructions = instrs;
 		
 		fetch = new FetchUnit(instructions, issue);
-		issue = new Issue(alus, instructions, registers);
+		issue = new Issue(alus, registers);
 		memory = new MemoryAccess(memoryBanks, 1, opCycles);
 		writeBack = new WriteBack(memory, alus, registers);
 	}

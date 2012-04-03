@@ -33,7 +33,7 @@ public class FetchTest {
 	{
 		IInstruction instruction = new ITypeInstruction();
 		ilist.add(instruction);
-		issue = new Issue(null, null, null);
+		issue = new Issue(null, null);
 		fetch = new FetchUnit(ilist, issue);
 	}
 	

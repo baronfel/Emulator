@@ -24,12 +24,9 @@ public class Issue implements IIssueUnit {
 	private ArrayBlockingQueue<IInstruction> PreIssueBuffer = new ArrayBlockingQueue<IInstruction>(
 			buffSize);
 	private int numInPreIssue = 0;
-	private List<IInstruction> instructions;
-
-	public Issue(List<IALU> alus, List<IInstruction> instructions, Registry registry) {
+	public Issue(List<IALU> alus, Registry registry) {
 		this.alus = alus;
 		this.registry = registry;
-		this.instructions = instructions;
 	}
 
 	/**

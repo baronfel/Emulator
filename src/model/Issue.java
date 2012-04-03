@@ -23,6 +23,7 @@ public class Issue implements IIssueUnit {
 	private int buffSize = 4;
 	private ArrayBlockingQueue<IInstruction> PreIssueBuffer = new ArrayBlockingQueue<IInstruction>(
 			buffSize);
+	private int numInPreIssue = 0;
 
 	public Issue(List<IALU> alus, Registry registry) {
 		this.alus = alus;
@@ -58,7 +59,6 @@ public class Issue implements IIssueUnit {
 			dst = registry.getValue(instruction.getRD());
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, dst, op2, 1);
-
 			break;
 		case "beq":
 			op1 = registry.getValue(instruction.getRS());
@@ -182,6 +182,7 @@ public class Issue implements IIssueUnit {
 		default:
 			break;
 		}
+		numInPreIssue--;
 
 		// GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 		// instruction.getSeqNum(), op1, op2, dst);
@@ -231,8 +232,15 @@ public class Issue implements IIssueUnit {
 
 	public boolean addToPreIssue(IInstruction instruction) {
 		if (PreIssueBuffer.offer(instruction))
+		{
+			numInPreIssue++;
 			return true;
+		}
 		return false;
+	}
+	
+	public int getNumInPreIssue(){
+		return numInPreIssue;
 	}
 
 }

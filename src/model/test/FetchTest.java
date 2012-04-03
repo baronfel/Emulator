@@ -25,14 +25,15 @@ import org.junit.Test;
  */
 public class FetchTest {
 	private static List <IInstruction> ilist = new ArrayList<IInstruction>();
-	private Issue issue = new Issue(null, null);
-	private FetchUnit fetch = new FetchUnit(ilist, issue);
+	private static Issue issue = new Issue(null, null);
+	private static FetchUnit fetch = new FetchUnit(ilist, issue);
 	
 	@BeforeClass
 	public static void GetEverything()
 	{
 		IInstruction instruction = new ITypeInstruction();
 		ilist.add(instruction);
+		fetch = new FetchUnit(ilist, issue);
 	}
 	
 	@Test

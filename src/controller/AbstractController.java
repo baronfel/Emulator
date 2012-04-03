@@ -8,6 +8,7 @@ package controller;
 
 import interfaces.IController;
 import interfaces.IModel;
+import interfaces.IModelListener;
 
 public abstract class AbstractController implements IController {
 	private IModel _model;
@@ -23,5 +24,15 @@ public abstract class AbstractController implements IController {
 	 */
 	public IModel getModel() {
 		return _model;
+	}
+	
+	public void removeListener(IModelListener listener)
+	{
+		_model.removeListener(listener);
+	}
+	
+	public void addListener(IModelListener listener)
+	{
+		_model.addListener(listener);
 	}
 }

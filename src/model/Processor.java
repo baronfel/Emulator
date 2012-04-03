@@ -19,7 +19,7 @@ import interfaces.IWriteBack;
  * @author Chester
  *
  */
-public class Processor implements IProcessor {
+public class Processor extends AbstractModel implements IProcessor {
 	private List<IALU> alus;
 	private IFetchUnit fetch;
 	private IIssueUnit issue;
@@ -44,21 +44,16 @@ public class Processor implements IProcessor {
 		
 		instructions = instrs;
 		
-		fetch = new FetchUnit();
-		issue = new Issue(alus, instructions, registers);
-		memory = new MemoryAccess();
+
 		writeBack = new WriteBack();
-		
+		memory = new MemoryAccess();
+		issue = new Issue(alus, registers);
+		fetch = new FetchUnit(instructions, issue);
 	}
 
 	@Override
 	public Registry getRegistry() {
 		return registers;
 	}
-
-	@Override
-	public void notifyChanged(ModelEvent aE) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

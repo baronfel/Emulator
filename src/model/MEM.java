@@ -258,11 +258,7 @@ public String GetStatus() {
 }
 
 
-@Override
-public void Cycle(int aIn_numToCycle) {
-	// TODO Auto-generated method stub
-	
-}
+
 
 
 @Override
@@ -288,6 +284,13 @@ public void LoadWord(int aIn_RD, int aIn_memaddr) {
 
 @Override
 public void StoreWord(int aIn_RS, int aIn_memaddr) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+@Override
+public void Cycle() {
 	// TODO Auto-generated method stub
 	
 }

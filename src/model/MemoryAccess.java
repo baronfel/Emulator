@@ -28,7 +28,9 @@ public class MemoryAccess implements IMemoryAccess {
 	 * @see interfaces.ICoreComponent#Cycle(int)
 	 */
 	@Override
-	public void Cycle(int aIn_numToCycle) {
+
+	public void Cycle() {
+
 		// TODO Auto-generated method stub
 
 	}

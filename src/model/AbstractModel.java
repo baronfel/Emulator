@@ -28,7 +28,7 @@ public abstract class AbstractModel implements IModel {
  * @param aL The listener to add to the list.
  * @see IModelListener
  */
-	public void addModelListener(IModelListener newGuy) {
+	public void addListener(IModelListener newGuy) {
 		_listeners.add(newGuy);
 	}
 /**
@@ -36,7 +36,7 @@ public abstract class AbstractModel implements IModel {
  * @param aL The listener to remove from the list.
  * @see IModelListener
  */
-	public void removeModelListener(IModelListener aL) {
+	public void removeListener(IModelListener aL) {
 		_listeners.remove(aL);
 	}
 }

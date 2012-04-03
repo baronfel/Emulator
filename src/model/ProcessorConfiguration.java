@@ -17,7 +17,7 @@ import interfaces.IModel;
  * 		2) a map of ALU function names and the number of cycles each takes - Map<String, int>
  * 		3) the numbers of ALUs in the processor - int
  */
-public class ProcessorConfiguration implements IModel, Serializable {
+public class ProcessorConfiguration extends AbstractModel implements Serializable{
 	
 	
 	/**
@@ -147,11 +147,5 @@ public class ProcessorConfiguration implements IModel, Serializable {
 		return _configurationName.equalsIgnoreCase(other.GetName()) && 
 				 other.GetALUCount() == _aluCount &&
 				other.GetCycleMap().equals(_cyclesRequiredByOpcode);
-	}
-
-	@Override
-	public void notifyChanged(ModelEvent aE) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -18,4 +18,24 @@ public interface IMemoryAccess extends ICoreComponent {
  * @param aIn_memaddr The address to store the word in memory.
  */
 	public void StoreWord(int aIn_RS, int aIn_memaddr);
+	
+/**
+ * Get the instruction sequence number from the post memory access buffer.
+ * @param clear Clears the sequence number in the post-MEM buffer if True.
+ */
+	public int getPostMEMSequenceNum(boolean clear);
+		
+/**
+ * Get the destination register for the op result from the post memory access buffer.
+ */
+	public int getPostMEMDestReg();
+	
+/**
+ * Get the op result from the post memory access buffer.
+ */
+	public double getPostMEMOpResult();	
+	
+	
+	
+	
 }

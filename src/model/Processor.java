@@ -40,15 +40,14 @@ public class Processor extends AbstractModel implements IProcessor {
 			alus.add(new ALU(i, 1, opCycles));
 		}
 		registers = new Registry();
-		memoryBanks = new Memory();
+		memoryBanks = new Memory(1000000);
 		
 		instructions = instrs;
 		
-
-		writeBack = new WriteBack();
-		memory = new MemoryAccess();
-		issue = new Issue(alus, registers);
 		fetch = new FetchUnit(instructions, issue);
+		issue = new Issue(alus, instructions, registers);
+		memory = new MemoryAccess(memoryBanks, 1, opCycles);
+		writeBack = new WriteBack(memory, alus, registers);
 	}
 
 	@Override

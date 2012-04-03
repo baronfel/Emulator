@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class IssueTest {
 	private static List<IALU> alus = new ArrayList<IALU>();
-	private static Issue issue = new Issue(alus, null);
+	private static Issue issue = new Issue(alus, null, null);
 	
 	@BeforeClass
 	public static void GetEverything()

@@ -1,0 +1,10 @@
+<ProcessorConfiguration>
+  <__aluCount>10</__aluCount>
+  <__cyclesRequiredByOpcode>
+    <entry>
+      <string>add immediate</string>
+      <int>2</int>
+    </entry>
+  </__cyclesRequiredByOpcode>
+  <__configurationName>Filled Configuration</__configurationName>
+</ProcessorConfiguration>

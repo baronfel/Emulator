@@ -51,7 +51,7 @@ public class SerializerTest {
 	{
 		FileInputStream fin;
 		try {
-			fin = new FileInputStream("D:\\Development\\Emulator\\src\\utility\\test\\" +fileName);
+			fin = new FileInputStream(fileName);
 			FileChannel fch = fin.getChannel();
 			// map the contents of the file into ByteBuffer
 			ByteBuffer byteBuff;

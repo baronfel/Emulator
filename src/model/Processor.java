@@ -55,4 +55,19 @@ public class Processor extends AbstractModel implements IProcessor {
 		return registers;
 	}
 	
+	@Override
+	public void Cycle()
+	{
+		// We cycle from the end of the pipeline towards the front.
+		writeBack.Cycle();
+		for(IALU alu : alus)
+		{
+			alu.Cycle();
+		}
+		memory.Cycle();
+		issue.Cycle();
+		fetch.Cycle();
+		
+	}
+	
 }

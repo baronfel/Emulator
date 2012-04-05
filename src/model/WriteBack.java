@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Event;
+import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.IALU;
@@ -62,8 +63,7 @@ public class WriteBack implements IWriteBack {
 	 */
 	@Override
 	public void Cycle() {
-		// TODO Auto-generated method stub
-
+		processClockCycle();
 	}
 
 	/*
@@ -73,8 +73,7 @@ public class WriteBack implements IWriteBack {
 	 */
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<IInstruction>();
 	}
 
 	/*

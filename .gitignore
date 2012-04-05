@@ -2,3 +2,7 @@ bin
 bin/
 .settings/
 .class
+src/interfaces/*.class
+src/*/*.class
+*.class
+*.java~

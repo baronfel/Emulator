@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 //import model.Memory;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class MEM implements IMemoryAccess
 {
   private int bufferSize;
@@ -254,7 +256,7 @@ public class MEM implements IMemoryAccess
 @Override
 public boolean GetStatus() {
 	// TODO Auto-generated method stub
-	return false;
+	return true;
 }
 
 
@@ -296,16 +298,17 @@ public void Cycle() {
 }
 
 
-public void addToPreMEM(String opcode, int seqNum, int reg, int dst, int i) {
-	// TODO Auto-generated method stub
-	
-}
-
-
 @Override
 public int getAmountInPreMEM() {
 	// TODO Auto-generated method stub
 	return 0;
+}
+
+
+@Override
+public void addToPreMEM(String opcode, int seqNum, int val, int dst, int i) {
+	// TODO Auto-generated method stub
+	throw new NotImplementedException();
 }
    
 }  //end of class MEM

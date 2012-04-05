@@ -7,8 +7,6 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-
 import model.ProcessorConfiguration;
 
 import org.junit.BeforeClass;
@@ -17,10 +15,8 @@ import org.junit.Test;
 
 import utility.Serializer;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.*;
 import java.nio.channels.FileChannel;

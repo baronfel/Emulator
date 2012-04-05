@@ -16,6 +16,7 @@ public class ITypeInstruction implements IInstruction {
 	private String opcode;
 	private int rd;
 	private int rs;
+	private int seqNum;
 
 	/**
 	 * The default constructor. It should be followed by initialization of the instruction.
@@ -31,12 +32,13 @@ public class ITypeInstruction implements IInstruction {
 	 * @param rs The Source Register for the instruction.
 	 * @param imm The immediate value of the instruction.
 	 */
-	public ITypeInstruction(String opc, int rd, int rs, int imm) {
+	public ITypeInstruction(String opc, int rd, int rs, int imm, int seqnum) {
 		super();
 		immediate = imm;
 		opcode = opc;
 		this.rd = rd;
 		this.rs = rs;
+		seqNum = seqnum;
 	}
 	
 	public int getFUNCT() {
@@ -162,5 +164,9 @@ public class ITypeInstruction implements IInstruction {
 	public int getSeqNum() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public void setSeqNum(int seqNum) {
+		this.seqNum = seqNum;
 	}
 }

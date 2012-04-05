@@ -3,10 +3,13 @@
  */
 package utility.test;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 import interfaces.IInstruction;
 
 import java.util.ArrayList;
+
+import model.Label;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,6 +26,7 @@ public class InstructionParserTest {
 	private static ArrayList<IInstruction> ilist = new ArrayList<IInstruction>();
 	private static ArrayList<String> invalidlist = new ArrayList<String>();
 	private static Package pckg;
+	private static ArrayList<Label> labellist;
 
 	
 	@BeforeClass
@@ -30,6 +34,7 @@ public class InstructionParserTest {
 			pckg = InstructionParser.LoadInstructions("ParserTestFile");
 			ilist = (ArrayList<IInstruction>) pckg.getIlist();
 			invalidlist = (ArrayList<String>) pckg.getInvalidlist();
+			labellist = (ArrayList<Label>) pckg.getLabellist();
 			
 	}
 	
@@ -63,9 +68,15 @@ public class InstructionParserTest {
 	@Test
 	public void InvalidTest(){
 		assertTrue(invalidlist.get(0).equals("Line: 6\tAND1"));
-		assertTrue(invalidlist.get(1).equals("Line: 11\tLBL1:"));
-		assertTrue(invalidlist.get(2).equals("Line: 15\tSERIAL"));
-		assertTrue(invalidlist.get(3).equals("Line: 22\tSUPER CERIAL"));
+		//assertTrue(invalidlist.get(1).equals("Line: 11\tLBL1:"));
+		assertTrue(invalidlist.get(1).equals("Line: 15\tSERIAL"));
+		assertTrue(invalidlist.get(2).equals("Line: 22\tSUPER CERIAL"));
+	}
+	
+	@Test
+	public void LabelTest(){
+		assertEquals(ilist.get(1).getImmediate(), 9);
+		assertEquals(ilist.get(4).getImmediate(), 6);
 	}
 
 }

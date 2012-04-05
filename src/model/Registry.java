@@ -56,11 +56,12 @@ public class Registry extends AbstractModel {
 	
 	public void addListener(int registerToWatch, IModelListener listener)
 	{
-		registers.get(registerToWatch).addModelListener(listener);
+
+		registers.get(registerToWatch).addListener(listener);
 	}
 	
 	public void removeListener(int registerToWatch, IModelListener listener)
 	{
-		registers.get(registerToWatch).removeModelListener(listener);
+		registers.get(registerToWatch).removeListener(listener);
 	}
 }

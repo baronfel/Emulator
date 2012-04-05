@@ -16,12 +16,12 @@ public class BranchInstruction extends ITypeInstruction{
 		super();
 	}
 	
-	public BranchInstruction(String opc, int rd, int rs, int imm) {
-		super(opc, rd, rs, imm);
+	public BranchInstruction(String opc, int rd, int rs, int imm, int seqnum) {
+		super(opc, rd, rs, imm, seqnum);
 	}
 	
-	public BranchInstruction(String opc, int rd, int rs, int imm, String label) {
-		super(opc, rd, rs, imm);
+	public BranchInstruction(String opc, int rd, int rs, int imm, int seqnum, String label) {
+		super(opc, rd, rs, imm, seqnum);
 		this.setLabel(label);
 	}
 

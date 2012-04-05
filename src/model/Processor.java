@@ -19,7 +19,7 @@ import interfaces.IWriteBack;
  * @author Chester
  *
  */
-public class Processor implements IProcessor {
+public class Processor extends AbstractModel implements IProcessor {
 	private List<IALU> alus;
 	private IFetchUnit fetch;
 	private IIssueUnit issue;
@@ -44,15 +44,15 @@ public class Processor implements IProcessor {
 		
 		instructions = instrs;
 		
-		fetch = new FetchUnit();
+		fetch = new FetchUnit(instructions, issue);
 		issue = new Issue(alus, instructions, registers);
 		memory = new MemoryAccess(memoryBanks, 1, opCycles);
 		writeBack = new WriteBack(memory, alus, registers);
-		
 	}
 
 	@Override
 	public Registry getRegistry() {
 		return registers;
 	}
+	
 }

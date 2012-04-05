@@ -1,12 +1,10 @@
 package model;
 
-import interfaces.IMemoryAccess;
 import interfaces.IInstruction;
+import interfaces.IMemoryAccess;
 
 import java.awt.Event;
-import java.util.ArrayList;
 import java.util.List;
-//import model.Memory;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -253,62 +251,61 @@ public class MEM implements IMemoryAccess
     }
   }
 
-@Override
-public boolean GetStatus() {
-	// TODO Auto-generated method stub
-	return true;
-}
-
-
-
-
-
-@Override
-public List<IInstruction> CurrentInstructions() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-
-@Override
-public Event PropertyChanged(Object aIn_propertyName) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-
-@Override
-public void LoadWord(int aIn_RD, int aIn_memaddr) {
-	// TODO Auto-generated method stub
+	@Override
+	public boolean GetStatus() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	
-}
-
-
-@Override
-public void StoreWord(int aIn_RS, int aIn_memaddr) {
-	// TODO Auto-generated method stub
 	
-}
-
-
-@Override
-public void Cycle() {
-	// TODO Auto-generated method stub
 	
-}
-
-
-@Override
-public int getAmountInPreMEM() {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-
-@Override
-public void addToPreMEM(String opcode, int seqNum, int val, int dst, int i) {
-	// TODO Auto-generated method stub
-	throw new NotImplementedException();
-}
+	
+	
+	@Override
+	public List<IInstruction> CurrentInstructions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	@Override
+	public Event PropertyChanged(Object aIn_propertyName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	@Override
+	public void LoadWord(int aIn_RD, int aIn_memaddr) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	@Override
+	public void StoreWord(int aIn_RS, int aIn_memaddr) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	@Override
+	public void Cycle() {
+		processClockCycle();
+	}
+	
+	
+	@Override
+	public int getAmountInPreMEM() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
+	@Override
+	public void addToPreMEM(String opcode, int seqNum, int val, int dst, int i) {
+		// TODO Auto-generated method stub
+		throw new NotImplementedException();
+	}
    
-}  //end of class MEM
+}//end of class MEM

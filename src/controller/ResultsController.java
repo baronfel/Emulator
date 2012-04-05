@@ -30,7 +30,7 @@ public class ResultsController {
 	}
 
 	public Package getProgram() {
-		return _result.simulation.pack;
+		return _result.simulation.getPackage();
 	}
 
 }

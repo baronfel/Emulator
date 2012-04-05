@@ -5,7 +5,6 @@
  * 
  */
 
-
 package model;
 
 import interfaces.IInstruction;
@@ -30,49 +29,53 @@ public class Simulation extends AbstractController {
 	public BenchmarkResult _unnamed_BenchmarkResult_;
 	public Memory internalMemory;
 	private Package programInfo;
-	
-	
-	public Simulation(ProcessorConfiguration config, Package programInfo)
-	{
+
+	public Simulation(ProcessorConfiguration config, Package programInfo) {
 		super(config);
 		_instructionList = programInfo.getIlist();
-		this.programInfo = programInfo; 
+		this.programInfo = programInfo;
 		_processorConfiguration = config;
 		_processor = CreateProcessor(_processorConfiguration);
 	}
-/**
- * Gets the benchmark results of the previous simulation.
- * @return The Benchmark Results of the previous Simulation.
- */
+
+	/**
+	 * Gets the benchmark results of the previous simulation.
+	 * 
+	 * @return The Benchmark Results of the previous Simulation.
+	 */
 	public BenchmarkResult GetBenchmarkResult() {
 		throw new UnsupportedOperationException();
 	}
-/**
- * Creates the processors from the given processor configuration.
- * @param aIn_Config The processor configuration.
- * @return The created processors.
- */
+
+	/**
+	 * Creates the processors from the given processor configuration.
+	 * 
+	 * @param aIn_Config
+	 *            The processor configuration.
+	 * @return The created processors.
+	 */
 	private IProcessor CreateProcessor(ProcessorConfiguration config) {
-		return new Processor(config.GetALUCount(), config.GetCycleMap(), _instructionList);
+		return new Processor(config.GetALUCount(), config.GetCycleMap(),
+				_instructionList);
 	}
-	
-	public Registry getRegistry()
-	{
+
+	public Registry getRegistry() {
 		return _processor.getRegistry();
 	}
+
 	public IProcessor getProcessor() {
 		return _processor;
 	}
+
 	@Override
 	public void setModel(IModel aModel) {
-		if(aModel instanceof ProcessorConfiguration)
-		{
-			_processorConfiguration = (ProcessorConfiguration)aModel;
+		if (aModel instanceof ProcessorConfiguration) {
+			_processorConfiguration = (ProcessorConfiguration) aModel;
 			RestartSimulation();
 		}
 	}
+
 	private void RestartSimulation() {
-		// TODO Auto-generated method stub
-		
+		_processor = CreateProcessor(_processorConfiguration);
 	}
 }

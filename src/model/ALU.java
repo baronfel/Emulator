@@ -340,7 +340,7 @@ public class ALU implements IALU {
 
 	@Override
 	public void Cycle() {
-		// TODO Auto-generated method stub
+		processClockCycle();
 	}
 
 	@Override

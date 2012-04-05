@@ -27,7 +27,7 @@ public class InstructionParser {
 	private static int lineCounter = 0;
 	static List<String> invalidlist = new ArrayList<String>();
 	static List<Label> labellist = new ArrayList<Label>();
-	static boolean invalidFlag = false;
+	static boolean invalidFlag = false; // Used to determine if an invalid instruction exception should be thrown NOT CURRENTLY IN USE
 	static Package twolist = new Package();
 
 	/**
@@ -135,6 +135,9 @@ public class InstructionParser {
 		twolist.setIlist(ilist);
 		twolist.setInvalidlist(invalidlist);
 		return twolist;
+		/**
+		 * The code to use invalid flag to determine how to throw an invalid instruction exception would go just above here.
+		 */
 	}
 
 	private static void LoadLabels(String aInfilePath) {

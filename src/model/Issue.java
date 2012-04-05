@@ -189,13 +189,13 @@ public class Issue implements IIssueUnit {
 		return null;
 	}
 
-	private ALU GetFirstAvailableALU() {
+	private IALU GetFirstAvailableALU() {
 		int PreALUQueueSize = Integer.MAX_VALUE;
-		ALU aluToUse = (ALU) alus.get(0);
-		for (int i = 0; i < alus.size(); i++) {
-			if (((ALU) alus.get(i)).getAmountInPreALU() < PreALUQueueSize) {
-				PreALUQueueSize = (int) ((ALU) alus.get(i)).getAmountInPreALU();
-				aluToUse = (ALU) alus.get(i);
+		IALU aluToUse = alus.get(0);
+		for (int i = 1; i < alus.size(); i++) {
+			if (( alus.get(i)).getAmountInPreALU() < PreALUQueueSize) {
+				PreALUQueueSize = (int) ( alus.get(i)).getAmountInPreALU();
+				aluToUse =  alus.get(i);
 			}
 
 		}

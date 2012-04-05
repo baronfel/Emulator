@@ -77,6 +77,7 @@ public class InstructionParserTest {
 	public void LabelTest(){
 		assertEquals(ilist.get(1).getImmediate(), 9);
 		assertEquals(ilist.get(4).getImmediate(), 6);
+		assertTrue(labellist.get(0).getName().equals("LBL1"));
 	}
 
 }

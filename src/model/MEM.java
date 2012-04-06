@@ -2,6 +2,7 @@ package model;
 
 import interfaces.IMemoryAccess;
 import interfaces.IInstruction;
+import interfaces.ProcStatus;
 
 import java.awt.Event;
 import java.util.ArrayList;
@@ -255,9 +256,12 @@ public class MEM implements IMemoryAccess {
 	}
 
 	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public ProcStatus GetStatus() {
+		if(preMEMBuffer.length == 0 && postMEMBuffer == null && currentInstruction == null)
+		{
+			return ProcStatus.Inactive;
+		}
+		else return ProcStatus.Active;
 	}
 
 	@Override
@@ -265,13 +269,7 @@ public class MEM implements IMemoryAccess {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public void LoadWord(int aIn_RD, int aIn_memaddr) {
 		// TODO Auto-generated method stub

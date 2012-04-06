@@ -7,6 +7,7 @@ package model;
 import interfaces.IALU;
 import interfaces.IInstruction;
 import interfaces.IIssueUnit;
+import interfaces.ProcStatus;
 
 import java.awt.Event;
 import java.util.ArrayList;
@@ -209,9 +210,12 @@ public class Issue implements IIssueUnit {
 	}
 
 	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public ProcStatus GetStatus() {
+		if(PreIssueBuffer.isEmpty())
+		{
+			return ProcStatus.Inactive;
+		}
+		else return ProcStatus.Active;
 	}
 
 	@Override
@@ -222,12 +226,6 @@ public class Issue implements IIssueUnit {
 
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
 		// TODO Auto-generated method stub
 		return null;
 	}

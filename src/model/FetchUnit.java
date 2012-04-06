@@ -6,6 +6,7 @@ import java.util.List;
 import interfaces.IFetchUnit;
 import interfaces.IInstruction;
 import interfaces.IIssueUnit;
+import interfaces.ProcStatus;
 
 public class FetchUnit implements IFetchUnit {
 
@@ -13,24 +14,25 @@ public class FetchUnit implements IFetchUnit {
 	private int index;
 	private Issue issue;
 
-	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue)
-	{
+	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue) {
 		this.issue = (Issue) issue;
 		ilist = instructions;
 		index = 0;
 	}
-	public void FetchInstruction()
-	{
+
+	public void FetchInstruction() {
 		IInstruction instruction = ilist.get(index);
 		index++;
 		issue.addToPreIssue(instruction);
-		
+
 	}
-	
+
 	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public ProcStatus GetStatus() {
+		if (index == ilist.size())
+			return ProcStatus.Inactive;
+		else
+			return ProcStatus.Active;
 	}
 
 	@Override
@@ -44,11 +46,4 @@ public class FetchUnit implements IFetchUnit {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

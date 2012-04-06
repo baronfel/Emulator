@@ -1,13 +1,13 @@
 package model;
 
-import java.awt.Event;
-import java.util.ArrayList;
-import java.util.List;
-
 import interfaces.IALU;
 import interfaces.IInstruction;
-import interfaces.IWriteBack;
 import interfaces.IMemoryAccess;
+import interfaces.IWriteBack;
+import interfaces.ProcStatus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WriteBack implements IWriteBack {
 	private Registry registers;
@@ -51,9 +51,20 @@ public class WriteBack implements IWriteBack {
 	 * @see interfaces.ICoreComponent#GetStatus()
 	 */
 	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public ProcStatus GetStatus() {
+		ProcStatus status = ProcStatus.Inactive;
+		for(IALU alu : aluList)
+		{
+			if(alu.GetStatus() == ProcStatus.Active)
+			{
+				status = ProcStatus.Active;
+			}
+		}
+		
+		if(memUnit.GetStatus() == ProcStatus.Active){
+			status = ProcStatus.Active;
+		}
+		return status;
 	}
 
 	/*
@@ -74,17 +85,6 @@ public class WriteBack implements IWriteBack {
 	@Override
 	public List<IInstruction> CurrentInstructions() {
 		return new ArrayList<IInstruction>();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see interfaces.ICoreComponent#PropertyChanged(java.lang.Object)
-	 */
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/*

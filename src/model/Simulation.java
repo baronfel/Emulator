@@ -5,16 +5,20 @@
  * 
  */
 
-
 package model;
 
 import interfaces.IInstruction;
+import interfaces.IModel;
+import interfaces.IProcessor;
 
 import java.util.List;
 
+import controller.AbstractController;
+
+import utility.InstructionParser;
 import utility.Package;
 
-public class Simulation extends AbstractModel {
+public class Simulation extends AbstractController {
 	private ProcessorConfiguration _processorConfiguration;
 	private IProcessor _processor;
 	public List<IInstruction> _instructionList;
@@ -23,34 +27,61 @@ public class Simulation extends AbstractModel {
 	public ProcessorConfiguration _unnamed_ProcessorConfiguration_;
 	public BenchmarkResult _result;
 	public Memory internalMemory;
-	public Package pack;
-	
-	public Simulation(ProcessorConfiguration config, Package instructions)
-	{
-		_instructionList = instructions.getIlist();
-		pack = instructions;
+	private Package programInfo;
+
+	public Simulation(ProcessorConfiguration config, Package programInfo) {
+		super(config);
+		_instructionList = programInfo.getIlist();
+		this.programInfo = programInfo;
 		_processorConfiguration = config;
 		_processor = CreateProcessor(_processorConfiguration);
 		_result = new BenchmarkResult();
 		_result.simulation = this;
 	}
-/**
- * Gets the benchmark results of the previous simulation.
- * @return The Benchmark Results of the previous Simulation.
- */
+
+	/**
+	 * Gets the benchmark results of the previous simulation.
+	 * 
+	 * @return The Benchmark Results of the previous Simulation.
+	 */
 	public BenchmarkResult GetBenchmarkResult() {
 		return _result;
 	}
-/**
- * Creates the processors from the given processor configuration.
- * @param aIn_Config The processor configuration.
- * @return The created processors.
- */
+
+	/**
+	 * Creates the processors from the given processor configuration.
+	 * 
+	 * @param aIn_Config
+	 *            The processor configuration.
+	 * @return The created processors.
+	 */
 	private IProcessor CreateProcessor(ProcessorConfiguration config) {
-		return new Processor(config.GetALUCount(), config.GetCycleMap());
+		return new Processor(config.GetALUCount(), config.GetCycleMap(),
+				_instructionList);
+	}
+
+	public Registry getRegistry() {
+		return _processor.getRegistry();
+	}
+
+	public IProcessor getProcessor() {
+		return _processor;
 	}
 	
-	public ProcessorConfiguration getProcessorConfig() {
-		return _processorConfiguration;
+	public Package getPackage()
+	{
+		return programInfo;
+	}
+
+	@Override
+	public void setModel(IModel aModel) {
+		if (aModel instanceof ProcessorConfiguration) {
+			_processorConfiguration = (ProcessorConfiguration) aModel;
+			RestartSimulation();
+		}
+	}
+
+	private void RestartSimulation() {
+		_processor = CreateProcessor(_processorConfiguration);
 	}
 }

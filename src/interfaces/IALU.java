@@ -15,4 +15,25 @@ public interface IALU extends ICoreComponent {
  * @param aIn_Immediate The other value to be added.
  */
 	public void Add(int aIn_RD, int aIn_RS, int aIn_RT, int aIn_Immediate);
+	
+/**
+* Get the instruction sequence number from the post ALU access buffer.
+* @param clear Clears the sequence number in the post-ALU buffer if True.
+*/
+	public int getPostALUSequenceNum(boolean clear);
+			
+/**
+* Get the destination register for the op result from the post ALU access buffer.
+*/
+	public int getPostALUDestReg();
+		
+/**
+* Get the op result from the post ALU access buffer.
+*/
+	public double getPostALUOpResult();	
+		
+		
+		
+		
+		
 }

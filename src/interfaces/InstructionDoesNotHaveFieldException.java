@@ -13,6 +13,11 @@ public class InstructionDoesNotHaveFieldException extends
 		UnsupportedOperationException {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 330655546005050961L;
+
+	/**
 	 * Changed to have a default message.
 	 */
 	public InstructionDoesNotHaveFieldException() {

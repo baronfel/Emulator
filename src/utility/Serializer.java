@@ -60,6 +60,7 @@ public class Serializer {
 	 */
 	public static void serializeConfigTo(String filePath, ProcessorConfiguration config) throws IOException {
 		FileWriter writer = new FileWriter(filePath);
+
 		writer.write(initXStream().toXML(config));
 		writer.close();
 	}

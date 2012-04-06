@@ -18,6 +18,7 @@ public class RTypeInstruction implements IInstruction {
 	private int funct;
 	private int rt;
 	private int shamt;
+	private int seqnum;
 	
 	
 	/**
@@ -38,13 +39,14 @@ public class RTypeInstruction implements IInstruction {
 	 * @param shamt The shift amount for the instruction.
 	 * @param funct The function code for the instruction.
 	 */
-	public RTypeInstruction(String opc, int rd, int rs, int rt, int shamt, int funct) {
+	public RTypeInstruction(String opc, int rd, int rs, int rt, int shamt, int funct, int seqnum) {
 		opcode = opc;
 		this.rd = rd;
 		this.rs = rs;
 		this.rt = rt;
 		this.shamt = shamt;
 		this.funct = funct;
+		this.setSeqNum(seqnum);
 	}
 	
 /**
@@ -192,6 +194,15 @@ public class RTypeInstruction implements IInstruction {
 		
 		return message;
 		
+	}
+
+	@Override
+	public int getSeqNum() {
+		return seqnum;
+	}
+
+	public void setSeqNum(int seqnum) {
+		this.seqnum = seqnum;
 	}
 
 }

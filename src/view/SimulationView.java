@@ -7,31 +7,33 @@
 
 package view;
 
-import model.ProcessorConfiguration;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+
+import controller.ProcessorController;
+import controller.RegisterController;
+
 import model.Simulation;
 
-import org.eclipse.swt.widgets.Composite;
-
-import utility.Package;
-
-public class SimulationView {
+public class SimulationView{
 	
-	private Simulation controller;
-
-	public SimulationView(final Composite group, int i) {
-		// TODO Auto-generated constructor stub
-	}
-
-	public SimulationView(final Composite group, int i,	ProcessorConfiguration processorConfig, Package instructions) {
-		controller = new Simulation(processorConfig, instructions);
-	}
+	private Simulation sim;
 	
-	public SimulationView(final Composite group, int i, Simulation sim)
+	public SimulationView(Simulation mySim, final Composite parent)
 	{
-		controller = sim;
+		sim = mySim;
+		InitControls(parent);
 	}
-
-	public Simulation getController() {
-		return controller;
+	
+	private void InitControls(final Composite parent)
+	{
+		Group mainContainer = new Group(parent, SWT.NONE);
+		mainContainer.setText("Simulation");
+		RegistryView regView = new RegistryView(parent, new RegisterController(sim.getRegistry()));
+		ProcessorView procView = new ProcessorView(parent, new ProcessorController(sim.getProcessor()));
 	}
+	
+	
+	
 }

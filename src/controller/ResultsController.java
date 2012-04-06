@@ -18,7 +18,7 @@ public class ResultsController {
 	
 	public ResultsController(BenchmarkResult result) {
 		_result = result;
-		_config = result.simulation.getProcessorConfig();
+		_config = (ProcessorConfiguration)result.simulation.getModel();
 	}
 
 	public ResultsController() {
@@ -30,7 +30,7 @@ public class ResultsController {
 	}
 
 	public Package getProgram() {
-		return _result.simulation.pack;
+		return _result.simulation.getPackage();
 	}
 
 }

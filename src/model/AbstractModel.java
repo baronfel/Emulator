@@ -7,30 +7,36 @@
 package model;
 
 import interfaces.IModel;
-import javax.swing.event.EventListenerList;
+import interfaces.IModelListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractModel implements IModel {
-	private EventListenerList _listeners = new EventListenerList();
+	private transient List<IModelListener> _listeners = new ArrayList<IModelListener>();
 /**
  * Notifies all listeners that the model has changed.
  */
 	public void notifyChanged(ModelEvent aEvent) {
-		throw new UnsupportedOperationException();
+		for(IModelListener listener : _listeners)
+		{
+			listener.modelChanged(aEvent);
+		}
 	}
 /**
  * Adds a listener to the list of listeners listening.
  * @param aL The listener to add to the list.
- * @see ModelListener
+ * @see IModelListener
  */
-	public void addModelListener(ModelListener aL) {
-		throw new UnsupportedOperationException();
+	public void addListener(IModelListener newGuy) {
+		_listeners.add(newGuy);
 	}
 /**
  * Removes a listener from the list of listeners listening
  * @param aL The listener to remove from the list.
- * @see ModelListener
+ * @see IModelListener
  */
-	public void removeModelListener(ModelListener aL) {
-		throw new UnsupportedOperationException();
+	public void removeListener(IModelListener aL) {
+		_listeners.remove(aL);
 	}
 }

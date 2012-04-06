@@ -4,8 +4,6 @@
 
 package view;
 
-import java.util.Arrays;
-
 import model.Simulation;
 
 import org.eclipse.swt.SWT;
@@ -14,9 +12,10 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 import utility.InstructionParser;
 
@@ -37,114 +36,86 @@ public class StartView {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public StartView(final Shell shell) {
 		
 		// A display is an SWT session, multiple Screens can be hooked up to one.
-		Display display = new Display();
+		Group host = new Group(shell, SWT.NONE);
+		final ConfigurationView cView = new ConfigurationView(host, 0);
+		host.setText("Configuration View");
 		
-		// Grid with two columns, and all equal width
-		GridLayout startViewLayout = new GridLayout(2, true);
-				
-		final Shell shell = new Shell(display);
-		shell.setText(APPNAME);
-		shell.setLayout(startViewLayout);
+		Group programArea = new Group(shell, SWT.NONE);
+		GridData programLayoutData = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		programArea.setLayoutData(programLayoutData);
+		programArea.setLayout(new GridLayout(3, false));
+		programArea.setText("Program to Run");
 		
-		final Group cGroup = new Group(shell, SWT.NONE);
-		cGroup.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
-		cGroup.setText("Emulator Configuration");
+		GridData pathLayoutData = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		final Text programPath = new Text(programArea, SWT.BORDER);
+		programPath.setLayoutData(pathLayoutData);
+		programPath.setText("Please select a program!");
 		
-		final Group sGroup = new Group(shell, SWT.NONE);
-		sGroup.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
-		sGroup.setVisible(false);
-
-		sGroup.setText("Simulation");
-		
-		final Group rGroup = new Group(shell, SWT.NONE);
-		rGroup.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, true, 2, 1));
-		rGroup.setVisible(false);
-		rGroup.setText("Results");
-		
-		final Button back = new Button(shell, SWT.NONE);
-		back.setText("Back");
-		// the back button is disabled when on the first page.
-		back.setEnabled(false);
-		back.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
-		
-		final Button next = new Button(shell, SWT.NONE);
-		next.setText("Next");
-		next.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
-
-		
-		// Going to do a Wizard type view
-		// Stage 1
-		cView = new ConfigurationView(cGroup, 0);
-		currentView = cView;
-		
-		back.addSelectionListener(new SelectionListener() {
+		GridData selectorLayoutData = new GridData(SWT.RIGHT, SWT.CENTER, false, false);
+		final Button programSelector = new Button(programArea, SWT.NONE);
+		programSelector.setLayoutData(selectorLayoutData);
+		programSelector.setText("...");
+		programSelector.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				// if we are in the simulationView we need to go back to the config view
-				if(currentView == simView)
-				{
-					cView = new ConfigurationView(cGroup, 0, simView.getController().getProcessorConfig());
-					sGroup.setVisible(false);
-					cGroup.setVisible(true);
-					currentView = cView;
-					back.setEnabled(false);
-				} else // we must be in results view
-				{
-					simView = new SimulationView(sGroup, 0, resultsView.getController().getProcessorConfig(), resultsView.getController().getProgram());
-					rGroup.setVisible(false);
-					sGroup.setVisible(true);
-					currentView = simView;
-					next.setEnabled(true);
-				}
+				FileDialog fileChooseDialog = new FileDialog(shell);
+				String selected = fileChooseDialog.open();
 				
-			}
-			
-			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {}
-		});
-		
-		
-		next.addSelectionListener(new SelectionListener() {
-			
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				if(currentView == cView)
+				if(selected != null)
 				{
-					InstructionParser parser = new InstructionParser();
-					simView = new SimulationView(sGroup, 0, new Simulation(cView.getConfig(), parser.LoadInstructions(cView.getConfig().GetName())));
-					cGroup.setVisible(false);
-					sGroup.setVisible(true);
-					currentView = simView;
-					back.setEnabled(true);
-				} else
-				{
-					resultsView = new ResultsView(rGroup, 0, simView.getController().GetBenchmarkResult());
-					sGroup.setVisible(false);
-					rGroup.setVisible(true);
-					currentView = resultsView;
-					next.setEnabled(false);
+					programPath.setText(selected);
 				}
 			}
 			
 			@Override
-			public void widgetDefaultSelected(SelectionEvent arg0) {}
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				FileDialog fileChooseDialog = new FileDialog(shell);
+				String selected = fileChooseDialog.open();
+				
+				if(selected != null)
+				{
+					programPath.setText(selected);
+				}
+			}
 		});
 		
+		Group nav = new Group(shell, SWT.NONE);
+		GridData navLayoutData = new GridData(SWT.CENTER, SWT.CENTER, true, true);
+		nav.setLayoutData(navLayoutData);
+		nav.setLayout(new GridLayout(1, false));
 		
-		shell.pack();
-		shell.open();
-		while(!shell.isDisposed())
-		{
-			if(!display.readAndDispatch())
-			{
-				display.sleep();
+		GridData nextData = new GridData(SWT.CENTER, SWT.CENTER, false, false);
+		Button nextButton = new Button(nav, SWT.NONE);
+		nextButton.setLayoutData(nextData);
+		nextButton.setSize(50, 20);
+		nextButton.setText("Next");
+		nextButton.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				Shell newShell = new Shell(shell.getDisplay());
+				newShell.setText(shell.getText());
+				newShell.setLayout(shell.getLayout());
+				
+				Group newGroup = new Group(newShell, SWT.NONE);
+				newGroup.setText("Simulation");
+				
+				Simulation sim = new Simulation(cView.getConfig(), InstructionParser.LoadInstructions(programPath.getText()));
+				new SimulationView(sim, newGroup);
+				
+				newShell.pack();
+				newShell.open();
+				
+				shell.setVisible(false);
 			}
-		}
-		display.dispose();
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) { }
+		});
 	}
 
 }

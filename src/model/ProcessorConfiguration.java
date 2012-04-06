@@ -6,7 +6,6 @@ package model;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import interfaces.IModel;
 
 /**
  * @author chusk3
@@ -17,12 +16,13 @@ import interfaces.IModel;
  * 		2) a map of ALU function names and the number of cycles each takes - Map<String, int>
  * 		3) the numbers of ALUs in the processor - int
  */
-public class ProcessorConfiguration implements IModel, Serializable {
+public class ProcessorConfiguration extends AbstractModel implements Serializable{
+	
 	
 	/**
-	 * Do not touch this number.
+	 * 
 	 */
-	private static final long serialVersionUID = 1381448922069077176L;
+	private static final long serialVersionUID = 4578090939379015303L;
 	private int _aluCount = 1;
 	private Map<String, Integer> _cyclesRequiredByOpcode = new HashMap<String, Integer>(50);
 	private String _configurationName = "Unknown Configuration";
@@ -146,11 +146,5 @@ public class ProcessorConfiguration implements IModel, Serializable {
 		return _configurationName.equalsIgnoreCase(other.GetName()) && 
 				 other.GetALUCount() == _aluCount &&
 				other.GetCycleMap().equals(_cyclesRequiredByOpcode);
-	}
-
-	@Override
-	public void notifyChanged(ModelEvent aE) {
-		// TODO Auto-generated method stub
-		
 	}
 }

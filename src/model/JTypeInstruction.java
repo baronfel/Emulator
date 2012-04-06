@@ -12,6 +12,7 @@ import interfaces.InstructionDoesNotHaveFieldException;
 public class JTypeInstruction implements IInstruction {
 
 	private int jumpdest;
+	private int seqNum;
 	
 	/**
 	 * A default constructor for the JTypeInstruction. It should be followed by setting the jump
@@ -24,8 +25,9 @@ public class JTypeInstruction implements IInstruction {
 	 * The primary constructor for the JTypeInsturction.
 	 * @param jdst The jump destination for the instruction.
 	 */
-	public JTypeInstruction(int jdst) {
+	public JTypeInstruction(int jdst, int seqnum) {
 		jumpdest = jdst;
+		seqNum = seqnum;
 	}
 	
 	public int getFUNCT() {
@@ -110,6 +112,14 @@ public class JTypeInstruction implements IInstruction {
 		
 		return message;
 		
+	}
+	@Override
+	public int getSeqNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public void setSeqNum(int seqNum) {
+		this.seqNum = seqNum;
 	}
 
 }

@@ -11,8 +11,11 @@
 
 package view;
 
+import interfaces.IModelListener;
+
 import java.util.ArrayList;
 
+import model.ModelEvent;
 import model.ProcessorConfiguration;
 
 import org.eclipse.swt.SWT;
@@ -32,7 +35,7 @@ import org.eclipse.swt.widgets.Text;
 
 import controller.ConfigurationController;
 
-public class ConfigurationView{
+public class ConfigurationView implements IModelListener{
 	
 	private ConfigurationController controller;
 	Combo comboBox;
@@ -41,6 +44,7 @@ public class ConfigurationView{
 	Button chooseConfig;
 	Button saveConfig;
 	String previousOpName;
+	Text aluCount;
 	
 	public ConfigurationView(final Composite parent, int style) {
 		controller = new ConfigurationController();
@@ -101,7 +105,7 @@ public class ConfigurationView{
 		// ALU Count Controls
 		Label aluCountLabel = new Label(parent, SWT.BORDER);
 		aluCountLabel.setText("Processor ALU Count: ");		
-		final Text aluCount = new Text(parent, SWT.BORDER);
+		aluCount = new Text(parent, SWT.BORDER);
 		aluCount.setText(Integer.toString(controller.getAluCount()));
 		aluCount.addModifyListener(new ModifyListener() {
 			
@@ -156,19 +160,29 @@ public class ConfigurationView{
 	public void SelectConfig(Shell parent)
 	{
 		FileDialog fileChooseDialog = new FileDialog(parent);
-		ArrayList<String> validExtensions = new ArrayList<String>(5);
-		validExtensions.add(".config");
-		fileChooseDialog.setFilterExtensions(validExtensions.toArray(new String[5]));
+		ArrayList<String> validExtensions = new ArrayList<String>(1);
+		validExtensions.add("*");
+		fileChooseDialog.setFilterExtensions(validExtensions.toArray(new String[1]));
 		String selected = fileChooseDialog.open();
 		
 		if(selected != null)
 		{
+			controller.removeListener(this);
 			controller.SelectNewConfig(selected);
+			controller.addListener(this);
 		}
 	}
 	
 	public ProcessorConfiguration getConfig()
 	{
 		return controller.getConfig();
+	}
+
+	@Override
+	public void modelChanged(ModelEvent aEvent) {
+		configurationName.setText(controller.getName());
+		comboBox.select(0);
+		opCycleCount.setText(Integer.toString(controller.getCycleCountFor("sub")));
+		aluCount.setText(Integer.toString(controller.getAluCount()));	
 	}
 }

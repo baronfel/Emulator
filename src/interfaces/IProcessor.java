@@ -3,12 +3,17 @@
  * 
  */
 
-package model;
+package interfaces;
 
-import interfaces.ICore;
 import java.util.List;
 import java.util.ArrayList;
 
-public interface IProcessor {
+import model.Registry;
+
+public interface IProcessor extends IModel{
 	public List<ICore> _cores = new ArrayList<ICore>();
+
+	Registry getRegistry();
+	
+	public void Cycle();
 }

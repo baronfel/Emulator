@@ -11,6 +11,7 @@ import java.util.List;
 import interfaces.IFetchUnit;
 import interfaces.IInstruction;
 import interfaces.IIssueUnit;
+import interfaces.ProcStatus;
 
 public class FetchUnit implements IFetchUnit {
 
@@ -35,14 +36,16 @@ public class FetchUnit implements IFetchUnit {
 			index = registry.getValue(instruction.getRS());
 			break;
 		case "bne":
-			if (registry.getValue(instruction.getRD()) != registry.getValue(instruction.getRS()))
+			if (registry.getValue(instruction.getRD()) != registry
+					.getValue(instruction.getRS()))
 				index = instruction.getImmediate();
 			break;
 		case "j":
 			index = instruction.getJumpdest();
 			break;
 		case "beq":
-			if (registry.getValue(instruction.getRD()) == registry.getValue(instruction.getRS()))
+			if (registry.getValue(instruction.getRD()) == registry
+					.getValue(instruction.getRS()))
 				index = instruction.getImmediate();
 			break;
 		case "beqz":
@@ -56,10 +59,11 @@ public class FetchUnit implements IFetchUnit {
 	}
 
 	@Override
-	public boolean GetStatus() {
-		if(index >= ilist.size())
-			return false;
-		return true;
+	public ProcStatus GetStatus() {
+		if (index == ilist.size())
+			return ProcStatus.Inactive;
+		else
+			return ProcStatus.Active;
 	}
 
 	@Override
@@ -74,14 +78,7 @@ public class FetchUnit implements IFetchUnit {
 		return null;
 	}
 
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public int getPC(){
+	public int getPC() {
 		return index;
 	}
-
 }

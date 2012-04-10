@@ -254,11 +254,11 @@ public class MEM implements IMemoryAccess {
 
 	@Override
 	public ProcStatus GetStatus() {
-		if (preMEMBuffer.length == 0 && postMEMBuffer == null
-				&& currentInstruction == null) {
+		if(preMEMBuffer.length == 0 && postMEMBuffer == null && currentInstruction == null)
+		{
 			return ProcStatus.Inactive;
-		} else
-			return ProcStatus.Active;
+		}
+		else return ProcStatus.Active;
 	}
 
 	@Override

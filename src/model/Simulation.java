@@ -66,6 +66,10 @@ public class Simulation extends AbstractController {
 		return _processor;
 	}
 
+	public Package getPackage() {
+		return programInfo;
+	}
+
 	@Override
 	public void setModel(IModel aModel) {
 		if (aModel instanceof ProcessorConfiguration) {
@@ -80,9 +84,5 @@ public class Simulation extends AbstractController {
 
 	public ProcessorConfiguration getProcessorConfig() {
 		return _processorConfiguration;
-	}
-
-	public Package getPackage() {
-		return programInfo;
 	}
 }

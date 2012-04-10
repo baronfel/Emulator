@@ -114,7 +114,6 @@ public class StartView {
 
 				newShell.pack();
 				newShell.open();
-
 				shell.setVisible(false);
 			}
 

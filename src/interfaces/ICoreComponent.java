@@ -5,7 +5,6 @@
 
 package interfaces;
 
-import java.awt.Event;
 import java.util.List;
 
 public interface ICoreComponent{
@@ -14,8 +13,7 @@ public interface ICoreComponent{
  * @return The status of the component.
  */
 	public ProcStatus GetStatus();
-
-	/**
+/**
  * Executes one cycle of the ICoreComponent.
  */
 	public void Cycle();

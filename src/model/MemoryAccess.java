@@ -3,16 +3,12 @@
  */
 package model;
 
-import interfaces.IMemoryAccess;
 import interfaces.IInstruction;
+import interfaces.IMemoryAccess;
 import interfaces.ProcStatus;
 
-import java.awt.Event;
-//import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import model.Memory;
 
 public class MemoryAccess implements IMemoryAccess {
 

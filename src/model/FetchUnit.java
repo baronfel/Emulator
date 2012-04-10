@@ -30,18 +30,18 @@ public class FetchUnit implements IFetchUnit {
 			index = registry.getValue(instruction.getRS());
 			break;
 		case "bne":
-			if (instruction.getRD() != instruction.getRS())
+			if (registry.getValue(instruction.getRD()) != registry.getValue(instruction.getRS()))
 				index = instruction.getImmediate();
 			break;
 		case "j":
 			index = instruction.getJumpdest();
 			break;
 		case "beq":
-			if (instruction.getRD() == instruction.getRS())
+			if (registry.getValue(instruction.getRD()) == registry.getValue(instruction.getRS()))
 				index = instruction.getImmediate();
 			break;
 		case "beqz":
-			if (instruction.getRS() == 0)
+			if (registry.getValue(instruction.getRS()) == 0)
 				index = instruction.getImmediate();
 		default:
 			break;
@@ -52,7 +52,7 @@ public class FetchUnit implements IFetchUnit {
 
 	@Override
 	public boolean GetStatus() {
-		if(index == ilist.size())
+		if(index >= ilist.size())
 			return false;
 		return true;
 	}
@@ -73,6 +73,10 @@ public class FetchUnit implements IFetchUnit {
 	public Event PropertyChanged(Object aIn_propertyName) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public int getPC(){
+		return index;
 	}
 
 }

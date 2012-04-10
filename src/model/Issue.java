@@ -38,30 +38,11 @@ public class Issue implements IIssueUnit {
 		int op2 = 0;
 		int dst = 0;
 		switch (instruction.getOpcode().toLowerCase()) {
-		case "jr": // JR does not use ALU
-			break;
-		case "bne":
-			op1 = registry.getValue(instruction.getRS());
-			op2 = registry.getValue(instruction.getRD());
-			dst = instruction.getImmediate();
-			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
-					instruction.getSeqNum(), op1, op2, dst);
-			break;
-		case "j": // J does not use ALU
-			break;
 		case "lw":
-			op1 = registry.getValue(instruction.getRS());
-			op2 = instruction.getImmediate();
-			dst = registry.getValue(instruction.getRD());
+			int val = registry.getValue(instruction.getRS());
+			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
-					instruction.getSeqNum(), op1, dst, op2, 1);
-			break;
-		case "beq":
-			op1 = registry.getValue(instruction.getRS());
-			op2 = registry.getValue(instruction.getRD());
-			dst = instruction.getImmediate();
-			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
-					instruction.getSeqNum(), op1, op2, dst);
+					instruction.getSeqNum(), val, dst, 1);
 			break;
 		case "addi":
 			op1 = registry.getValue(instruction.getRS());
@@ -71,11 +52,10 @@ public class Issue implements IIssueUnit {
 					instruction.getSeqNum(), op1, op2, dst);
 			break;
 		case "sw":
-			op1 = registry.getValue(instruction.getRS());
-			op2 = instruction.getImmediate();
-			dst = registry.getValue(instruction.getRD());
+			int reg = instruction.getRS();
+			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
-					instruction.getSeqNum(), op1, dst, op2, 1);
+					instruction.getSeqNum(), reg, dst, 1);
 			break;
 		case "mul":
 			op1 = registry.getValue(instruction.getRS());

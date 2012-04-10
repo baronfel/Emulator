@@ -15,6 +15,7 @@ import java.util.List;
 import model.FetchUnit;
 import model.ITypeInstruction;
 import model.Issue;
+import model.Registry;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,14 +28,15 @@ public class FetchTest {
 	private static List <IInstruction> ilist = new ArrayList<IInstruction>();
 	private static Issue issue;
 	private static FetchUnit fetch;
+	private static Registry registers;
 	
 	@BeforeClass
 	public static void GetEverything()
 	{
-		IInstruction instruction = new ITypeInstruction();
+		IInstruction instruction = new ITypeInstruction("nop", 0, 0, 0, 0);
 		ilist.add(instruction);
 		issue = new Issue(null, null);
-		fetch = new FetchUnit(ilist, issue);
+		fetch = new FetchUnit(ilist, issue, registers);
 	}
 	
 	@Test

@@ -32,7 +32,7 @@ public class IssueTest {
 		cycleMap.put("nop", 1);
 		IInstruction instruction = new ITypeInstruction("nop", 0, 0, 0, 0);
 		issue.addToPreIssue(instruction);
-		//IALU alu = new ALU(0, 4, cycleMap);
+		IALU alu = new ALU(0, 4, cycleMap);
 		
 		
 		
@@ -41,17 +41,19 @@ public class IssueTest {
 
 	@Test
 	public void test() {
+		/*
 		final int retval = 1;
 		final int zeroval = 0;
+		final String nop = "nop";
 		
 		Mockery mocker = new Mockery();
 		alu = mocker.mock(IALU.class);
 		mocker.checking(new Expectations(){{
 		exactly(2).of(alu).getAmountInPreALU();
 			will(returnValue(retval));
-		oneOf(alu).addToPreALU("nop", 13, zeroval, zeroval, zeroval);
+		oneOf(alu).addToPreALU(nop, zeroval, zeroval, zeroval, zeroval);
 		}});
-		
+		*/
 		assertEquals(issue.getNumInPreIssue(), 1);
 		issue.Cycle();
 		assertEquals(issue.getNumInPreIssue(), 0);

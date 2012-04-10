@@ -12,21 +12,44 @@ public class FetchUnit implements IFetchUnit {
 	private List<IInstruction> ilist;
 	private int index;
 	private Issue issue;
+	private Registry registry;
 
-	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue)
-	{
+	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue,
+			Registry registers) {
 		this.issue = (Issue) issue;
 		ilist = instructions;
 		index = 0;
+		registry = registers;
 	}
-	public void FetchInstruction()
-	{
+
+	public void FetchInstruction() {
 		IInstruction instruction = ilist.get(index);
 		index++;
+		switch (instruction.getOpcode().toLowerCase()) {
+		case "jr":
+			index = registry.getValue(instruction.getRS());
+			break;
+		case "bne":
+			if (instruction.getRD() != instruction.getRS())
+				index = instruction.getImmediate();
+			break;
+		case "j":
+			index = instruction.getJumpdest();
+			break;
+		case "beq":
+			if (instruction.getRD() == instruction.getRS())
+				index = instruction.getImmediate();
+			break;
+		case "beqz":
+			if (instruction.getRS() == 0)
+				index = instruction.getImmediate();
+		default:
+			break;
+		}
 		issue.addToPreIssue(instruction);
-		
+
 	}
-	
+
 	@Override
 	public String GetStatus() {
 		// TODO Auto-generated method stub

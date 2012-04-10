@@ -294,5 +294,11 @@ public void Cycle() {
 	// TODO Auto-generated method stub
 	
 }
+
+
+public void addToPreMEM(String opcode, int seqNum, int reg, int dst, int i) {
+	// TODO Auto-generated method stub
+	
+}
    
 }  //end of class MEM

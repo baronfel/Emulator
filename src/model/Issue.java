@@ -7,14 +7,18 @@ package model;
 
 import interfaces.IALU;
 import interfaces.IInstruction;
+<<<<<<< HEAD
 import interfaces.IIssueUnit;
 import interfaces.IMemoryAccess;
 
 import interfaces.ProcStatus;
 
+=======
+import interfaces.IIssueUnit;
+import interfaces.IMemoryAccess;
+import interfaces.ProcStatus;
+>>>>>>> Chet/master
 
-import java.awt.Event;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -217,7 +221,8 @@ public class Issue implements IIssueUnit {
 
 	public IMemoryAccess GetFirstAvailableMEM() {
 		for(int i = 0; i < mems.size(); i++)
-			if(mems.get(i).GetStatus().equals(ProcStatus.Inactive))
+
+			if(mems.get(i).GetStatus() == ProcStatus.Inactive)
 				return mems.get(i);
 		int PreMEMQueueSize = Integer.MAX_VALUE;
 		IMemoryAccess memToUse = mems.get(0);
@@ -233,7 +238,7 @@ public class Issue implements IIssueUnit {
 
 	public IALU GetFirstAvailableALU() {
 		for(int i = 0; i < alus.size(); i++)
-			if(alus.get(i).GetStatus().equals(ProcStatus.Inactive))
+			if(alus.get(i).GetStatus() == ProcStatus.Inactive)
 				return alus.get(i);
 		IALU aluToUse = alus.get(0);
 		int PreALUQueueSize = alus.get(0).getAmountInPreALU();
@@ -246,16 +251,13 @@ public class Issue implements IIssueUnit {
 		}
 		return aluToUse;
 	}
-
 	@Override
-
 	public ProcStatus GetStatus() {
 		if(PreIssueBuffer.isEmpty())
 		{
 			return ProcStatus.Inactive;
 		}
 		else return ProcStatus.Active;
-
 	}
 
 	@Override

@@ -1,10 +1,10 @@
+
 /**
  * 
  */
 package model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +25,6 @@ public class Processor extends AbstractModel implements IProcessor {
 	private IFetchUnit fetch;
 	private IIssueUnit issue;
 	private IMemoryAccess memory;
-	private List<IMemoryAccess> mems;
 	private IWriteBack writeBack;
 	
 	private Memory memoryBanks;
@@ -33,6 +32,7 @@ public class Processor extends AbstractModel implements IProcessor {
 	
 	private Map<String, Integer> cycleMapping;
 	private List<IInstruction> instructions;
+	private List<IMemoryAccess> memories;
 	
 	public Processor(int aluCount, Map<String, Integer> opCycles, List<IInstruction> instrs)
 	{
@@ -41,8 +41,6 @@ public class Processor extends AbstractModel implements IProcessor {
 		{
 			alus.add(new ALU(i, 1, opCycles));
 		}
-		int memcount = 1;
-		mems = new ArrayList<IMemoryAccess>(memcount);
 		registers = new Registry();
 		memoryBanks = new Memory(1000000);
 		
@@ -50,8 +48,8 @@ public class Processor extends AbstractModel implements IProcessor {
 		
 		fetch = new FetchUnit(instructions, issue, registers);
 		memory = new MemoryAccess(memoryBanks, 1, opCycles);
-		mems.add(memory);
-		issue = new Issue(alus, mems, registers);
+		memories.add(memory);
+		issue = new Issue(alus, memories, registers);
 		writeBack = new WriteBack(memory, alus, registers);
 	}
 
@@ -76,4 +74,3 @@ public class Processor extends AbstractModel implements IProcessor {
 	}
 	
 }
-

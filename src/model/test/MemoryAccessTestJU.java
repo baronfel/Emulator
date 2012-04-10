@@ -31,8 +31,8 @@ public class MemoryAccessTestJU {
      testMEM = new MemoryAccess( memoryBanks, 1, cycles);
      
      //addToPreMEM(String opName, int seq, int rs, int rt, int imm, int cycles)
-     testMEM.addToPreMEM("lw", 100, 5, 0, 4, 2);
-     testMEM.addToPreMEM("sw", 101, 55, 4, 4, 3);
+     testMEM.addToPreMEM("lw", 100, 0, 5, 4, 2);
+     testMEM.addToPreMEM("sw", 101, 4, 55, 4, 3);
        
      assertEquals(testMEM.getCyclesProcessed(), 0);   
      

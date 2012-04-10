@@ -13,10 +13,8 @@ import interfaces.IProcessor;
 
 import java.util.List;
 
-import controller.AbstractController;
-
-import utility.InstructionParser;
 import utility.Package;
+import controller.AbstractController;
 
 public class Simulation extends AbstractController {
 	private ProcessorConfiguration _processorConfiguration;
@@ -67,9 +65,8 @@ public class Simulation extends AbstractController {
 	public IProcessor getProcessor() {
 		return _processor;
 	}
-	
-	public Package getPackage()
-	{
+
+	public Package getPackage() {
 		return programInfo;
 	}
 
@@ -83,5 +80,9 @@ public class Simulation extends AbstractController {
 
 	private void RestartSimulation() {
 		_processor = CreateProcessor(_processorConfiguration);
+	}
+
+	public ProcessorConfiguration getProcessorConfig() {
+		return _processorConfiguration;
 	}
 }

@@ -3,16 +3,12 @@
  */
 package model;
 
-import interfaces.IMemoryAccess;
 import interfaces.IInstruction;
+import interfaces.IMemoryAccess;
 import interfaces.ProcStatus;
 
-import java.awt.Event;
-//import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import model.Memory;
 
 public class MemoryAccess implements IMemoryAccess {
 
@@ -54,7 +50,7 @@ public class MemoryAccess implements IMemoryAccess {
 	 * Class constructor for testing the WriteBack unit. Creates a skeleton
 	 * MemoryAccess with only the post-MEM buffer set
 	 */
-	public MemoryAccess(int seq, int reg, double value) {
+	public MemoryAccess(int seq, int reg, int value) {
 		postMEMBuffer = new PostMEMBufferEntry();
 		postMEMBuffer.progSequenceNumber = seq;
 		postMEMBuffer.destinationRegister = reg;
@@ -77,22 +73,31 @@ public class MemoryAccess implements IMemoryAccess {
 
 		if (stallCycles == 0) {
 			// go ahead and process the instruction
-			String tmpStr = currentInstruction.opName;
+			// String tmpStr = currentInstruction.opName;
 
-			if (tmpStr == "lw") {
-				double memValue = memList.getValueAt(currentInstruction.rt
-						+ currentInstruction.immediate);
-				// add the result to the post MEM buffer
-				addToPostMEM(memValue);
-			} else if (tmpStr == "sw") {
+			switch (currentInstruction.opName) {
+			case "lw":
+				addToPostMEM(memList.getValueAt(currentInstruction.rs
+						+ currentInstruction.immediate));
+				break;
+			case "sw":
 				memList.setValueAt(
-						(currentInstruction.rt + currentInstruction.immediate),
-						currentInstruction.rs);
+						(currentInstruction.rs + currentInstruction.immediate),
+						(Integer) currentInstruction.rt);
+				break;
+			case "lb":
+				addToPostMEM(memList.getValueAt(currentInstruction.rs
+						+ currentInstruction.immediate));
+				break;
+			case "sb":
+				memList.setValueAt(
+						(currentInstruction.rs + currentInstruction.immediate),
+						(Integer) currentInstruction.rt);
+				break;
 
-				// TODO add code to notify of a completed instruction
-
+			default:
+				break;
 			}
-			// add more instructions here
 
 			// clear the current instruction
 			currentInstruction = new PreMEMBufferEntry();
@@ -149,10 +154,10 @@ public class MemoryAccess implements IMemoryAccess {
 	 * Method to add a completed instruction to the post-MEM buffer. Return 0 if
 	 * successful, return -1 if the buffer is full
 	 */
-	private int addToPostMEM(double memValue) {
+	private int addToPostMEM(int memValue) {
 		if (postMEMBuffer.progSequenceNumber != 0) {
 			postMEMBuffer.progSequenceNumber = currentInstruction.progSequenceNumber;
-			postMEMBuffer.destinationRegister = currentInstruction.rs;
+			postMEMBuffer.destinationRegister = currentInstruction.rt;
 			postMEMBuffer.opResult = memValue;
 			return 0;
 		} else {
@@ -189,7 +194,7 @@ public class MemoryAccess implements IMemoryAccess {
 	 * Method to get the operation result from the post-MEM buffer. Will be used
 	 * by the Writeback unit
 	 */
-	public double getPostMEMOpResult() {
+	public int getPostMEMOpResult() {
 		return postMEMBuffer.opResult;
 	}
 
@@ -282,7 +287,7 @@ public class MemoryAccess implements IMemoryAccess {
 	private class PostMEMBufferEntry {
 		private int progSequenceNumber;
 		private int destinationRegister; // register number to store the result
-		private double opResult;
+		private int opResult;
 
 		private PostMEMBufferEntry() {
 			progSequenceNumber = -1;
@@ -354,10 +359,16 @@ public int getAmountInPreMEM() {
 	return 0;
 }
 
-@Override
-public void addToPreMEM(String opcode, int seqNum, int val, int dst, int i) {
-	// TODO Auto-generated method stub
-	
-}
+	@Override
+	public int addToPreMEM(String opName, int seq, int rs, int rt, int cycles) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getAmountInPreMEM() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

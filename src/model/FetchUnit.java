@@ -20,10 +20,11 @@ public class FetchUnit implements IFetchUnit {
 	private Issue issue;
 	private Registry registry;
 
-
 	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue,
 			Registry registers) {
 
+	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue,
+			Registry registers) {
 		this.issue = (Issue) issue;
 		ilist = instructions;
 		index = 0;
@@ -38,14 +39,16 @@ public class FetchUnit implements IFetchUnit {
 			index = registry.getValue(instruction.getRS());
 			break;
 		case "bne":
-			if (registry.getValue(instruction.getRD()) != registry.getValue(instruction.getRS()))
+			if (registry.getValue(instruction.getRD()) != registry
+					.getValue(instruction.getRS()))
 				index = instruction.getImmediate();
 			break;
 		case "j":
 			index = instruction.getJumpdest();
 			break;
 		case "beq":
-			if (registry.getValue(instruction.getRD()) == registry.getValue(instruction.getRS()))
+			if (registry.getValue(instruction.getRD()) == registry
+					.getValue(instruction.getRS()))
 				index = instruction.getImmediate();
 			break;
 		case "beqz":
@@ -64,7 +67,9 @@ public class FetchUnit implements IFetchUnit {
 		if (index == ilist.size())
 			return ProcStatus.Inactive;
 		else
+
 			return ProcStatus.Active;
+
 	}
 
 	@Override
@@ -79,8 +84,10 @@ public class FetchUnit implements IFetchUnit {
 		return null;
 	}
 
+
 	public int getPC(){
 		return index;
 	}
+
 
 }

@@ -5,7 +5,6 @@
 
 package interfaces;
 
-import java.awt.Event;
 import java.util.List;
 
 public interface ICoreComponent{

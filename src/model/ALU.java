@@ -46,7 +46,7 @@ public class ALU implements IALU {
 	 * Class constructor for testing the WriteBack unit. Creates a skeleton ALU
 	 * with only the post-ALU buffer set
 	 */
-	public ALU(int seq, int reg, double value) {
+	public ALU(int seq, int reg, int value) {
 		postALUBuffer = new PostALUBufferEntry();
 		postALUBuffer.progSequenceNumber = seq;
 		postALUBuffer.destinationRegister = reg;
@@ -70,7 +70,7 @@ public class ALU implements IALU {
 		if (stallCycles == 0) {
 			// go ahead and process the instruction
 			String tmpStr = currentInstruction.opName;
-			double operationResult = 0;
+			int operationResult = 0;
 			if (tmpStr == "mul")
 				operationResult = mult(currentInstruction.op1Value,
 						currentInstruction.op2Value);
@@ -103,21 +103,21 @@ public class ALU implements IALU {
 	/**
 	 * Method to perform an addition operation
 	 */
-	private double add(double op1, double op2) {
+	private int add(int op1, int op2) {
 		return (op1 + op2);
 	}
 
 	/**
 	 * Method to perform a subtraction operation
 	 */
-	private double sub(double op1, double op2) {
+	private int sub(int op1, int op2) {
 		return (op1 - op2);
 	}
 
 	/**
 	 * Method to perform a division operation
 	 */
-	private double div(double op1, double op2) {
+	private int  div(int op1, int op2) {
 		if (op2 == 0) {
 			// return an error code
 
@@ -131,7 +131,7 @@ public class ALU implements IALU {
 	/**
 	 * Method to perform a multiplication operation
 	 */
-	private double mult(double op1, double op2) {
+	private int mult(int op1, int op2) {
 		return (op1 * op2);
 	}
 
@@ -186,7 +186,7 @@ public class ALU implements IALU {
 	 * Method to add a completed instruction to the post-ALU buffer. Return 0 if
 	 * successful, return -1 if the buffer is full
 	 */
-	private int addToPostALU(double result) {
+	private int addToPostALU(int result) {
 		if (postALUBuffer.progSequenceNumber != 0) {
 			postALUBuffer.progSequenceNumber = currentInstruction.progSequenceNumber;
 			postALUBuffer.destinationRegister = currentInstruction.destinationRegister;
@@ -226,7 +226,7 @@ public class ALU implements IALU {
 	 * Method to get the operation result from the post-ALU buffer. Will be used
 	 * by the Writeback unit
 	 */
-	public double getPostALUOpResult() {
+	public int getPostALUOpResult() {
 		return postALUBuffer.opResult;
 	}
 
@@ -256,11 +256,11 @@ public class ALU implements IALU {
 		return this.preALUBuffer[index].progSequenceNumber;
 	}
 
-	public double getPreALUOp1Val(int index) {
+	public int getPreALUOp1Val(int index) {
 		return this.preALUBuffer[index].op1Value;
 	}
 
-	public double getPreALUOp2Val(int index) {
+	public int getPreALUOp2Val(int index) {
 		return this.preALUBuffer[index].op2Value;
 	}
 
@@ -286,8 +286,8 @@ public class ALU implements IALU {
 	private class PreALUBufferEntry {
 		private String opName;
 		private int progSequenceNumber;
-		private double op1Value; // first operand value (rs)
-		private double op2Value; // second operand value (either rt or
+		private int op1Value; // first operand value (rs)
+		private int op2Value; // second operand value (either rt or
 									// immediate)
 		private int destinationRegister; // destination register
 		private int numCycles; // the number of clock cycles this instruction
@@ -324,7 +324,7 @@ public class ALU implements IALU {
 	private class PostALUBufferEntry {
 		private int progSequenceNumber;
 		private int destinationRegister; // register number to store the result
-		private double opResult;
+		private int opResult;
 
 		private PostALUBufferEntry() {
 			progSequenceNumber = -1;

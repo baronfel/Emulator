@@ -283,9 +283,9 @@ public class MemoryAccess implements IMemoryAccess {
   * @see interfaces.ICoreComponent#GetStatus()
   */
  @Override
- public String GetStatus() {
+ public boolean GetStatus() {
   // TODO Auto-generated method stub
-  return null;
+  return false;
  }
 
  /* (non-Javadoc)
@@ -331,5 +331,17 @@ public class MemoryAccess implements IMemoryAccess {
   // TODO Auto-generated method stub
 
  }
+
+@Override
+public int getAmountInPreMEM() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public void addToPreMEM(String opcode, int seqNum, int val, int dst, int i) {
+	// TODO Auto-generated method stub
+	
+}
 
 }

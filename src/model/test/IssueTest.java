@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import interfaces.IALU;
 import interfaces.IInstruction;
+import interfaces.IMemoryAccess;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,8 @@ import model.Issue;
 
 public class IssueTest {
 	private static List<IALU> alus = new ArrayList<IALU>();
-	private static Issue issue = new Issue(alus, null);
+	private static List<IMemoryAccess> mems = new ArrayList<IMemoryAccess>();
+	private static Issue issue = new Issue(alus, mems, null);
 	static IALU alu;
 	
 	@BeforeClass

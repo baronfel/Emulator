@@ -51,9 +51,10 @@ public class FetchUnit implements IFetchUnit {
 	}
 
 	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean GetStatus() {
+		if(index == ilist.size())
+			return false;
+		return true;
 	}
 
 	@Override

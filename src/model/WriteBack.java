@@ -50,9 +50,9 @@ public class WriteBack implements IWriteBack {
 	 * @see interfaces.ICoreComponent#GetStatus()
 	 */
 	@Override
-	public String GetStatus() {
+	public boolean GetStatus() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	/*

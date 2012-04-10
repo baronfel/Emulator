@@ -33,7 +33,10 @@ public interface IMemoryAccess extends ICoreComponent {
 /**
  * Get the op result from the post memory access buffer.
  */
-	public double getPostMEMOpResult();	
+	public double getPostMEMOpResult();
+
+	public int getAmountInPreMEM();
+	public void addToPreMEM(String opcode, int seqNum, int val, int dst, int i);	
 	
 	
 	

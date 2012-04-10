@@ -7,6 +7,7 @@ package model;
 import interfaces.IALU;
 import interfaces.IInstruction;
 import interfaces.IIssueUnit;
+import interfaces.IMemoryAccess;
 
 import java.awt.Event;
 import java.util.ArrayList;
@@ -24,14 +25,17 @@ public class Issue implements IIssueUnit {
 	private ArrayBlockingQueue<IInstruction> PreIssueBuffer = new ArrayBlockingQueue<IInstruction>(
 			buffSize);
 	private int numInPreIssue = 0;
-	public Issue(List<IALU> alus, Registry registry) {
+	private List<IMemoryAccess> mems;
+	
+	public Issue(List<IALU> alus, List<IMemoryAccess>  mems, Registry registry) {
 		this.alus = alus;
 		this.registry = registry;
+		this.mems = mems;
 	}
 
 	/**
 	 * This method issues an instruction from the list of waiting instructions
-	 * to the ALU.
+	 * to the ALU or MEM.
 	 */
 	public void IssueInstructions(IInstruction instruction) {
 		int op1 = 0;
@@ -164,12 +168,26 @@ public class Issue implements IIssueUnit {
 		// instruction.getSeqNum(), op1, op2, dst);
 	}
 
-	private MEM GetFirstAvailableMEM() {
-		// TODO Auto-generated method stub
-		return null;
+	private IMemoryAccess GetFirstAvailableMEM() {
+		for(int i = 0; i < mems.size(); i++)
+			if(!mems.get(i).GetStatus())
+				return mems.get(i);
+		int PreALUQueueSize = Integer.MAX_VALUE;
+		IMemoryAccess memToUse = mems.get(0);
+		for (int i = 1; i < mems.size(); i++) {
+			if (( mems.get(i)).getAmountInPreMEM() < PreALUQueueSize) {
+				PreALUQueueSize = (int) ( mems.get(i)).getAmountInPreMEM();
+				memToUse =  mems.get(i);
+			}
+
+		}
+		return memToUse;
 	}
 
 	private IALU GetFirstAvailableALU() {
+		for(int i = 0; i < alus.size(); i++)
+			if(!alus.get(i).GetStatus())
+				return alus.get(i);
 		int PreALUQueueSize = Integer.MAX_VALUE;
 		IALU aluToUse = alus.get(0);
 		for (int i = 1; i < alus.size(); i++) {
@@ -183,9 +201,10 @@ public class Issue implements IIssueUnit {
 	}
 
 	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean GetStatus() {
+		if(PreIssueBuffer.size() == 0)
+			return false;
+		return true;
 	}
 
 	@Override

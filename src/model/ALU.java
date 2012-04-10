@@ -333,9 +333,9 @@ public class ALU implements IALU {
 	}
 
 	@Override
-	public String GetStatus() {
+	public boolean GetStatus() {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public class FetchTest {
 	{
 		IInstruction instruction = new ITypeInstruction("nop", 0, 0, 0, 0);
 		ilist.add(instruction);
-		issue = new Issue(null, null);
+		issue = new Issue(null, null, null);
 		fetch = new FetchUnit(ilist, issue, registers);
 	}
 	

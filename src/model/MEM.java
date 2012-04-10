@@ -252,9 +252,9 @@ public class MEM implements IMemoryAccess
   }
 
 @Override
-public String GetStatus() {
+public boolean GetStatus() {
 	// TODO Auto-generated method stub
-	return null;
+	return false;
 }
 
 
@@ -299,6 +299,13 @@ public void Cycle() {
 public void addToPreMEM(String opcode, int seqNum, int reg, int dst, int i) {
 	// TODO Auto-generated method stub
 	
+}
+
+
+@Override
+public int getAmountInPreMEM() {
+	// TODO Auto-generated method stub
+	return 0;
 }
    
 }  //end of class MEM

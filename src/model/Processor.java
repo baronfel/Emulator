@@ -31,6 +31,7 @@ public class Processor extends AbstractModel implements IProcessor {
 	
 	private Map<String, Integer> cycleMapping;
 	private List<IInstruction> instructions;
+	private List<IMemoryAccess> memories;
 	
 	public Processor(int aluCount, Map<String, Integer> opCycles, List<IInstruction> instrs)
 	{
@@ -45,8 +46,9 @@ public class Processor extends AbstractModel implements IProcessor {
 		instructions = instrs;
 		
 		fetch = new FetchUnit(instructions, issue, registers);
-		issue = new Issue(alus, registers);
 		memory = new MemoryAccess(memoryBanks, 1, opCycles);
+		memories.add(memory);
+		issue = new Issue(alus, memories, registers);
 		writeBack = new WriteBack(memory, alus, registers);
 	}
 

@@ -165,8 +165,8 @@ public class InstructionParser {
 	}
 
 	private static void ORIInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ORI";
@@ -174,7 +174,7 @@ public class InstructionParser {
 	}
 
 	private static void LIInstruction() {
-		int rd = file.nextInt();
+		int rd = getValue(file.next());
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "LI";
@@ -182,7 +182,7 @@ public class InstructionParser {
 	}
 
 	private static void LAInstruction() {
-		int rd = file.nextInt();
+		int rd = getValue(file.next());
 		String label = file.next();
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
@@ -191,9 +191,9 @@ public class InstructionParser {
 	}
 
 	private static void SBInstruction() {
-		int rs = file.nextInt();
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
-		int rd = file.nextInt();
+		int rd = getValue(file.next());
 		file.nextLine();
 		String opc = "SB";
 		//if(imm > byte)
@@ -202,9 +202,9 @@ public class InstructionParser {
 	}
 
 	private static void LBInstruction() {
-		int rd = file.nextInt();
+		int rd = getValue(file.next());
 		int imm = file.nextInt();
-		int rs = file.nextInt();
+		int rs = getValue(file.next());
 		file.nextLine();
 		String opc = "LB";
 		//if(imm > byte)
@@ -213,8 +213,8 @@ public class InstructionParser {
 	}
 
 	private static void ANDIInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ANDI";
@@ -222,8 +222,8 @@ public class InstructionParser {
 	}
 
 	private static void ADDIUInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ADDIU";
@@ -233,7 +233,7 @@ public class InstructionParser {
 	}
 
 	private static void BEQZInstruction() {
-		int rs = file.nextInt();
+		int rs = getValue(file.next());
 		String label = file.next();
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
@@ -272,9 +272,9 @@ public class InstructionParser {
 	}
 
 	private static void DIVInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 000000;
 		int sa = 0;
@@ -285,9 +285,9 @@ public class InstructionParser {
 	}
 
 	private static void NORInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 100111;
 		int sa = 0;
@@ -298,8 +298,8 @@ public class InstructionParser {
 	}
 
 	private static void SLTIUInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTIU";
@@ -308,9 +308,9 @@ public class InstructionParser {
 	}
 
 	private static void SLTUInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 0;
 		int sa = 0;
@@ -321,8 +321,8 @@ public class InstructionParser {
 	}
 
 	private static void SLTIInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTI";
@@ -331,9 +331,9 @@ public class InstructionParser {
 	}
 
 	private static void SLTInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 0;
 		int sa = 0;
@@ -344,9 +344,9 @@ public class InstructionParser {
 	}
 
 	private static void ORInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 100101;
 		int sa = 0;
@@ -357,9 +357,9 @@ public class InstructionParser {
 	}
 
 	private static void ANDInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 100100;
 		int sa = 0;
@@ -383,9 +383,9 @@ public class InstructionParser {
 	}
 
 	private static void SRLInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int sa = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int sa = getValue(file.next());
 		file.nextLine();
 		int funct = 000010;
 		int rt = 0;
@@ -396,9 +396,9 @@ public class InstructionParser {
 	}
 
 	private static void SLLInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int sa = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int sa = getValue(file.next());
 		file.nextLine();
 		int funct = 000000;
 		int rt = 0;
@@ -409,9 +409,9 @@ public class InstructionParser {
 	}
 
 	private static void SUBInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 100001;
 		int sa = 0;
@@ -422,9 +422,9 @@ public class InstructionParser {
 	}
 
 	private static void ADDInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 100000;
 		int sa = 0;
@@ -435,9 +435,9 @@ public class InstructionParser {
 	}
 
 	private static void MULInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
-		int rt = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int rt = getValue(file.next());
 		file.nextLine();
 		int funct = 000000;
 		int sa = 0;
@@ -448,17 +448,17 @@ public class InstructionParser {
 	}
 
 	private static void SWInstruction() {
-		int rs = file.nextInt();
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
-		int rd = file.nextInt();
+		int rd = getValue(file.next());
 		file.nextLine();
 		String opc = "SW";
 		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 	}
 
 	private static void ADDIInstruction() {
-		int rd = file.nextInt();
-		int rs = file.nextInt();
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ADDI";
@@ -467,8 +467,8 @@ public class InstructionParser {
 	}
 
 	private static void BEQInstruction() {
-		int rs = file.nextInt();
-		int rd = file.nextInt();
+		int rs = getValue(file.next());
+		int rd = getValue(file.next());
 		String label = file.next();
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
@@ -478,22 +478,22 @@ public class InstructionParser {
 	}
 
 	private static void LWInstruction() {
-		int rd = file.nextInt();
+		int rd = getValue(file.next());
 		int imm = file.nextInt();
-		int rs = file.nextInt();
+		int rs = getValue(file.next());
 		file.nextLine();
 		String opc = "LW";
 		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 	}
 
 	private static void JInstruction() {
-		int jdst = file.nextInt();
+		int jdst = getValue(file.next());
 		file.nextLine();
 		ilist.add((IInstruction) new JTypeInstruction(jdst, lineCounter));
 	}
 
 	private static void JRInstruction() {
-		int rs = file.nextInt();
+		int rs = getValue(file.next());
 		file.nextLine();
 		int rd = 0;
 		int rt = 0;
@@ -506,8 +506,8 @@ public class InstructionParser {
 	}
 
 	private static void BNEInstruction() {
-		int rs = file.nextInt();
-		int rd = file.nextInt();
+		int rs = getValue(file.next());
+		int rd = getValue(file.next());
 		String label = file.next();
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
@@ -522,4 +522,11 @@ public class InstructionParser {
 		return labellist.get(index).getLineNumber() - lineCounter;
 	}
 
+	private static int getValue(String regName)
+	{
+		for(Register r : Register.values())
+			if(regName.equals(r.getName()))
+				return r.getValue();
+		return -1;
+	}
 }

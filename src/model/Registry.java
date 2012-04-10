@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Registry extends AbstractModel {
 	
-	private ArrayList<Register> registers = new ArrayList<Register>(32);
+	private ArrayList<Register> registers = new ArrayList<Register>(35);
 
 	public Registry()
 	{
@@ -23,7 +23,7 @@ public class Registry extends AbstractModel {
 	
 	private void InitRegisters()
 	{
-		for(int i = 0; i < 32; i++)
+		for(int i = 0; i < 35; i++)
 		{
 			registers.add(new Register());
 		}

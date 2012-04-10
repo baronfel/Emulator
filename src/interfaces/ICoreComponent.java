@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface ICoreComponent{
 /**
- * Tells whether or not this component is currently in use.
+ * Gets the status of the component.
  * @return The status of the component.
  */
-	public boolean GetStatus();
+	public ProcStatus GetStatus();
 /**
  * Executes one cycle of the ICoreComponent.
  */
@@ -24,10 +24,4 @@ public interface ICoreComponent{
  * @return A list of the current instructions.
  */
 	public List<IInstruction> CurrentInstructions();
-/**
- * Creates an Event when some component is changed to send to the listeners.
- * @return 
- * @see IModelListener
- */
-	public Event PropertyChanged(Object aIn_propertyName);
 }

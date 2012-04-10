@@ -10,6 +10,9 @@ import interfaces.IInstruction;
 import interfaces.IIssueUnit;
 import interfaces.IMemoryAccess;
 
+import interfaces.ProcStatus;
+
+
 import java.awt.Event;
 import java.util.ArrayList;
 import java.util.List;
@@ -214,7 +217,7 @@ public class Issue implements IIssueUnit {
 
 	public IMemoryAccess GetFirstAvailableMEM() {
 		for(int i = 0; i < mems.size(); i++)
-			if(!mems.get(i).GetStatus())
+			if(mems.get(i).GetStatus().equals(ProcStatus.Inactive))
 				return mems.get(i);
 		int PreMEMQueueSize = Integer.MAX_VALUE;
 		IMemoryAccess memToUse = mems.get(0);
@@ -230,7 +233,7 @@ public class Issue implements IIssueUnit {
 
 	public IALU GetFirstAvailableALU() {
 		for(int i = 0; i < alus.size(); i++)
-			if(!alus.get(i).GetStatus())
+			if(alus.get(i).GetStatus().equals(ProcStatus.Inactive))
 				return alus.get(i);
 		IALU aluToUse = alus.get(0);
 		int PreALUQueueSize = alus.get(0).getAmountInPreALU();
@@ -245,10 +248,14 @@ public class Issue implements IIssueUnit {
 	}
 
 	@Override
-	public boolean GetStatus() {
-		if(PreIssueBuffer.size() == 0)
-			return false;
-		return true;
+
+	public ProcStatus GetStatus() {
+		if(PreIssueBuffer.isEmpty())
+		{
+			return ProcStatus.Inactive;
+		}
+		else return ProcStatus.Active;
+
 	}
 
 	@Override
@@ -259,12 +266,6 @@ public class Issue implements IIssueUnit {
 
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
 		// TODO Auto-generated method stub
 		return null;
 	}

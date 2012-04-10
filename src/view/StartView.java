@@ -26,6 +26,13 @@ import utility.InstructionParser;
  * This class is the entry point for the app.  When this is run, the main UI is set up and shown to the user.
  */
 public class StartView {
+
+	private static String APPNAME = "MIPS Emulator";
+	private static ConfigurationView cView;
+	private static SimulationView simView;
+	private static ResultsView resultsView;
+	private static Object currentView;
+	
 	/**
 	 * @param args
 	 */

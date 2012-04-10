@@ -11,6 +11,7 @@ import java.util.List;
 import interfaces.IFetchUnit;
 import interfaces.IInstruction;
 import interfaces.IIssueUnit;
+import interfaces.ProcStatus;
 
 public class FetchUnit implements IFetchUnit {
 
@@ -19,8 +20,10 @@ public class FetchUnit implements IFetchUnit {
 	private Issue issue;
 	private Registry registry;
 
+
 	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue,
 			Registry registers) {
+
 		this.issue = (Issue) issue;
 		ilist = instructions;
 		index = 0;
@@ -56,10 +59,12 @@ public class FetchUnit implements IFetchUnit {
 	}
 
 	@Override
-	public boolean GetStatus() {
-		if(index >= ilist.size())
-			return false;
-		return true;
+
+	public ProcStatus GetStatus() {
+		if (index == ilist.size())
+			return ProcStatus.Inactive;
+		else
+			return ProcStatus.Active;
 	}
 
 	@Override
@@ -74,12 +79,6 @@ public class FetchUnit implements IFetchUnit {
 		return null;
 	}
 
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public int getPC(){
 		return index;
 	}

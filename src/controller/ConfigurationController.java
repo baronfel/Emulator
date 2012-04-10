@@ -21,6 +21,12 @@ public class ConfigurationController extends AbstractController {
 	public ConfigurationController() {
 		super(model);
 	}
+	
+	public ConfigurationController(ProcessorConfiguration config)
+	{
+		super(config);
+		model = config;
+	}
 
 	@Override
 	public void setModel(IModel aModel) {

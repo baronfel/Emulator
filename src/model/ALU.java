@@ -2,6 +2,7 @@ package model;
 
 import interfaces.IALU;
 import interfaces.IInstruction;
+import interfaces.ProcStatus;
 
 import java.awt.Event;
 import java.util.List;
@@ -333,24 +334,23 @@ public class ALU implements IALU {
 	}
 
 	@Override
-	public boolean GetStatus() {
-		// TODO Auto-generated method stub
-		return true;
+
+	public ProcStatus GetStatus() {
+		if(preALUBuffer.length == 0 && postALUBuffer == null && currentInstruction == null)
+		{ 
+			return ProcStatus.Inactive;
+		}
+		else return ProcStatus.Active;
+
 	}
 
 	@Override
 	public void Cycle() {
-		// TODO Auto-generated method stub
+		processClockCycle();
 	}
 
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
 		// TODO Auto-generated method stub
 		return null;
 	}

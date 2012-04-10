@@ -14,4 +14,6 @@ public interface IProcessor extends IModel{
 	public List<ICore> _cores = new ArrayList<ICore>();
 
 	Registry getRegistry();
+	
+	public void Cycle();
 }

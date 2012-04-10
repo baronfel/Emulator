@@ -51,11 +51,18 @@ public class ConfigurationView implements IModelListener{
 		initControls(parent);
 	}
 	
+	public ConfigurationView(final Composite parent, int style, ProcessorConfiguration config)
+	{
+		controller = new ConfigurationController(config);
+		initControls(parent);
+	}
+	
 	private void initControls(final Composite parent)
 	{
 		GridLayout gLayout = new GridLayout();
 		gLayout.numColumns = 2;
 		parent.setLayout(gLayout);
+		
 		
 		
 		// Name Controls

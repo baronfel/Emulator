@@ -57,9 +57,9 @@ public class IssueTest {
 		alus.add(alu);
 		
 		
-		IMemoryAccess mem1 = new MemoryAccess(null, 4);
-		IMemoryAccess mem2 = new MemoryAccess(null, 4);
-		IMemoryAccess mem3 = new MemoryAccess(null, 4);
+		IMemoryAccess mem1 = new MemoryAccess(null, 4, cycleMap);
+		IMemoryAccess mem2 = new MemoryAccess(null, 4, cycleMap);
+		IMemoryAccess mem3 = new MemoryAccess(null, 4, cycleMap);
 		mems.add(mem1);
 		mems.add(mem2);
 		mems.add(mem3);
@@ -116,7 +116,7 @@ public class IssueTest {
 		assertEquals(issue2.GetFirstAvailableALU().getALUNumber(), 2);
 	}
 	
-	/*
+	
 	@Test
 	@Ignore
 	public void getFirstMEMTest(){
@@ -132,5 +132,5 @@ public class IssueTest {
 		assertEquals(issue3.getNumInPreIssue(), 0);
 		assertEquals(issue3.GetFirstAvailableMEM().getMEMNumber(), 2);
 		
-	}*/
+	}
 }

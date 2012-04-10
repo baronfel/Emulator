@@ -22,9 +22,6 @@ public class FetchUnit implements IFetchUnit {
 
 	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue,
 			Registry registers) {
-
-	public FetchUnit(List<IInstruction> instructions, IIssueUnit issue,
-			Registry registers) {
 		this.issue = (Issue) issue;
 		ilist = instructions;
 		index = 0;

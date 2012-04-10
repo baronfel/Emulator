@@ -7,18 +7,9 @@ package model;
 
 import interfaces.IALU;
 import interfaces.IInstruction;
-<<<<<<< HEAD
-import interfaces.IIssueUnit;
-import interfaces.IMemoryAccess;
-
-import interfaces.ProcStatus;
-
-=======
 import interfaces.IIssueUnit;
 import interfaces.IMemoryAccess;
 import interfaces.ProcStatus;
->>>>>>> Chet/master
-
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 

@@ -353,11 +353,6 @@ public class MemoryAccess implements IMemoryAccess {
 
 	}
 
-@Override
-public int getAmountInPreMEM() {
-	// TODO Auto-generated method stub
-	return 0;
-}
 
 	@Override
 	public int addToPreMEM(String opName, int seq, int rs, int rt, int cycles) {
@@ -367,6 +362,12 @@ public int getAmountInPreMEM() {
 
 	@Override
 	public int getAmountInPreMEM() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMEMNumber() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

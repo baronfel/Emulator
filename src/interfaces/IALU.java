@@ -44,4 +44,6 @@ public interface IALU extends ICoreComponent {
 
 	public int addToPreALU(String opName, int seq, int op1, int op2, int dest);
 
+	public int getALUNumber();
+
 }

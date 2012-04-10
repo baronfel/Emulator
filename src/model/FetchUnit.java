@@ -1,3 +1,8 @@
+/**
+ *  This class represents the Fetch step of the MIPS pipeline. It handles jump and branch instructions, but mostly just pull instructions from
+ *  the list and sends them to the fetch for register values.
+ * 
+ */
 package model;
 
 import java.awt.Event;

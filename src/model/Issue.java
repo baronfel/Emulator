@@ -1,6 +1,7 @@
 /**
- * 	This class represents the fetch and issue steps of the pipeline. For now, it just converts from the instruction list
- * to the pre-ALU buffer. Later, it might do hazards too!
+ * 	This class represents the issue step of the pipeline. For now, it just converts from the instruction list
+ *  to the pre-ALU buffer or pre-MEM buffer. It decides which ALU or MEM to use based on which one has less to do.
+ *  Later, it might do hazards too!
  */
 package model;
 
@@ -211,7 +212,7 @@ public class Issue implements IIssueUnit {
 		// instruction.getSeqNum(), op1, op2, dst);
 	}
 
-	private IMemoryAccess GetFirstAvailableMEM() {
+	public IMemoryAccess GetFirstAvailableMEM() {
 		for(int i = 0; i < mems.size(); i++)
 			if(!mems.get(i).GetStatus())
 				return mems.get(i);
@@ -227,12 +228,12 @@ public class Issue implements IIssueUnit {
 		return memToUse;
 	}
 
-	private IALU GetFirstAvailableALU() {
+	public IALU GetFirstAvailableALU() {
 		for(int i = 0; i < alus.size(); i++)
 			if(!alus.get(i).GetStatus())
 				return alus.get(i);
-		int PreALUQueueSize = Integer.MAX_VALUE;
 		IALU aluToUse = alus.get(0);
+		int PreALUQueueSize = alus.get(0).getAmountInPreALU();
 		for (int i = 1; i < alus.size(); i++) {
 			if (( alus.get(i)).getAmountInPreALU() < PreALUQueueSize) {
 				PreALUQueueSize = (int) ( alus.get(i)).getAmountInPreALU();

@@ -1,5 +1,7 @@
 /**
  * The core component that handles deciding which instruction should go through the pipeline next.
+ * It takes values from registers and passes those directly.
+ * This component also handles all jumps and branches.
  * @see ICoreComponent
  */
 
@@ -12,5 +14,5 @@ public interface IFetchUnit extends ICoreComponent {
 	 */
 
 	public void FetchInstruction();
-
+	public int getPC();
 }

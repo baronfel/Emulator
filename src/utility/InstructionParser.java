@@ -187,7 +187,7 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
 		String opc = "LA";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, 0, imm, lineCounter));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, 0, imm, lineCounter, label));
 	}
 
 	private static void SBInstruction() {
@@ -525,7 +525,7 @@ public class InstructionParser {
 	private static int getValue(String regName)
 	{
 		for(Register r : Register.values())
-			if(regName.equals(r.getName()))
+			if(regName.toLowerCase().equals(r.getName().toLowerCase()))
 				return r.getValue();
 		return -1;
 	}

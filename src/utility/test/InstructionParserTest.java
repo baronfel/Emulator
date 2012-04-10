@@ -62,7 +62,15 @@ public class InstructionParserTest {
 		assertTrue(ilist.get(18).toString().equals("SLTIU 13, 21, 34\n"));
 		assertTrue(ilist.get(19).toString().equals("NOR 8, 6, 5\n"));
 		assertTrue(ilist.get(20).toString().equals("DIV 15, 14, 2\n"));
-		
+		assertTrue(ilist.get(21).toString().equals("LA 0, 10, LBL1\n"));
+		assertTrue(ilist.get(22).toString().equals("LI 4, 0, 166\n"));
+		assertTrue(ilist.get(23).toString().equals("LB 3, 0(2)\n"));
+		assertTrue(ilist.get(24).toString().equals("SB 2, 0(3)\n"));
+		assertTrue(ilist.get(25).toString().equals("BEQZ 16, 0, LBL1\n"));
+		assertTrue(ilist.get(26).toString().equals("ANDI 3, 5, 177\n"));
+		assertTrue(ilist.get(27).toString().equals("ADDIU 17, 18, 87987\n"));
+		assertTrue(ilist.get(28).toString().equals("ORI 9, 8, 14\n"));
+
 	}
 	
 	@Test

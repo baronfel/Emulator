@@ -23,3 +23,11 @@ SUPER CERIAL
 SLTIU $r13, $r21, 34
 NOR $r8, $r6, $r5
 DIV $r15, $r14, $r2
+LA $r10, LBL1
+LI $r4, 166
+LB $r3, 0($r2)
+SB $r2, 0($r3)
+BEQZ $r16, LBL1
+ANDI $r3, $r5, 177
+ADDIU $r17, $r18, 87987
+ORI $r9, $r8, 14

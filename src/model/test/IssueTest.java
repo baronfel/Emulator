@@ -20,7 +20,7 @@ import java.util.Map;
 import model.ALU;
 import model.ITypeInstruction;
 import model.Issue;
-import model.MEM;
+import model.MemoryAccess;
 import model.RTypeInstruction;
 import model.Registry;
 
@@ -57,9 +57,9 @@ public class IssueTest {
 		alus.add(alu);
 		
 		
-		IMemoryAccess mem1 = new MEM(null, 4);
-		IMemoryAccess mem2 = new MEM(null, 4);
-		IMemoryAccess mem3 = new MEM(null, 4);
+		IMemoryAccess mem1 = new MemoryAccess(null, 4);
+		IMemoryAccess mem2 = new MemoryAccess(null, 4);
+		IMemoryAccess mem3 = new MemoryAccess(null, 4);
 		mems.add(mem1);
 		mems.add(mem2);
 		mems.add(mem3);

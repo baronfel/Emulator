@@ -1,12 +1,13 @@
 package model.test;
 
-import static org.junit.Assert.*;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,11 @@ public class WriteBackTest {
   private final IMemoryAccess memory = mocker.mock(IMemoryAccess.class);
   private Registry registers = new Registry();
   
+  @Before
+  public void ResetState()
+  {
+	  alus = new ArrayList<IALU>(2);
+  }
   
   @Test
   public void ALUListProcessesCorrectly()
@@ -48,12 +54,18 @@ public class WriteBackTest {
   @Test
   public void MemoryAccessProcessesCorrectly()
   {
+	  final IALU fakeALU = mocker.mock(IALU.class);
+	  final boolean f = false;
+	  final boolean t = true;
 	  mocker.checking(new Expectations(){{
-		  oneOf(memory.getPostMEMSequenceNum(false)); returnValue(0);
-		  oneOf(memory.getPostMEMSequenceNum(true)); returnValue(0);
+		  oneOf(memory.getPostMEMSequenceNum(with(any(Boolean.class)))); returnValue(0);
+		  oneOf(memory.getPostMEMSequenceNum(with(true))); returnValue(0);
 		  oneOf(memory.getPostMEMDestReg()); returnValue(4);
 		  oneOf(memory.getPostMEMOpResult()); returnValue(444);
+		  oneOf(fakeALU.getPostALUSequenceNum(with(false))); returnValue(-1);
 	  }});
+	  
+	  alus.add(fakeALU);
 	  
    WriteBack writeBack = new WriteBack(memory, alus, registers); 
    writeBack.processClockCycle(); 

@@ -127,6 +127,9 @@ public class InstructionParser {
 				case "or":
 					ORInstruction();
 					break;
+				case "ori":
+					ORIInstruction();
+					break;
 				case "slt":
 					SLTInstruction();
 					break;
@@ -159,6 +162,15 @@ public class InstructionParser {
 		/**
 		 * The code to use invalid flag to determine how to throw an invalid instruction exception would go just above here.
 		 */
+	}
+
+	private static void ORIInstruction() {
+		int rd = file.nextInt();
+		int rs = file.nextInt();
+		int imm = file.nextInt();
+		file.nextLine();
+		String opc = "ORI";
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
 	}
 
 	private static void LIInstruction() {

@@ -71,6 +71,13 @@ public class Issue implements IIssueUnit {
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
 			break;
+		case "ori":
+			op1 = registry.getValue(instruction.getRS());
+			dst = registry.getValue(instruction.getRD());
+			op2 = instruction.getImmediate();
+			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
+					instruction.getSeqNum(), op1, op2, dst);
+			break;
 		case "sw":
 			reg = instruction.getRS();
 			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();

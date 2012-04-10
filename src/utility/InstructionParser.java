@@ -76,11 +76,29 @@ public class InstructionParser {
 				case "beq":
 					BEQInstruction();
 					break;
+				case "beqz":
+					BEQZInstruction();
+					break;
 				case "addi":
 					ADDIInstruction();
 					break;
+				case "addiu":
+					ADDIUInstruction();
+					break;
 				case "sw":
 					SWInstruction();
+					break;
+				case "lb":
+					LBInstruction();
+					break;
+				case "la":
+					LAInstruction();
+					break;
+				case "li":
+					LIInstruction();
+					break;
+				case "sb":
+					SBInstruction();
 					break;
 				case "mul":
 					MULInstruction();
@@ -102,6 +120,9 @@ public class InstructionParser {
 					break;
 				case "and":
 					ANDInstruction();
+					break;
+				case "andi":
+					ANDIInstruction();
 					break;
 				case "or":
 					ORInstruction();
@@ -138,6 +159,74 @@ public class InstructionParser {
 		/**
 		 * The code to use invalid flag to determine how to throw an invalid instruction exception would go just above here.
 		 */
+	}
+
+	private static void LIInstruction() {
+		int rd = file.nextInt();
+		int imm = file.nextInt();
+		file.nextLine();
+		String opc = "LI";
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, 0, imm, lineCounter));
+	}
+
+	private static void LAInstruction() {
+		int rd = file.nextInt();
+		String label = file.next();
+		file.nextLine();
+		int imm = getImmediateFromLabel(label);
+		String opc = "LA";
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, 0, imm, lineCounter));
+	}
+
+	private static void SBInstruction() {
+		int rs = file.nextInt();
+		int imm = file.nextInt();
+		int rd = file.nextInt();
+		file.nextLine();
+		String opc = "SB";
+		//if(imm > byte)
+		//invalid instruction
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));	
+	}
+
+	private static void LBInstruction() {
+		int rd = file.nextInt();
+		int imm = file.nextInt();
+		int rs = file.nextInt();
+		file.nextLine();
+		String opc = "LB";
+		//if(imm > byte)
+		//invalid instruction
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));		
+	}
+
+	private static void ANDIInstruction() {
+		int rd = file.nextInt();
+		int rs = file.nextInt();
+		int imm = file.nextInt();
+		file.nextLine();
+		String opc = "ANDI";
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+	}
+
+	private static void ADDIUInstruction() {
+		int rd = file.nextInt();
+		int rs = file.nextInt();
+		int imm = file.nextInt();
+		file.nextLine();
+		String opc = "ADDIU";
+		//if(imm < 0)
+		//invalid instruction
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));	
+	}
+
+	private static void BEQZInstruction() {
+		int rs = file.nextInt();
+		String label = file.next();
+		file.nextLine();
+		int imm = getImmediateFromLabel(label);
+		String opc = "BEQZ";
+		ilist.add((IInstruction) new BranchInstruction(opc, 0, rs, imm, lineCounter, label));
 	}
 
 	private static void LoadLabels(String aInfilePath) {

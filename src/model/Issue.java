@@ -41,9 +41,11 @@ public class Issue implements IIssueUnit {
 		int op1 = 0;
 		int op2 = 0;
 		int dst = 0;
+		int val = 0;
+		int reg = 0;
 		switch (instruction.getOpcode().toLowerCase()) {
 		case "lw":
-			int val = registry.getValue(instruction.getRS());
+			val = registry.getValue(instruction.getRS());
 			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
 					instruction.getSeqNum(), val, dst, 1);
@@ -55,8 +57,42 @@ public class Issue implements IIssueUnit {
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
 			break;
+		case "addiu":
+			op1 = registry.getValue(instruction.getRS());
+			dst = registry.getValue(instruction.getRD());
+			op2 = instruction.getImmediate();
+			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
+					instruction.getSeqNum(), op1, op2, dst);
+			break;
+		case "andi":
+			op1 = registry.getValue(instruction.getRS());
+			dst = registry.getValue(instruction.getRD());
+			op2 = instruction.getImmediate();
+			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
+					instruction.getSeqNum(), op1, op2, dst);
+			break;
 		case "sw":
-			int reg = instruction.getRS();
+			reg = instruction.getRS();
+			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
+			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
+					instruction.getSeqNum(), reg, dst, 1);
+			break;
+		case "lb":
+			val = registry.getValue(instruction.getRS());
+			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
+			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
+					instruction.getSeqNum(), val, dst, 1);
+			break;
+		case "la":
+//			NOT SURE IF HERE OR WRITE BACK
+			registry.setRegister(instruction.getRD(), instruction.getImmediate());
+			break;
+		case "li":
+//			NOT SURE IF HERE OR WRITE BACK
+			registry.setRegister(instruction.getRD(), instruction.getImmediate());
+			break;
+		case "sb":
+			reg = instruction.getRS();
 			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
 					instruction.getSeqNum(), reg, dst, 1);
@@ -172,11 +208,11 @@ public class Issue implements IIssueUnit {
 		for(int i = 0; i < mems.size(); i++)
 			if(!mems.get(i).GetStatus())
 				return mems.get(i);
-		int PreALUQueueSize = Integer.MAX_VALUE;
+		int PreMEMQueueSize = Integer.MAX_VALUE;
 		IMemoryAccess memToUse = mems.get(0);
 		for (int i = 1; i < mems.size(); i++) {
-			if (( mems.get(i)).getAmountInPreMEM() < PreALUQueueSize) {
-				PreALUQueueSize = (int) ( mems.get(i)).getAmountInPreMEM();
+			if (( mems.get(i)).getAmountInPreMEM() < PreMEMQueueSize) {
+				PreMEMQueueSize = (int) ( mems.get(i)).getAmountInPreMEM();
 				memToUse =  mems.get(i);
 			}
 

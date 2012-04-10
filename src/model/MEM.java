@@ -1,3 +1,7 @@
+//***THIS CLASS NO LONGER USED***//
+
+
+
 package model;
 
 import interfaces.IMemoryAccess;
@@ -9,7 +13,7 @@ import java.util.List;
 
 //import model.Memory;
 
-public class MEM implements IMemoryAccess {
+public class MEM  {
 	private int bufferSize;
 	private int stallCycles; // stalls the MEM unit for the number of cycles
 								// specified
@@ -163,9 +167,9 @@ public class MEM implements IMemoryAccess {
 	 * Method to get the operation result from the post-MEM buffer. Will be used
 	 * by the Writeback unit
 	 */
-	public double getPostMEMOpResult() {
-		return postMEMBuffer.opResult;
-	}
+	//public double getPostMEMOpResult() {
+	//	return postMEMBuffer.opResult;
+	//}
 
 	/**
 	 * Method to get the buffer size. Used only for class testing.
@@ -254,39 +258,6 @@ public class MEM implements IMemoryAccess {
 		}
 	}
 
-	@Override
-	public String GetStatus() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Event PropertyChanged(Object aIn_propertyName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void LoadWord(int aIn_RD, int aIn_memaddr) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void StoreWord(int aIn_RS, int aIn_memaddr) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void Cycle() {
-		processClockCycle();
-	}
+	
 
 } // end of class MEM

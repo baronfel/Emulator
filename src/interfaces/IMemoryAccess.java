@@ -20,6 +20,25 @@ public interface IMemoryAccess extends ICoreComponent {
 	public void StoreWord(int aIn_RS, int aIn_memaddr);
 	
 /**
+* Method to process a clock cycle. If stallCycles is greater than 0, this method will just
+* decrement the stallCycle variable then wait for the next clock cycle. If 0, this
+* method will perform the operation of the current instruction
+*/
+	public void processClockCycle();
+	   
+/**
+* Method to add an instruction to the pre-MEM buffer. Returns 0 if the 
+* instruction was successfully added, otherwise returns -1 if buffer is full
+ * @param opName the name of the operation.
+ * @param seq The program sequence number of the instruction.
+ * @param rs The first operator for the instruction.
+ * @param rt The second operator for the instruction. 
+ * @param imm The immediate value for the operation.
+*/
+	public int addToPreMEM(String opName, int seq, int rs, int rt, int imm, int cycles);
+	
+	 
+/**
  * Get the instruction sequence number from the post memory access buffer.
  * @param clear Clears the sequence number in the post-MEM buffer if True.
  */
@@ -33,7 +52,31 @@ public interface IMemoryAccess extends ICoreComponent {
 /**
  * Get the op result from the post memory access buffer.
  */
-	public double getPostMEMOpResult();	
+	public int getPostMEMOpResult();	
+	
+/**
+* Method to get the buffer size. Used only for class testing. 
+*/
+	public int getBufferSize();
+	   
+/**
+* Methods to return contents of the pre MEM buffer. Used only for class testing.
+*/
+	public String getPreMEMOpName(int index); 
+	public int getPreMEMProgSeqNum(int index);  
+	public int getPreMEMrsVal(int index);  
+	public int getPreMEMrtVal(int index);
+	public int getPreMEMimmVal(int index);
+	public int getPreMEMNumCycles(int index);
+	public String getCurrentInstrOpName();
+	public int getCyclesProcessed();   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
 	
 	
 	

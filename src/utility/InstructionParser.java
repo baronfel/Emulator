@@ -487,7 +487,8 @@ public class InstructionParser {
 	}
 
 	private static void JInstruction() {
-		int jdst = getValue(file.next());
+		//int jdst = file.next();	//THIS IS FOR REAL J INSTRUCTION, WE ARE USING J INSTRUCTION LIKE PSUEDO B INSTRUCTION
+		int jdst = getImmediateFromLabel(file.next());   //THIS IS FOR B PSEUDO INSTRUCTION, WE ARE USING J INSTRUCTION LIKE IT
 		file.nextLine();
 		ilist.add((IInstruction) new JTypeInstruction(jdst, lineCounter));
 	}

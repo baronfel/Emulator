@@ -1,83 +1,68 @@
 package model.test;
 
-
-import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import interfaces.IALU;
+import interfaces.IMemoryAccess;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import interfaces.IALU;
-import interfaces.IMemoryAccess;
-import interfaces.IWriteBack;
-import model.ALU;
-import model.Memory;
-import model.MemoryAccess;
+
 import model.Registry;
 import model.WriteBack;
 
+import org.junit.Before;
+import org.junit.Test;
+
 public class WriteBackTest {
 
-  private Map<String, Integer> opCycles;
-  private List<IALU> alus = new ArrayList<IALU>(2);
-  private Mockery mocker = new Mockery();
-  private final IMemoryAccess memory = mocker.mock(IMemoryAccess.class);
-  private Registry registers = new Registry();
-  
-  @Before
-  public void ResetState()
-  {
-	  alus = new ArrayList<IALU>(2);
-  }
-  
-  @Test
-  public void ALUListProcessesCorrectly()
-  {
-	  
-	  mocker.checking(new Expectations(){{
-		oneOf(memory.getPostMEMSequenceNum(false)); returnValue(-1);  
-	  }});
-	  
-   alus.add(new ALU(100, 2, 222));
-   alus.add(new ALU(101, 3, 333));
-   WriteBack writeBack = new WriteBack(memory, alus, registers); 
-   writeBack.processClockCycle(); 
-   assertEquals(registers.getValue(2), 222); 
-   assertEquals(registers.getValue(3), 333);  
-  }
+	private List<IALU> alus = new ArrayList<IALU>(2);
+	private final IMemoryAccess memory = mock(IMemoryAccess.class);
+	private Registry registers = new Registry();
 
-  @Test
-  public void MemoryAccessProcessesCorrectly()
-  {
-	  final IALU fakeALU = mocker.mock(IALU.class);
-	  final boolean f = false;
-	  final boolean t = true;
-	  mocker.checking(new Expectations(){{
-		  oneOf(memory.getPostMEMSequenceNum(with(any(Boolean.class)))); returnValue(0);
-		  oneOf(memory.getPostMEMSequenceNum(with(true))); returnValue(0);
-		  oneOf(memory.getPostMEMDestReg()); returnValue(4);
-		  oneOf(memory.getPostMEMOpResult()); returnValue(444);
-		  oneOf(fakeALU.getPostALUSequenceNum(with(false))); returnValue(-1);
-	  }});
-	  
-	  alus.add(fakeALU);
-	  
-   WriteBack writeBack = new WriteBack(memory, alus, registers); 
-   writeBack.processClockCycle(); 
-   assertEquals(registers.getValue(4), 444); 
-  }
-}  //end class
+	@Before
+	public void ResetState() {
+		alus = new ArrayList<IALU>(2);
+	}
 
+	@Test
+	public void ALUListProcessesCorrectly() {
 
+		when(memory.getPostMEMSequenceNum(false)).thenReturn(-1);
+		IALU fake1 = mock(IALU.class);
+		when(fake1.getPostALUDestReg()).thenReturn(2);
+		when(fake1.getPostALUOpResult()).thenReturn(222);
+		when(fake1.getPostALUSequenceNum(anyBoolean())).thenReturn(100);
+		IALU fake2 = mock(IALU.class);
+		when(fake2.getPostALUDestReg()).thenReturn(3);
+		when(fake2.getPostALUOpResult()).thenReturn(333);
+		when(fake2.getPostALUSequenceNum(anyBoolean())).thenReturn(101);
+		alus.add(fake1);
+		alus.add(fake2);
+		
+		WriteBack writeBack = new WriteBack(memory, alus, registers);
+		writeBack.processClockCycle();
+		
+		assertEquals(registers.getValue(2), 222);
+		assertEquals(registers.getValue(3), 333);
+	}
 
+	@Test
+	public void MemoryAccessProcessesCorrectly() {
+		
+		IALU fakeALU = mock(IALU.class);
+		when(fakeALU.getPostALUSequenceNum(false)).thenReturn(-1);
+		when(memory.getPostMEMSequenceNum(true)).thenReturn(0);
+		when(memory.getPostMEMDestReg()).thenReturn(4);
+		when(memory.getPostMEMOpResult()).thenReturn(444);
+		alus.add(fakeALU);
 
-
-
-
-
+		WriteBack writeBack = new WriteBack(memory, alus, registers);
+		writeBack.processClockCycle();
+		
+		assertEquals(registers.getValue(4), 444);
+	}
+} // end class
 

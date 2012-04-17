@@ -448,8 +448,9 @@ public class ALU implements IALU {
 		if (preALUBuffer.length == 0 && postALUBuffer == null
 				&& currentInstruction == null) {
 			return ProcStatus.Inactive;
-		} else
+		} else {
 			return ProcStatus.Active;
+		}
 	}
 
 	@Override

@@ -7,9 +7,13 @@
 package interfaces;
 
 public interface IIssueUnit extends ICoreComponent {
+
+
+	public boolean addToPreIssue(IInstruction instruction);
 	public void IssueInstructions(IInstruction instruction);
 	public IMemoryAccess GetFirstAvailableMEM();
 	public IALU GetFirstAvailableALU();
-	public boolean addToPreIssue(IInstruction instruction);
 	public int getNumInPreIssue();
+
+
 }

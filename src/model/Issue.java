@@ -10,7 +10,6 @@ import interfaces.IInstruction;
 import interfaces.IIssueUnit;
 import interfaces.IMemoryAccess;
 import interfaces.ProcStatus;
-
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -213,6 +212,7 @@ public class Issue implements IIssueUnit {
 
 	public IMemoryAccess GetFirstAvailableMEM() {
 		for(int i = 0; i < mems.size(); i++)
+
 			if(mems.get(i).GetStatus() == ProcStatus.Inactive)
 				return mems.get(i);
 		int PreMEMQueueSize = Integer.MAX_VALUE;
@@ -242,7 +242,6 @@ public class Issue implements IIssueUnit {
 		}
 		return aluToUse;
 	}
-
 	@Override
 	public ProcStatus GetStatus() {
 		if(PreIssueBuffer.isEmpty())

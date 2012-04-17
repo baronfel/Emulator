@@ -85,4 +85,10 @@ public class Simulation extends AbstractController {
 	public ProcessorConfiguration getProcessorConfig() {
 		return _processorConfiguration;
 	}
+	
+	public void Cycle()
+	{
+		_processor.Cycle();
+	}
+	
 }

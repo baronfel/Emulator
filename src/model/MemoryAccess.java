@@ -25,6 +25,7 @@ public class MemoryAccess implements IMemoryAccess {
 	private Memory memList;
 	private Map<String, Integer> cycleCountByOpname;
 
+
 	/**
 	 * Class constructor takes the processor memory and the pre-MEM buffer size
 	 * as parameters
@@ -352,6 +353,7 @@ public class MemoryAccess implements IMemoryAccess {
 
 	}
 
+
 	@Override
 	public int addToPreMEM(String opName, int seq, int rs, int rt, int cycles) {
 		// TODO Auto-generated method stub
@@ -360,6 +362,12 @@ public class MemoryAccess implements IMemoryAccess {
 
 	@Override
 	public int getAmountInPreMEM() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMEMNumber() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

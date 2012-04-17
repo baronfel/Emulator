@@ -98,4 +98,6 @@ public interface IMemoryAccess extends ICoreComponent {
 	public int getCyclesProcessed();
 
 	public int getAmountInPreMEM();
+
+	public int getMEMNumber();
 }

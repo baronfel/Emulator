@@ -6,6 +6,7 @@
 package model;
 
 import java.awt.Event;
+import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.IFetchUnit;
@@ -59,7 +60,6 @@ public class FetchUnit implements IFetchUnit {
 	}
 
 	@Override
-
 	public ProcStatus GetStatus() {
 		if (index == ilist.size())
 			return ProcStatus.Inactive;
@@ -78,7 +78,7 @@ public class FetchUnit implements IFetchUnit {
 	@Override
 	public List<IInstruction> CurrentInstructions() {
 		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<IInstruction>(ilist);
 	}
 
 

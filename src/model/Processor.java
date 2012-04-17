@@ -38,12 +38,15 @@ public class Processor extends AbstractModel implements IProcessor {
 			List<IInstruction> instrs) {
 		instructions = instrs;
 		alus = new ArrayList<IALU>(aluCount);
-		for (int i = 0; i < aluCount; i++) {
+		//memories = new ArrayList<IMemoryAccess>(memCount);  //This should probably also receive a memCount variable, so the processor knows how many mems it has
+		memories = new ArrayList<IMemoryAccess>(1);
+		for(int i = 0; i < aluCount; i++)
+		{
+
 			alus.add(new ALU(i, 1, opCycles));
 		}
 		registers = new Registry();
 		memoryBanks = new Memory(1000000);
-		memories = new ArrayList<IMemoryAccess>();
 		issue = new Issue(alus, memories, registers);
 		fetch = new FetchUnit(instructions, issue, registers);
 		memory = new MemoryAccess(memoryBanks, 1, opCycles);

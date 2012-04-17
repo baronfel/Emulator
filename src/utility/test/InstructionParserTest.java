@@ -25,6 +25,7 @@ import utility.Package;
 public class InstructionParserTest {
 	private static ArrayList<IInstruction> ilist = new ArrayList<IInstruction>();
 	private static ArrayList<String> invalidlist = new ArrayList<String>();
+	private static ArrayList<String> commandlist = new ArrayList<String>();
 	private static Package pckg;
 	private static ArrayList<Label> labellist;
 
@@ -35,6 +36,7 @@ public class InstructionParserTest {
 			ilist = (ArrayList<IInstruction>) pckg.getIlist();
 			invalidlist = (ArrayList<String>) pckg.getInvalidlist();
 			labellist = (ArrayList<Label>) pckg.getLabellist();
+			commandlist = (ArrayList<String>)pckg.getParserCommands();
 			
 	}
 	
@@ -43,7 +45,8 @@ public class InstructionParserTest {
 	public void InstructionTest(){
 		assertTrue(ilist.get(0).toString().equals("JR 7\n"));
 		assertTrue(ilist.get(1).toString().equals("BNE 2, 3, LBL1\n"));
-		assertTrue(ilist.get(2).toString().equals("J 16\n"));
+//		assertTrue(ilist.get(2).toString().equals("J 16\n"));            //THIS TEST WAS FOR THE ORIGIONAL JUMP INSTRUCTION
+		assertTrue(ilist.get(2).toString().equals("J 11\n"));			//THIS TEST IS FOR THE UPDATED (B) JUMP INSTRUCTION
 		assertTrue(ilist.get(3).toString().equals("LW 12, 4(5)\n"));
 		assertTrue(ilist.get(4).toString().equals("BEQ 0, 1, LBL1\n"));
 		assertTrue(ilist.get(5).toString().equals("ADDI 6, 7, 1337\n"));
@@ -86,6 +89,11 @@ public class InstructionParserTest {
 		assertEquals(ilist.get(1).getImmediate(), 9);
 		assertEquals(ilist.get(4).getImmediate(), 6);
 		assertTrue(labellist.get(0).getName().equals("LBL1"));
+	}
+	
+	@Test
+	public void CommandTest(){
+		assertTrue(commandlist.get(0).equals("Line: 34\t.data "));
 	}
 
 }

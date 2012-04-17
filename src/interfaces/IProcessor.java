@@ -16,4 +16,8 @@ public interface IProcessor extends IModel{
 	Registry getRegistry();
 	
 	public void Cycle();
+	
+	public ProcStatus getStatus();
+
+	IIssueUnit getIssue();
 }

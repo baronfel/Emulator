@@ -59,11 +59,14 @@ public class FetchUnit implements IFetchUnit {
 	}
 
 	@Override
+
 	public ProcStatus GetStatus() {
 		if (index == ilist.size())
 			return ProcStatus.Inactive;
 		else
+
 			return ProcStatus.Active;
+
 	}
 
 	@Override
@@ -78,7 +81,10 @@ public class FetchUnit implements IFetchUnit {
 		return null;
 	}
 
-	public int getPC() {
+
+	public int getPC(){
 		return index;
 	}
+
+
 }

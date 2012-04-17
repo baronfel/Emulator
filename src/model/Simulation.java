@@ -10,6 +10,7 @@ package model;
 import interfaces.IInstruction;
 import interfaces.IModel;
 import interfaces.IProcessor;
+import interfaces.ProcStatus;
 
 import java.util.List;
 
@@ -84,5 +85,17 @@ public class Simulation extends AbstractController {
 
 	public ProcessorConfiguration getProcessorConfig() {
 		return _processorConfiguration;
+	}
+	
+	public void Cycle()
+	{
+		_processor.Cycle();
+	}
+
+	public void cycleToEnd() {
+		while(_processor.getStatus() == ProcStatus.Active)
+		{
+			_processor.Cycle();
+		}
 	}
 }

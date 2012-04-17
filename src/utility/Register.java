@@ -82,4 +82,15 @@ public enum Register {
 	String getName(){
 		return name;
 	}
+
+	public static String getName(int registerNumber) {
+		for(Register r : Register.values())
+		{
+			if(r.getValue() == registerNumber)
+			{
+				return r.getName();
+			}
+		}
+		return "Unknown Register";
+	}
 }

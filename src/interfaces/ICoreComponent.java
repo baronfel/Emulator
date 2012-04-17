@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ICoreComponent{
 /**
- * Tells whether or not this component is currently in use.
+ * Gets the status of the component.
  * @return The status of the component.
  */
 	public ProcStatus GetStatus();

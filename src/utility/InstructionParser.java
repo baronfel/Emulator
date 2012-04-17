@@ -44,7 +44,7 @@ public class InstructionParser {
 		LoadLabels(aInfilePath);
 		try {
 			file = new Scanner(new File(aInfilePath));
-			file.useDelimiter("[, ()\r\n]+");
+			file.useDelimiter("[, ()\\r\\n\\t]+");
 		} catch (FileNotFoundException e) {
 			twolist.setIlist(ilist);
 			return twolist;
@@ -205,8 +205,7 @@ public class InstructionParser {
 		String opc = "SB";
 		// if(imm > byte)
 		// invalid instruction
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
-				lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,	lineCounter));
 	}
 
 	private static void LBInstruction() {
@@ -217,8 +216,7 @@ public class InstructionParser {
 		String opc = "LB";
 		// if(imm > byte)
 		// invalid instruction
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
-				lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,	lineCounter));
 	}
 
 	private static void ANDIInstruction() {
@@ -256,7 +254,7 @@ public class InstructionParser {
 	private static void LoadLabels(String aInfilePath) {
 		try {
 			file = new Scanner(new File(aInfilePath));
-			file.useDelimiter("[, ()\r\n]+");
+			file.useDelimiter("[, ()\\r\\n\\t]+");
 		} catch (FileNotFoundException e) {
 			twolist.setIlist(ilist);
 			return;
@@ -507,8 +505,12 @@ public class InstructionParser {
 	}
 
 	private static void JInstruction() {
-		//int jdst = file.next();	//THIS IS FOR REAL J INSTRUCTION, WE ARE USING J INSTRUCTION LIKE PSUEDO B INSTRUCTION
-		int jdst = getImmediateFromLabel(file.next());   //THIS IS FOR B PSEUDO INSTRUCTION, WE ARE USING J INSTRUCTION LIKE IT
+		// int jdst = file.next(); //THIS IS FOR REAL J INSTRUCTION, WE ARE
+		// USING J INSTRUCTION LIKE PSUEDO B INSTRUCTION
+		int jdst = getImmediateFromLabel(file.next()); // THIS IS FOR B PSEUDO
+														// INSTRUCTION, WE ARE
+														// USING J INSTRUCTION
+														// LIKE IT
 		file.nextLine();
 		ilist.add((IInstruction) new JTypeInstruction(jdst, lineCounter));
 	}
@@ -539,8 +541,11 @@ public class InstructionParser {
 
 	private static int getImmediateFromLabel(String label) {
 		int index = 0;
-		for (int i = 0; !(label.equals(labellist.get(i).getName())); i++)
-			index = i;
+		for (int i = 0; i < labellist.size(); i++) {
+			if (label.equals(labellist.get(i).getName())) {
+				index = i;
+			}
+		}
 		return labellist.get(index).getLineNumber() - lineCounter;
 	}
 

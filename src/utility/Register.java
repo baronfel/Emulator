@@ -33,8 +33,8 @@ public enum Register {
 	$AT(1, "$at"),
 	$K0(26, "$k0"),
 	$K1(27, "k1"),
-//	$HI()
-//	$LO()
+	$HI(32, "$hi"),
+	$LO(33, "$lo"),
 	$R0(0, "$r0"),
 	$R1(1, "$r1"),
 	$R2(2, "$r2"),
@@ -81,5 +81,16 @@ public enum Register {
 	
 	String getName(){
 		return name;
+	}
+
+	public static String getName(int registerNumber) {
+		for(Register r : Register.values())
+		{
+			if(r.getValue() == registerNumber)
+			{
+				return r.getName();
+			}
+		}
+		return "Unknown Register";
 	}
 }

@@ -12,7 +12,7 @@ public class ALU implements IALU {
 	private int bufferSize;
 	private int aluNumber; // which ALU within the core is it
 	private int stallCycles; // stalls the ALU for the number of cycles
-								// specified
+	// specified
 	private int cyclesProcessed; // for testing purposes
 	// private boolean isPreBuffFull;
 	// private int currentInstrIndex; //holds the index in the preALUBuffer of
@@ -62,28 +62,94 @@ public class ALU implements IALU {
 	public void processClockCycle() {
 		// if there is not an instruction being processed, get the next one from
 		// the buffer
-		if (currentInstruction.opName == "") {
+		if (currentInstruction.opName == ""
+				|| currentInstruction.opName == "nop") {
 			currentInstruction = getNextInstruction();
 			stallCycles = currentInstruction.numCycles - 1;
 		}
 
 		if (stallCycles == 0) {
 			// go ahead and process the instruction
-			String tmpStr = currentInstruction.opName;
+			// String tmpStr = currentInstruction.opName;
 			int operationResult = 0;
-			if (tmpStr == "mul")
+
+			switch (currentInstruction.opName) {
+			case "mul":
 				operationResult = mult(currentInstruction.op1Value,
 						currentInstruction.op2Value);
-			else if (tmpStr == "div")
+				break;
+			case "div":
 				operationResult = div(currentInstruction.op1Value,
 						currentInstruction.op2Value);
-			else if (tmpStr == "add")
+				break;
+			case "add":
 				operationResult = add(currentInstruction.op1Value,
 						currentInstruction.op2Value);
-			else if (tmpStr == "sub")
+				break;
+			case "sub":
 				operationResult = sub(currentInstruction.op1Value,
 						currentInstruction.op2Value);
-			// add more instructions here
+				break;
+			case "addi":
+				operationResult = add(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "addiu":
+				operationResult = add(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "la":
+				operationResult = currentInstruction.op2Value;
+				break;
+			case "li":
+				operationResult = currentInstruction.op2Value;
+				break;
+			case "sll":
+				operationResult = sll(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "srl":
+				operationResult = srl(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "and":
+				operationResult = and(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "or":
+				operationResult = or(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "nor":
+				operationResult = nor(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "beq":
+				// TODO- how will this work?
+				break;
+			case "bne":
+				// TODO- how will this work?
+				break;
+			case "slt":
+				operationResult = slt(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "slti":
+				operationResult = slt(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "sltu":
+				operationResult = slt(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+			case "sltiu":
+				operationResult = slt(currentInstruction.op1Value,
+						currentInstruction.op2Value);
+				break;
+
+			default:
+				break;
+			}
 
 			// add the result to the post ALU buffer
 			addToPostALU(operationResult);
@@ -99,6 +165,51 @@ public class ALU implements IALU {
 		cyclesProcessed++;
 
 	} // end processClockCycle
+
+	/**
+	 * Method to perform an or operation
+	 */
+	private int slt(int op1, int op2) {
+		if (op1 < op2)
+			return 1;
+		else
+			return 0;
+	}
+
+	/**
+	 * Method to perform an or operation
+	 */
+	private int nor(int op1, int op2) {
+		return ~(op1 | op2);
+	}
+
+	/**
+	 * Method to perform an or operation
+	 */
+	private int or(int op1, int op2) {
+		return (op1 | op2);
+	}
+
+	/**
+	 * Method to perform an and operation
+	 */
+	private int and(int op1, int op2) {
+		return (op1 & op2);
+	}
+
+	/**
+	 * Method to perform a shift right logical operation
+	 */
+	private int srl(int op1, int op2) {
+		return (op1 >> op2);
+	}
+
+	/**
+	 * Method to perform a shift left logical operation
+	 */
+	private int sll(int op1, int op2) {
+		return (op1 << op2);
+	}
 
 	/**
 	 * Method to perform an addition operation
@@ -117,14 +228,14 @@ public class ALU implements IALU {
 	/**
 	 * Method to perform a division operation
 	 */
-	private int  div(int op1, int op2) {
+	private int div(int op1, int op2) {
 		if (op2 == 0) {
 			// return an error code
 
 			// add code
 			return -1;
 		} else {
-			return (op1 / op2);
+			return (int) (op1 / op2);
 		}
 	}
 
@@ -143,7 +254,7 @@ public class ALU implements IALU {
 	public int addToPreALU(String opName, int seq, int op1, int op2, int dest) {
 		for (int i = 0; i < preALUBuffer.length; i++) {
 			if (preALUBuffer[i].opName == "") { // then add the new instruction
-												// here
+				// here
 				preALUBuffer[i].opName = opName;
 				preALUBuffer[i].progSequenceNumber = seq;
 				preALUBuffer[i].op1Value = op1;
@@ -287,8 +398,7 @@ public class ALU implements IALU {
 		private String opName;
 		private int progSequenceNumber;
 		private int op1Value; // first operand value (rs)
-		private int op2Value; // second operand value (either rt or
-									// immediate)
+		private int op2Value; // second operand value (either rt or immediate)
 		private int destinationRegister; // destination register
 		private int numCycles; // the number of clock cycles this instruction
 								// takes
@@ -334,14 +444,13 @@ public class ALU implements IALU {
 	}
 
 	@Override
-
 	public ProcStatus GetStatus() {
-		if(preALUBuffer.length == 0 && postALUBuffer == null && currentInstruction == null)
-		{ 
+		if (preALUBuffer.length == 0 && postALUBuffer == null
+				&& currentInstruction == null) {
 			return ProcStatus.Inactive;
+		} else {
+			return ProcStatus.Active;
 		}
-		else return ProcStatus.Active;
-
 	}
 
 	@Override

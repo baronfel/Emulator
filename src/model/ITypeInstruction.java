@@ -4,7 +4,6 @@
  * @see IInstruction
  */
 
-
 package model;
 
 import interfaces.IInstruction;
@@ -19,18 +18,25 @@ public class ITypeInstruction implements IInstruction {
 	private int seqNum;
 
 	/**
-	 * The default constructor. It should be followed by initialization of the instruction.
+	 * The default constructor. It should be followed by initialization of the
+	 * instruction.
 	 */
 	public ITypeInstruction() {
 		super();
 	}
-	
+
 	/**
-	 * The primary constructor for the IType Instructions, including all of the fields.
-	 * @param opc The Opcode of the Instruction.
-	 * @param rd The Destination Register for the instruction.
-	 * @param rs The Source Register for the instruction.
-	 * @param imm The immediate value of the instruction.
+	 * The primary constructor for the IType Instructions, including all of the
+	 * fields.
+	 * 
+	 * @param opc
+	 *            The Opcode of the Instruction.
+	 * @param rd
+	 *            The Destination Register for the instruction.
+	 * @param rs
+	 *            The Source Register for the instruction.
+	 * @param imm
+	 *            The immediate value of the instruction.
 	 */
 	public ITypeInstruction(String opc, int rd, int rs, int imm, int seqnum) {
 		super();
@@ -40,7 +46,7 @@ public class ITypeInstruction implements IInstruction {
 		this.rs = rs;
 		seqNum = seqnum;
 	}
-	
+
 	public int getFUNCT() {
 		throw new InstructionDoesNotHaveFieldException();
 	}
@@ -48,20 +54,25 @@ public class ITypeInstruction implements IInstruction {
 	public void setFUNCT(int aFUNCT) {
 		throw new InstructionDoesNotHaveFieldException();
 	}
-/**
- * Returns the immediate field for this instruction.
- */
+
+	/**
+	 * Returns the immediate field for this instruction.
+	 */
 	public int getImmediate() {
 		return immediate;
 	}
+
 	/**
 	 * Sets the immediate field for this instruction.
-	 * @param aImmediate The new immediate value for this function.
+	 * 
+	 * @param aImmediate
+	 *            The new immediate value for this function.
 	 */
 
 	public void setImmediate(int aImmediate) {
 		immediate = aImmediate;
 	}
+
 	/**
 	 * Returns the OP Code field for this instruction.
 	 */
@@ -69,37 +80,48 @@ public class ITypeInstruction implements IInstruction {
 	public String getOpcode() {
 		return opcode;
 	}
+
 	/**
 	 * Sets the OP code field for this instruction.
-	 * @param aOpcode The new OP code for this instruction.
+	 * 
+	 * @param aOpcode
+	 *            The new OP code for this instruction.
 	 */
 
 	public void setOpcode(String aOpcode) {
 		opcode = aOpcode;
 	}
-/**
- * Returns the Destination Register field for this instruction.
- */
+
+	/**
+	 * Returns the Destination Register field for this instruction.
+	 */
 	public int getRD() {
 		return rd;
 	}
-/**
- * Sets the Destination Register field for this instruction.
- * @param aRD The new Destination Register field for the instruction.
- */
+
+	/**
+	 * Sets the Destination Register field for this instruction.
+	 * 
+	 * @param aRD
+	 *            The new Destination Register field for the instruction.
+	 */
 	public void setRD(int aRD) {
 		rd = aRD;
 	}
-/**
- * Returns the Source Register field for this instruction.
- */
+
+	/**
+	 * Returns the Source Register field for this instruction.
+	 */
 	public int getRS() {
 		return rs;
 	}
-/**
- * Sets the Source Register field for this instruction.
- * @param aRS the new Source Register for the instruction.
- */
+
+	/**
+	 * Sets the Source Register field for this instruction.
+	 * 
+	 * @param aRS
+	 *            the new Source Register for the instruction.
+	 */
 	public void setRS(int aRS) {
 		rs = aRS;
 	}
@@ -119,8 +141,10 @@ public class ITypeInstruction implements IInstruction {
 	public void setSHAMT(int aSHAMT) {
 		throw new InstructionDoesNotHaveFieldException();
 	}
+
 	/**
-	 * Returns the type of instruction, I, J, or R. For this I type, it returns I.
+	 * Returns the type of instruction, I, J, or R. For this I type, it returns
+	 * I.
 	 */
 
 	public InstructionType getType() {
@@ -134,30 +158,38 @@ public class ITypeInstruction implements IInstruction {
 	public void setJumpdest(int aJumpdest) {
 		throw new InstructionDoesNotHaveFieldException();
 	}
-	
-	
+
 	public String toString() {
-		String message = "" + opcode + " " + rd + ", " + rs + ", " + immediate + "\n";
-		
+		String message = "" + opcode + " " + rd + ", " + rs + ", " + immediate
+				+ "\n";
+
 		message = opcode + " " + rd + ", " + rs + ", " + immediate + "\n";
 		switch (opcode.toLowerCase()) {
-		case "lw": message = opcode + " " + rd + ", " + immediate + "(" + rs + ")\n";
+		case "lw":
+			message = opcode + " " + rd + ", " + immediate + "(" + rs + ")\n";
 			break;
 		case "addi":
 			break;
-		case "sw": message = opcode + " " + rs + ", " + immediate + "(" + rd + ")\n";
+		case "sw":
+			message = opcode + " " + rs + ", " + immediate + "(" + rd + ")\n";
 			break;
-		case "slti": 
+		case "slti":
 			break;
 		case "sltiu":
 			break;
-			default: 
-				break;
-		}
+		case "sb":
+			message = opcode + " " + rs + ", " + immediate + "(" + rd + ")\n";
+			break;
+		case "lb":
+			message = opcode + " " + rd + ", " + immediate + "(" + rs + ")\n";
+			break;
 		
+		default:
+			break;
+		}
 
 		return message;
-		
+
 	}
 
 	@Override

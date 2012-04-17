@@ -53,15 +53,13 @@ public class WriteBack implements IWriteBack {
 	@Override
 	public ProcStatus GetStatus() {
 		ProcStatus status = ProcStatus.Inactive;
-		for(IALU alu : aluList)
-		{
-			if(alu.GetStatus() == ProcStatus.Active)
-			{
+		for (IALU alu : aluList) {
+			if (alu.GetStatus() == ProcStatus.Active) {
 				status = ProcStatus.Active;
 			}
 		}
-		
-		if(memUnit.GetStatus() == ProcStatus.Active){
+
+		if (memUnit.GetStatus() == ProcStatus.Active) {
 			status = ProcStatus.Active;
 		}
 		return status;

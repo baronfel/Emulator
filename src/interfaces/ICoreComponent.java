@@ -5,12 +5,11 @@
 
 package interfaces;
 
-import java.awt.Event;
 import java.util.List;
 
 public interface ICoreComponent{
 /**
- * Gets the status of the component.
+ * Tells whether or not this component is currently in use.
  * @return The status of the component.
  */
 	public ProcStatus GetStatus();

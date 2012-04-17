@@ -59,12 +59,24 @@ public interface IALU extends ICoreComponent {
 	 * Get the destination register for the op result from the post ALU access
 	 * buffer.
 	 */
-	public int getPostALUDestReg();
+	public int getPostALUDestReg(boolean clear);
+	
+	/**
+	 * Get the destination register 2 for the op result from the post ALU access
+	 * buffer. For ops that require multiple destination registers
+	 */
+	public int getPostALUDestReg2(boolean clear);
 
 	/**
 	 * Get the op result from the post ALU access buffer.
 	 */
 	public int getPostALUOpResult();
+	
+	/**
+	 * Get the op result 2 from the post ALU access buffer.
+	 *  For ops that require multiple destination registers
+	 */
+	public int getPostALUOpResult2();
 
 	/**
 	 * * Method to get the ALU number. Used only for class testing.

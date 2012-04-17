@@ -79,7 +79,7 @@ class ALUTest{
          System.out.println("----------------------------");
          System.out.println("Clock cycle : " + j + " - processed prog seq " + testALU.getPostALUSequenceNum(true));
          System.out.println("Operation: " + tmpOp);
-         System.out.println("Destination register : " + testALU.getPostALUDestReg());
+         System.out.println("Destination register : " + testALU.getPostALUDestReg(true));
          System.out.println("Operation result : " + testALU.getPostALUOpResult());
          System.out.println("----------------------------");
          

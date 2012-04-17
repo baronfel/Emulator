@@ -4,7 +4,7 @@ import interfaces.IALU;
 import interfaces.IInstruction;
 import interfaces.ProcStatus;
 
-import java.awt.Event;
+//import java.awt.Event;
 import java.util.List;
 import java.util.Map;
 
@@ -70,81 +70,59 @@ public class ALU implements IALU {
 
 		if (stallCycles == 0) {
 			// go ahead and process the instruction
-			// String tmpStr = currentInstruction.opName;
-			int operationResult = 0;
+			int[] operationResult = {0,0};
 
 			switch (currentInstruction.opName) {
 			case "mul":
-				operationResult = mult(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = mult();
 				break;
 			case "div":
-				operationResult = div(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = div();
 				break;
 			case "add":
-				operationResult = add(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = add();
 				break;
 			case "sub":
-				operationResult = sub(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = sub();
 				break;
 			case "addi":
-				operationResult = add(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = add();
 				break;
 			case "addiu":
-				operationResult = add(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = add();
 				break;
 			case "la":
-				operationResult = currentInstruction.op2Value;
+				operationResult[0] = currentInstruction.op2Value;
 				break;
 			case "li":
-				operationResult = currentInstruction.op2Value;
+				operationResult[0] = currentInstruction.op2Value;
 				break;
 			case "sll":
-				operationResult = sll(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = sll();
 				break;
 			case "srl":
-				operationResult = srl(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = srl();
 				break;
 			case "and":
-				operationResult = and(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = and();
 				break;
 			case "or":
-				operationResult = or(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = or();
 				break;
 			case "nor":
-				operationResult = nor(currentInstruction.op1Value,
-						currentInstruction.op2Value);
-				break;
-			case "beq":
-				// TODO- how will this work?
-				break;
-			case "bne":
-				// TODO- how will this work?
+				operationResult = nor();
 				break;
 			case "slt":
-				operationResult = slt(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = slt();
 				break;
 			case "slti":
-				operationResult = slt(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = slt();
 				break;
 			case "sltu":
-				operationResult = slt(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = slt();
 				break;
 			case "sltiu":
-				operationResult = slt(currentInstruction.op1Value,
-						currentInstruction.op2Value);
+				operationResult = slt();
 				break;
 
 			default:
@@ -167,83 +145,105 @@ public class ALU implements IALU {
 	} // end processClockCycle
 
 	/**
-	 * Method to perform an or operation
+	 * Method to perform an slt operation
 	 */
-	private int slt(int op1, int op2) {
-		if (op1 < op2)
-			return 1;
+	private int[] slt() {
+		int[] ret = {0,0};
+		if (currentInstruction.op1Value < currentInstruction.op2Value)
+			ret[0] = 1;
 		else
-			return 0;
+			ret[0] = 0;
+		
+		return (ret);
+	}
+
+	/**
+	 * Method to perform a nor operation
+	 */
+	private int[] nor() {
+		int[] ret = {0,0};
+		ret[0] = ~(currentInstruction.op1Value | currentInstruction.op2Value);
+		return (ret);
 	}
 
 	/**
 	 * Method to perform an or operation
 	 */
-	private int nor(int op1, int op2) {
-		return ~(op1 | op2);
-	}
-
-	/**
-	 * Method to perform an or operation
-	 */
-	private int or(int op1, int op2) {
-		return (op1 | op2);
+	private int[] or() {
+		int[] ret = {0,0};
+		ret[0] = currentInstruction.op1Value | currentInstruction.op2Value;
+		return (ret);
 	}
 
 	/**
 	 * Method to perform an and operation
 	 */
-	private int and(int op1, int op2) {
-		return (op1 & op2);
+	private int[] and() {
+		int[] ret = {0,0};
+		ret[0] = currentInstruction.op1Value & currentInstruction.op2Value;
+		return (ret);
 	}
 
 	/**
 	 * Method to perform a shift right logical operation
 	 */
-	private int srl(int op1, int op2) {
-		return (op1 >> op2);
+	private int[] srl() {
+		int[] ret = {0,0};
+		ret[0] = currentInstruction.op1Value >> currentInstruction.op2Value;
+		return (ret);
 	}
 
 	/**
 	 * Method to perform a shift left logical operation
 	 */
-	private int sll(int op1, int op2) {
-		return (op1 << op2);
+	private int[] sll() {
+		int[] ret = {0,0};
+		ret[0] = currentInstruction.op1Value << currentInstruction.op2Value;
+		return (ret);
 	}
 
 	/**
 	 * Method to perform an addition operation
 	 */
-	private int add(int op1, int op2) {
-		return (op1 + op2);
+	private int[] add() {
+		int[] ret = {0,0};
+		ret[0] = currentInstruction.op1Value + currentInstruction.op2Value;
+		return (ret);
 	}
 
 	/**
 	 * Method to perform a subtraction operation
 	 */
-	private int sub(int op1, int op2) {
-		return (op1 - op2);
+	private int[] sub() {
+		int[] ret = {0,0};
+		ret[0] = currentInstruction.op1Value - currentInstruction.op2Value;
+		return (ret);
 	}
 
 	/**
 	 * Method to perform a division operation
 	 */
-	private int div(int op1, int op2) {
-		if (op2 == 0) {
-			// return an error code
-
-			// add code
-			return -1;
+	private int[] div() {
+		int[] ret = {0,0};
+		if (currentInstruction.op2Value == 0) {
+			// return an error code?
 		} else {
-			return (int) (op1 / op2);
+			ret[0] = (int) (currentInstruction.op1Value / currentInstruction.op2Value);
+			ret[1] = (currentInstruction.op1Value % currentInstruction.op2Value);
 		}
+		currentInstruction.destinationRegister = 33;	//Lo register for the quotient
+		currentInstruction.destinationRegister2 = 32;	//Hi register for the remainder
+		
+		return (ret);
 	}
 
 	/**
 	 * Method to perform a multiplication operation
 	 */
-	private int mult(int op1, int op2) {
-		return (op1 * op2);
+	private int[] mult() {
+		int[] ret = {0,0};
+		ret[0] = currentInstruction.op1Value * currentInstruction.op2Value;
+		return (ret);
 	}
 
 	/**
@@ -297,11 +297,13 @@ public class ALU implements IALU {
 	 * Method to add a completed instruction to the post-ALU buffer. Return 0 if
 	 * successful, return -1 if the buffer is full
 	 */
-	private int addToPostALU(int result) {
+	private int addToPostALU(int[] result) {
 		if (postALUBuffer.progSequenceNumber != 0) {
 			postALUBuffer.progSequenceNumber = currentInstruction.progSequenceNumber;
 			postALUBuffer.destinationRegister = currentInstruction.destinationRegister;
-			postALUBuffer.opResult = result;
+			postALUBuffer.destinationRegister2 = currentInstruction.destinationRegister2;
+			postALUBuffer.opResult = result[0];		//goes to destRegister
+			postALUBuffer.opResult2 = result[1];	//goes to destRegister2
 			return 0;
 		} else {
 			return -1;
@@ -329,8 +331,28 @@ public class ALU implements IALU {
 	 * Method to get the destination register number from the post-ALU buffer.
 	 * Will be used by the Writeback unit
 	 */
-	public int getPostALUDestReg() {
-		return postALUBuffer.destinationRegister;
+	public int getPostALUDestReg(boolean clear) {
+		int tmpDestReg = postALUBuffer.destinationRegister;
+
+		if (tmpDestReg >= 0 && clear == true) {
+			postALUBuffer.destinationRegister = -1;
+		}
+
+		return tmpDestReg;
+	}
+	
+	/**
+	 * Method to get the 2nd destination register number from the post-ALU buffer.
+	 * Stores the "Hi" (remainder) value of a div instruction. Will be used by the Writeback unit.
+	 */
+	public int getPostALUDestReg2(boolean clear) {
+		int tmpDestReg = postALUBuffer.destinationRegister2;
+
+		if (tmpDestReg >= 0 && clear == true) {
+			postALUBuffer.destinationRegister2 = -1;
+		}
+
+		return tmpDestReg;
 	}
 
 	/**
@@ -341,6 +363,14 @@ public class ALU implements IALU {
 		return postALUBuffer.opResult;
 	}
 
+	/**
+	 * Method to get the operation result from the post-ALU buffer. Will be used
+	 * by the Writeback unit
+	 */
+	public int getPostALUOpResult2() {
+		return postALUBuffer.opResult2;
+	}
+	
 	/**
 	 * Method to get the ALU number. Used only for class testing.
 	 */
@@ -400,6 +430,7 @@ public class ALU implements IALU {
 		private int op1Value; // first operand value (rs)
 		private int op2Value; // second operand value (either rt or immediate)
 		private int destinationRegister; // destination register
+		private int destinationRegister2; // 2nd destination register if needed
 		private int numCycles; // the number of clock cycles this instruction
 								// takes
 
@@ -412,6 +443,7 @@ public class ALU implements IALU {
 			op1Value = 0;
 			op2Value = 0;
 			destinationRegister = 0;
+			destinationRegister2 = 0;
 			numCycles = 0;
 		}
 
@@ -424,6 +456,7 @@ public class ALU implements IALU {
 			op1Value = entry.op1Value;
 			op2Value = entry.op2Value;
 			destinationRegister = entry.destinationRegister;
+			destinationRegister2 = entry.destinationRegister2;
 			numCycles = entry.numCycles;
 		}
 	}
@@ -433,13 +466,17 @@ public class ALU implements IALU {
 	 */
 	private class PostALUBufferEntry {
 		private int progSequenceNumber;
-		private int destinationRegister; // register number to store the result
+		private int destinationRegister; // register number to store the result (Lo for div quotient)
+		private int destinationRegister2; // register of Hi register (for div instruction remainder)
 		private int opResult;
+		private int opResult2;         //for the remainder in a div instruction
 
 		private PostALUBufferEntry() {
 			progSequenceNumber = -1;
 			destinationRegister = 0;
+			destinationRegister2 = -1;
 			opResult = 0;
+			opResult2 = 0;
 		}
 	}
 

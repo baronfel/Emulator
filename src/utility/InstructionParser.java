@@ -4,7 +4,6 @@
  * 
  */
 
-
 package utility;
 
 import interfaces.IInstruction;
@@ -27,7 +26,9 @@ public class InstructionParser {
 	private static int lineCounter = 0;
 	static List<String> invalidlist = new ArrayList<String>();
 	static List<Label> labellist = new ArrayList<Label>();
-	static boolean invalidFlag = false; // Used to determine if an invalid instruction exception should be thrown NOT CURRENTLY IN USE
+	static boolean invalidFlag = false; // Used to determine if an invalid
+										// instruction exception should be
+										// thrown NOT CURRENTLY IN USE
 	static Package twolist = new Package();
 
 	/**
@@ -43,7 +44,7 @@ public class InstructionParser {
 		LoadLabels(aInfilePath);
 		try {
 			file = new Scanner(new File(aInfilePath));
-			file.useDelimiter("[, ()\r\n]+");
+			file.useDelimiter("[, ()\\r\\n\\t]+");
 		} catch (FileNotFoundException e) {
 			twolist.setIlist(ilist);
 			return twolist;
@@ -52,6 +53,8 @@ public class InstructionParser {
 		invalidFlag = false;
 		while (file.hasNext()) {
 			String name = file.next();
+			if (name.length() == 0)
+				continue;
 			if (name.charAt(name.length() - 1) == ':')
 				;
 			// Label(name);
@@ -160,7 +163,8 @@ public class InstructionParser {
 		twolist.setInvalidlist(invalidlist);
 		return twolist;
 		/**
-		 * The code to use invalid flag to determine how to throw an invalid instruction exception would go just above here.
+		 * The code to use invalid flag to determine how to throw an invalid
+		 * instruction exception would go just above here.
 		 */
 	}
 
@@ -170,7 +174,8 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ORI";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 	}
 
 	private static void LIInstruction() {
@@ -178,7 +183,8 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "LI";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, 0, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, 0, imm,
+				lineCounter));
 	}
 
 	private static void LAInstruction() {
@@ -187,29 +193,30 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
 		String opc = "LA";
-		ilist.add((IInstruction) new BranchInstruction(opc, rd, 0, imm, lineCounter, label));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, 0, imm,
+				lineCounter, label));
 	}
 
 	private static void SBInstruction() {
 		int rs = getValue(file.next());
-		int imm = file.nextInt();
 		int rd = getValue(file.next());
 		file.nextLine();
 		String opc = "SB";
-		//if(imm > byte)
-		//invalid instruction
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));	
+		// if(imm > byte)
+		// invalid instruction
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, 0,
+				lineCounter));
 	}
 
 	private static void LBInstruction() {
 		int rd = getValue(file.next());
-		int imm = file.nextInt();
 		int rs = getValue(file.next());
 		file.nextLine();
 		String opc = "LB";
-		//if(imm > byte)
-		//invalid instruction
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));		
+		// if(imm > byte)
+		// invalid instruction
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, 0,
+				lineCounter));
 	}
 
 	private static void ANDIInstruction() {
@@ -218,7 +225,8 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ANDI";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 	}
 
 	private static void ADDIUInstruction() {
@@ -227,9 +235,10 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ADDIU";
-		//if(imm < 0)
-		//invalid instruction
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));	
+		// if(imm < 0)
+		// invalid instruction
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 	}
 
 	private static void BEQZInstruction() {
@@ -238,13 +247,14 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
 		String opc = "BEQZ";
-		ilist.add((IInstruction) new BranchInstruction(opc, 0, rs, imm, lineCounter, label));
+		ilist.add((IInstruction) new BranchInstruction(opc, 0, rs, imm,
+				lineCounter, label));
 	}
 
 	private static void LoadLabels(String aInfilePath) {
 		try {
 			file = new Scanner(new File(aInfilePath));
-			file.useDelimiter("[, ()\r\n]+");
+			file.useDelimiter("[, ()\\r\\n\\t]+");
 		} catch (FileNotFoundException e) {
 			twolist.setIlist(ilist);
 			return;
@@ -252,6 +262,8 @@ public class InstructionParser {
 		lineCounter = 1;
 		while (file.hasNextLine()) {
 			String name = file.nextLine();
+			if (name.length() == 0)
+				continue;
 			if (name.charAt(name.length() - 1) == ':')
 				Label(name);
 			lineCounter++;
@@ -303,7 +315,8 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTIU";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 
 	}
 
@@ -326,7 +339,8 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "SLTI";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 
 	}
 
@@ -453,7 +467,8 @@ public class InstructionParser {
 		int rd = getValue(file.next());
 		file.nextLine();
 		String opc = "SW";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 	}
 
 	private static void ADDIInstruction() {
@@ -462,7 +477,8 @@ public class InstructionParser {
 		int imm = file.nextInt();
 		file.nextLine();
 		String opc = "ADDI";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 
 	}
 
@@ -473,7 +489,8 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
 		String opc = "BEQ";
-		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, lineCounter, label));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm,
+				lineCounter, label));
 
 	}
 
@@ -483,7 +500,8 @@ public class InstructionParser {
 		int rs = getValue(file.next());
 		file.nextLine();
 		String opc = "LW";
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm, lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 	}
 
 	private static void JInstruction() {
@@ -512,20 +530,23 @@ public class InstructionParser {
 		file.nextLine();
 		int imm = getImmediateFromLabel(label);
 		String opc = "BNE";
-		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm, lineCounter, label));
+		ilist.add((IInstruction) new BranchInstruction(opc, rd, rs, imm,
+				lineCounter, label));
 	}
 
 	private static int getImmediateFromLabel(String label) {
 		int index = 0;
-		for (int i = 0; !(label.equals(labellist.get(i).getName())); i++)
-			index = i;
+		for (int i = 0; i < labellist.size(); i++) {
+			if (label.equals(labellist.get(i).getName())) {
+				index = i;
+			}
+		}
 		return labellist.get(index).getLineNumber() - lineCounter;
 	}
 
-	private static int getValue(String regName)
-	{
-		for(Register r : Register.values())
-			if(regName.toLowerCase().equals(r.getName().toLowerCase()))
+	private static int getValue(String regName) {
+		for (Register r : Register.values())
+			if (regName.toLowerCase().equals(r.getName().toLowerCase()))
 				return r.getValue();
 		return -1;
 	}

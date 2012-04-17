@@ -10,6 +10,7 @@ import controller.RegisterController;
 import interfaces.IModelListener;
 import model.ModelEvent;
 import org.eclipse.swt.widgets.Label;
+import utility.Register;
 
 
 /**
@@ -19,6 +20,7 @@ import org.eclipse.swt.widgets.Label;
 public class RegisterView implements IModelListener {
 
 	private Label registerValue;
+	private Label registerName;
 	private int watchedRegister;
 	private RegisterController controller;
 	
@@ -32,8 +34,11 @@ public class RegisterView implements IModelListener {
 	
 	private void InitControls(final Composite parent)
 	{
+		registerName = new Label(parent, SWT.None);
+		registerName.setText(Register.getName(watchedRegister));
 		registerValue = new Label(parent, SWT.None);
 		registerValue.setText(String.valueOf(controller.getRegisterValue(watchedRegister)));
+		
 	}
 	
 	@Override

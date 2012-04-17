@@ -104,13 +104,10 @@ public class StartView {
 				newShell.setText(shell.getText());
 				newShell.setLayout(shell.getLayout());
 
-				Group newGroup = new Group(newShell, SWT.NONE);
-				newGroup.setText("Simulation");
-
 				Simulation sim = new Simulation(cView.getConfig(),
 						InstructionParser.LoadInstructions(programPath
 								.getText()));
-				new SimulationView(sim, newGroup);
+				simView = new SimulationView(sim, newShell);
 
 				newShell.pack();
 				newShell.open();

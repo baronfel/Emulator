@@ -206,7 +206,8 @@ public class InstructionParser {
 		String opc = "SB";
 		// if(imm > byte)
 		// invalid instruction
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,	lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 	}
 
 	private static void LBInstruction() {
@@ -217,7 +218,8 @@ public class InstructionParser {
 		String opc = "LB";
 		// if(imm > byte)
 		// invalid instruction
-		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,	lineCounter));
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));
 	}
 
 	private static void ANDIInstruction() {
@@ -265,7 +267,7 @@ public class InstructionParser {
 			String name = file.nextLine();
 			if (name.equals(""))
 				;
-			else if(name.charAt(0) == '.')
+			else if (name.charAt(0) == '.')
 				Command(name);
 			else if (name.charAt(name.length() - 1) == ':')
 				Label(name);
@@ -273,11 +275,12 @@ public class InstructionParser {
 		}
 		file = null;
 		listPackage.setLabellist(labellist);
+		listPackage.setParserCommands(parserCommands);
 	}
 
 	private static void Command(String name) {
 		String body = "Line: " + lineCounter + "\t" + name + file.nextLine();
-		parserCommands.add(body);	
+		parserCommands.add(body);
 	}
 
 	private static void Label(String name) {
@@ -515,10 +518,8 @@ public class InstructionParser {
 	private static void JInstruction() {
 		// int jdst = file.next(); //THIS IS FOR REAL J INSTRUCTION, WE ARE
 		// USING J INSTRUCTION LIKE PSUEDO B INSTRUCTION
-		int jdst = getImmediateFromLabel(file.next()); // THIS IS FOR B PSEUDO
-														// INSTRUCTION, WE ARE
-														// USING J INSTRUCTION
-														// LIKE IT
+		int jdst = lineCounter + getImmediateFromLabel(file.next());
+		// THIS IS FOR B PSEUDO INSTRUCTION, WE ARE USING J INSTRUCTION LIKE IT
 		file.nextLine();
 		ilist.add((IInstruction) new JTypeInstruction(jdst, lineCounter));
 	}

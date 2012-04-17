@@ -10,7 +10,7 @@ import interfaces.ProcStatus;
 import java.util.List;
 import java.util.Map;
 
-public class MemoryAccess implements IMemoryAccess {
+public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 
 	private int bufferSize;
 	private int stallCycles; // stalls the MEM unit for the number of cycles

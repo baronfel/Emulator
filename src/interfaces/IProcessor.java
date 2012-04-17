@@ -20,4 +20,10 @@ public interface IProcessor extends IModel{
 	public ProcStatus getStatus();
 
 	IIssueUnit getIssue();
+
+	List<IALU> getALUs();
+
+	List<IMemoryAccess> getMemUnits();
+
+	IFetchUnit getFetchUnit();
 }

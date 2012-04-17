@@ -7,7 +7,7 @@ package interfaces;
 
 import java.util.List;
 
-public interface ICoreComponent{
+public interface ICoreComponent extends IModel{
 /**
  * Gets the status of the component.
  * @return The status of the component.

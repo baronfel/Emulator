@@ -102,4 +102,19 @@ public class Processor extends AbstractModel implements IProcessor {
 	public IIssueUnit getIssue() {
 		return issue;
 	}
+
+	@Override
+	public List<IALU> getALUs() {
+		return alus;
+	}
+
+	@Override
+	public List<IMemoryAccess> getMemUnits() {
+		return memories;
+	}
+
+	@Override
+	public IFetchUnit getFetchUnit() {
+		return fetch;
+	}
 }

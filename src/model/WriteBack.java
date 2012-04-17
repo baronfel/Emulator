@@ -9,7 +9,7 @@ import interfaces.ProcStatus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WriteBack implements IWriteBack {
+public class WriteBack extends AbstractModel implements IWriteBack {
 	private Registry registers;
 	private List<IALU> aluList;
 	private IMemoryAccess memUnit;

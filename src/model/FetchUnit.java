@@ -5,16 +5,15 @@
  */
 package model;
 
-import java.awt.Event;
-import java.util.ArrayList;
-import java.util.List;
-
 import interfaces.IFetchUnit;
 import interfaces.IInstruction;
 import interfaces.IIssueUnit;
 import interfaces.ProcStatus;
 
-public class FetchUnit implements IFetchUnit {
+import java.util.ArrayList;
+import java.util.List;
+
+public class FetchUnit extends AbstractModel implements IFetchUnit {
 
 	private List<IInstruction> ilist;
 	private int index;
@@ -66,25 +65,20 @@ public class FetchUnit implements IFetchUnit {
 		else
 
 			return ProcStatus.Active;
-
 	}
 
 	@Override
 	public void Cycle() {
 		FetchInstruction();
-
 	}
 
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
 		return new ArrayList<IInstruction>(ilist);
 	}
 
-
-	public int getPC(){
+	public int getPC() {
 		return index;
 	}
-
 
 }

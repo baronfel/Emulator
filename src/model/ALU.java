@@ -8,7 +8,7 @@ import interfaces.ProcStatus;
 import java.util.List;
 import java.util.Map;
 
-public class ALU implements IALU {
+public class ALU extends AbstractModel implements IALU{
 	private int bufferSize;
 	private int aluNumber; // which ALU within the core is it
 	private int stallCycles; // stalls the ALU for the number of cycles

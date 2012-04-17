@@ -3,10 +3,14 @@
  */
 package view;
 
+import interfaces.IALU;
+import interfaces.IMemoryAccess;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 
 import controller.ProcessorController;
 
@@ -30,9 +34,25 @@ public class ProcessorView {
 		procGroup.setLayout(layout);
 		procGroup.setText("Processor Status");
 		
+		Label nameHeader = new Label(procGroup, SWT.UNDERLINE_SINGLE);
+		nameHeader.setText("NAME");
+		Label statusHeader = new Label(procGroup, SWT.UNDERLINE_SINGLE);
+		statusHeader.setText("STATUS");
+		Label instrHeader = new Label(procGroup, SWT.UNDERLINE_SINGLE);
+		instrHeader.setText("CURRENT INSTRUCTION");
+		
 		// We'll create a table-type view for the processor.
 		// Component Name - Status - Current Instruction
+		new FetchView(procGroup, controller);
 		new IssueView(procGroup, controller);
-		
+		for(IALU alu : controller.getALUs())
+		{
+			new ALUView(procGroup, controller, alu.getALUNumber());
+		}
+		for(IMemoryAccess mem : controller.getMemUnits())
+		{
+			new MemView(procGroup, controller, mem.getMEMNumber());
+		}
+		new WriteBackView(procGroup, controller);
 	}
 }

@@ -19,7 +19,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @author Bob
  * 
  */
-public class Issue implements IIssueUnit {
+public class Issue extends AbstractModel implements IIssueUnit {
 	private List<IALU> alus;
 	private Registry registry;
 	private int buffSize = 4;
@@ -266,7 +266,6 @@ public class Issue implements IIssueUnit {
 	@Override
 	public void Cycle() {
 		IssueInstructions(PreIssueBuffer.poll());
-
 	}
 
 	@Override
@@ -274,7 +273,7 @@ public class Issue implements IIssueUnit {
 		// TODO Auto-generated method stub
 		if (numInPreIssue > 0)
 			return new ArrayList<IInstruction>(PreIssueBuffer);
-		return null;
+		return new ArrayList<IInstruction>();
 	}
 
 	public boolean addToPreIssue(IInstruction instruction) {

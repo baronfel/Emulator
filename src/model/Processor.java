@@ -38,6 +38,7 @@ public class Processor extends AbstractModel implements IProcessor {
 	{
 		alus = new ArrayList<IALU>(aluCount);
 		//memories = new ArrayList<IMemoryAccess>(memCount);  //This should probably also receive a memCount variable, so the processor knows how many mems it has
+		memories = new ArrayList<IMemoryAccess>(1);
 		for(int i = 0; i < aluCount; i++)
 		{
 			alus.add(new ALU(i, 1, opCycles));

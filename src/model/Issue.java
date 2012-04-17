@@ -39,6 +39,8 @@ public class Issue extends AbstractModel implements IIssueUnit {
 	 * to the ALU or MEM.
 	 */
 	public void IssueInstructions(IInstruction instruction) {
+		if(instruction == null)
+			return;
 		int op1 = 0;
 		int op2 = 0;
 		int dst = 0;

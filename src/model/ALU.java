@@ -260,7 +260,7 @@ public class ALU extends AbstractModel implements IALU{
 				preALUBuffer[i].op1Value = op1;
 				preALUBuffer[i].op2Value = op2;
 				preALUBuffer[i].destinationRegister = dest;
-				preALUBuffer[i].numCycles = cycleCountByOpname.get(opName);
+				preALUBuffer[i].numCycles = cycleCountByOpname.get(opName.toLowerCase());
 				return 0;
 			}
 		}

@@ -16,9 +16,6 @@ public class MemoryAccess implements IMemoryAccess {
 	private int stallCycles; // stalls the MEM unit for the number of cycles
 								// specified
 	private int cyclesProcessed; // for testing purposes
-	// private boolean isPreBuffFull;
-	// private int currentInstrIndex; //holds the index in the preMEMBuffer of
-	// the current instruction
 	private PreMEMBufferEntry[] preMEMBuffer;
 	private PostMEMBufferEntry postMEMBuffer;
 	private PreMEMBufferEntry currentInstruction;
@@ -34,8 +31,6 @@ public class MemoryAccess implements IMemoryAccess {
 		stallCycles = 0;
 		bufferSize = buffSize;
 		memList = mem;
-		// isPreBuffFull = false;
-		// currentInstrIndex = 0;
 		preMEMBuffer = new PreMEMBufferEntry[bufferSize];
 		for (int i = 0; i < bufferSize; i++) {
 			preMEMBuffer[i] = new PreMEMBufferEntry();
@@ -72,7 +67,6 @@ public class MemoryAccess implements IMemoryAccess {
 
 		if (stallCycles == 0) {
 			// go ahead and process the instruction
-			// String tmpStr = currentInstruction.opName;
 
 			switch (currentInstruction.opName) {
 			case "lw":

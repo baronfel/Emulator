@@ -32,11 +32,11 @@ public class WriteBackTest {
 
 		when(memory.getPostMEMSequenceNum(false)).thenReturn(-1);
 		IALU fake1 = mock(IALU.class);
-		when(fake1.getPostALUDestReg()).thenReturn(2);
+		when(fake1.getPostALUDestReg(true)).thenReturn(2);
 		when(fake1.getPostALUOpResult()).thenReturn(222);
 		when(fake1.getPostALUSequenceNum(anyBoolean())).thenReturn(100);
 		IALU fake2 = mock(IALU.class);
-		when(fake2.getPostALUDestReg()).thenReturn(3);
+		when(fake2.getPostALUDestReg(true)).thenReturn(3);
 		when(fake2.getPostALUOpResult()).thenReturn(333);
 		when(fake2.getPostALUSequenceNum(anyBoolean())).thenReturn(101);
 		alus.add(fake1);

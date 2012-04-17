@@ -28,20 +28,16 @@ public class WriteBack implements IWriteBack {
 
 			if (alu.getPostALUSequenceNum(false) >= 0) {
 				progSeqNum = alu.getPostALUSequenceNum(true);
-				registers.setRegister(alu.getPostALUDestReg(),
-						(int) alu.getPostALUOpResult());
-
-				// TODO add issue unit notification with progSeqNum
+				registers.setRegister(alu.getPostALUDestReg(true), alu.getPostALUOpResult());
+				if (alu.getPostALUDestReg2(false) >= 0)
+					registers.setRegister(alu.getPostALUDestReg2(true), alu.getPostALUOpResult2());
 			}
 		}
 
 		// check the MEM unit for completed instructions
 		if (memUnit.getPostMEMSequenceNum(false) >= 0) {
 			progSeqNum = memUnit.getPostMEMSequenceNum(true);
-			registers.setRegister(memUnit.getPostMEMDestReg(),
-					(int) memUnit.getPostMEMOpResult());
-
-			// TODO add issue unit notification with progSeqNum
+			registers.setRegister(memUnit.getPostMEMDestReg(), memUnit.getPostMEMOpResult());
 		}
 	}
 

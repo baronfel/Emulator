@@ -94,4 +94,9 @@ public class Processor extends AbstractModel implements IProcessor {
 
 		return myStatus;
 	}
+
+	@Override
+	public IIssueUnit getIssue() {
+		return issue;
+	}
 }

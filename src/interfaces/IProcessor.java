@@ -18,4 +18,6 @@ public interface IProcessor extends IModel{
 	public void Cycle();
 	
 	public ProcStatus getStatus();
+
+	IIssueUnit getIssue();
 }

@@ -9,10 +9,10 @@ main:
 			syscall
 			la $t0, input_string
 loop:
-			lb $t1, ($t0)
+			lb $t1, 0($t0)
 			beqz $t1, exit_loop		
 			addi $t1, $t1, 2   		
-       			sb $t1, ($t0)
+       		sb $t1, 0($t0)
 no_change:
 			addiu $t0, $t0, 1		
 			j loop
@@ -23,10 +23,10 @@ exit_loop:
 
 			la $t2, input_string
 loop2:
-			lb $t3, ($t2)
+			lb $t3, 0($t2)
 			beqz $t3, exit_loop2
 			subi $t3, $t3, 2
-			sb $t3, ($t2)
+			sb $t3, 0($t2)
 no_change2:
 			addiu $t2, $t2, 1
 			j loop2

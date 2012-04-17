@@ -10,6 +10,8 @@ import interfaces.IInstruction;
 import interfaces.IIssueUnit;
 import interfaces.IMemoryAccess;
 import interfaces.ProcStatus;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -25,8 +27,8 @@ public class Issue implements IIssueUnit {
 			buffSize);
 	private int numInPreIssue = 0;
 	private List<IMemoryAccess> mems;
-	
-	public Issue(List<IALU> alus, List<IMemoryAccess>  mems, Registry registry) {
+
+	public Issue(List<IALU> alus, List<IMemoryAccess> mems, Registry registry) {
 		this.alus = alus;
 		this.registry = registry;
 		this.mems = mems;
@@ -45,7 +47,8 @@ public class Issue implements IIssueUnit {
 		switch (instruction.getOpcode().toLowerCase()) {
 		case "lw":
 			val = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
+			dst = registry.getValue(instruction.getRD())
+					+ instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
 					instruction.getSeqNum(), val, dst, 1);
 			break;
@@ -79,27 +82,38 @@ public class Issue implements IIssueUnit {
 			break;
 		case "sw":
 			reg = instruction.getRS();
-			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
+			dst = registry.getValue(instruction.getRD())
+					+ instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
 					instruction.getSeqNum(), reg, dst, 1);
 			break;
 		case "lb":
 			val = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
+			dst = registry.getValue(instruction.getRD())
+					+ instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
 					instruction.getSeqNum(), val, dst, 1);
 			break;
 		case "la":
-//			NOT SURE IF HERE OR WRITE BACK
-			registry.setRegister(instruction.getRD(), instruction.getImmediate());
+			// NOT SURE IF HERE OR WRITE BACK
+			// registry.setRegister(instruction.getRD(),
+			// instruction.getImmediate());
+			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
+					instruction.getSeqNum(), instruction.getImmediate(), 0,
+					instruction.getRD());
 			break;
 		case "li":
-//			NOT SURE IF HERE OR WRITE BACK
-			registry.setRegister(instruction.getRD(), instruction.getImmediate());
+			// NOT SURE IF HERE OR WRITE BACK
+			// registry.setRegister(instruction.getRD(),
+			// instruction.getImmediate());
+			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
+					instruction.getSeqNum(), instruction.getImmediate(), 0,
+					instruction.getRD());
 			break;
 		case "sb":
 			reg = instruction.getRS();
-			dst = registry.getValue(instruction.getRD()) + instruction.getImmediate();
+			dst = registry.getValue(instruction.getRD())
+					+ instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
 					instruction.getSeqNum(), reg, dst, 1);
 			break;
@@ -211,44 +225,42 @@ public class Issue implements IIssueUnit {
 	}
 
 	public IMemoryAccess GetFirstAvailableMEM() {
-		for(int i = 0; i < mems.size(); i++)
+		for (int i = 0; i < mems.size(); i++)
 
-			if(mems.get(i).GetStatus() == ProcStatus.Inactive)
+			if (mems.get(i).GetStatus() == ProcStatus.Inactive)
 				return mems.get(i);
 		int PreMEMQueueSize = Integer.MAX_VALUE;
 		IMemoryAccess memToUse = mems.get(0);
 		for (int i = 1; i < mems.size(); i++) {
-			if (( mems.get(i)).getAmountInPreMEM() < PreMEMQueueSize) {
-				PreMEMQueueSize = (int) ( mems.get(i)).getAmountInPreMEM();
-				memToUse =  mems.get(i);
+			if ((mems.get(i)).getAmountInPreMEM() < PreMEMQueueSize) {
+				PreMEMQueueSize = (int) (mems.get(i)).getAmountInPreMEM();
+				memToUse = mems.get(i);
 			}
-
 		}
 		return memToUse;
 	}
 
 	public IALU GetFirstAvailableALU() {
-		for(int i = 0; i < alus.size(); i++)
-			if(alus.get(i).GetStatus() == ProcStatus.Inactive)
+		for (int i = 0; i < alus.size(); i++)
+			if (alus.get(i).GetStatus() == ProcStatus.Inactive)
 				return alus.get(i);
 		IALU aluToUse = alus.get(0);
 		int PreALUQueueSize = alus.get(0).getAmountInPreALU();
 		for (int i = 1; i < alus.size(); i++) {
-			if (( alus.get(i)).getAmountInPreALU() < PreALUQueueSize) {
-				PreALUQueueSize = (int) ( alus.get(i)).getAmountInPreALU();
-				aluToUse =  alus.get(i);
+			if ((alus.get(i)).getAmountInPreALU() < PreALUQueueSize) {
+				PreALUQueueSize = (int) (alus.get(i)).getAmountInPreALU();
+				aluToUse = alus.get(i);
 			}
-
 		}
 		return aluToUse;
 	}
+
 	@Override
 	public ProcStatus GetStatus() {
-		if(PreIssueBuffer.isEmpty())
-		{
+		if (PreIssueBuffer.isEmpty()) {
 			return ProcStatus.Inactive;
-		}
-		else return ProcStatus.Active;
+		} else
+			return ProcStatus.Active;
 	}
 
 	@Override
@@ -260,19 +272,20 @@ public class Issue implements IIssueUnit {
 	@Override
 	public List<IInstruction> CurrentInstructions() {
 		// TODO Auto-generated method stub
+		if (numInPreIssue > 0)
+			return new ArrayList<IInstruction>(PreIssueBuffer);
 		return null;
 	}
 
 	public boolean addToPreIssue(IInstruction instruction) {
-		if (PreIssueBuffer.offer(instruction))
-		{
+		if (PreIssueBuffer.offer(instruction)) {
 			numInPreIssue++;
 			return true;
 		}
 		return false;
 	}
-	
-	public int getNumInPreIssue(){
+
+	public int getNumInPreIssue() {
 		return numInPreIssue;
 	}
 

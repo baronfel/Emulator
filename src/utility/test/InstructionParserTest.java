@@ -25,6 +25,7 @@ import utility.Package;
 public class InstructionParserTest {
 	private static ArrayList<IInstruction> ilist = new ArrayList<IInstruction>();
 	private static ArrayList<String> invalidlist = new ArrayList<String>();
+	private static ArrayList<String> commandlist = new ArrayList<String>();
 	private static Package pckg;
 	private static ArrayList<Label> labellist;
 
@@ -86,6 +87,11 @@ public class InstructionParserTest {
 		assertEquals(ilist.get(1).getImmediate(), 9);
 		assertEquals(ilist.get(4).getImmediate(), 6);
 		assertTrue(labellist.get(0).getName().equals("LBL1"));
+	}
+	
+	@Test
+	public void CommandTest(){
+		assertTrue(commandlist.get(0).equals("Line: 34\t.data"));
 	}
 
 }

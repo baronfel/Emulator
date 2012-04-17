@@ -26,10 +26,11 @@ public class InstructionParser {
 	private static int lineCounter = 0;
 	static List<String> invalidlist = new ArrayList<String>();
 	static List<Label> labellist = new ArrayList<Label>();
+	static List<String> parserCommands = new ArrayList<String>();
 	static boolean invalidFlag = false; // Used to determine if an invalid
 										// instruction exception should be
 										// thrown NOT CURRENTLY IN USE
-	static Package twolist = new Package();
+	static Package listPackage = new Package();
 
 	/**
 	 * Reads from the indicated location a set of MIPS instructions in the MIPS
@@ -41,13 +42,13 @@ public class InstructionParser {
 	 * @return A list of instructions that the simulation can use.
 	 */
 	public static Package LoadInstructions(String aInfilePath) {
-		LoadLabels(aInfilePath);
+		LoadLabelsAndCommands(aInfilePath);
 		try {
 			file = new Scanner(new File(aInfilePath));
 			file.useDelimiter("[, ()\\r\\n\\t]+");
 		} catch (FileNotFoundException e) {
-			twolist.setIlist(ilist);
-			return twolist;
+			listPackage.setIlist(ilist);
+			return listPackage;
 		}
 		lineCounter = 1;
 		invalidFlag = false;
@@ -159,9 +160,9 @@ public class InstructionParser {
 			lineCounter++;
 
 		}
-		twolist.setIlist(ilist);
-		twolist.setInvalidlist(invalidlist);
-		return twolist;
+		listPackage.setIlist(ilist);
+		listPackage.setInvalidlist(invalidlist);
+		return listPackage;
 		/**
 		 * The code to use invalid flag to determine how to throw an invalid
 		 * instruction exception would go just above here.
@@ -251,12 +252,12 @@ public class InstructionParser {
 				lineCounter, label));
 	}
 
-	private static void LoadLabels(String aInfilePath) {
+	private static void LoadLabelsAndCommands(String aInfilePath) {
 		try {
 			file = new Scanner(new File(aInfilePath));
 			file.useDelimiter("[, ()\\r\\n\\t]+");
 		} catch (FileNotFoundException e) {
-			twolist.setIlist(ilist);
+			listPackage.setIlist(ilist);
 			return;
 		}
 		lineCounter = 1;
@@ -264,12 +265,19 @@ public class InstructionParser {
 			String name = file.nextLine();
 			if (name.equals(""))
 				;
+			else if(name.charAt(0) == '.')
+				Command(name);
 			else if (name.charAt(name.length() - 1) == ':')
 				Label(name);
 			lineCounter++;
 		}
 		file = null;
-		twolist.setLabellist(labellist);
+		listPackage.setLabellist(labellist);
+	}
+
+	private static void Command(String name) {
+		String body = "Line: " + lineCounter + "\t" + name + file.nextLine();
+		parserCommands.add(body);	
 	}
 
 	private static void Label(String name) {

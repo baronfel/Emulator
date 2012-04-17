@@ -17,6 +17,7 @@ import model.Label;
 public class Package {
 	private List<IInstruction> ilist = new ArrayList<IInstruction>();
 	private List<String> invalidlist = new ArrayList<String>();
+	private List<String> parserCommands = new ArrayList<String>();
 	private List<Label> labellist = new ArrayList<Label>();
 	public List<IInstruction> getIlist() {
 		return ilist;
@@ -35,6 +36,12 @@ public class Package {
 	}
 	public void setLabellist(List<Label> labellist) {
 		this.labellist = labellist;
+	}
+	public List<String> getParserCommands() {
+		return parserCommands;
+	}
+	public void setParserCommands(List<String> parserCommands) {
+		this.parserCommands = parserCommands;
 	}
 
 }

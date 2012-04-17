@@ -31,3 +31,4 @@ BEQZ $r16, LBL1
 ANDI $r3, $r5, 177
 ADDIU $r17, $r18, 87987
 ORI $r9, $r8, 14
+.data

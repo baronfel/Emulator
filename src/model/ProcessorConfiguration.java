@@ -72,6 +72,14 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 		_cyclesRequiredByOpcode.put("sltiu", 1);
 		_cyclesRequiredByOpcode.put("jmp", 1);
 		_cyclesRequiredByOpcode.put("jmpr", 1);
+		_cyclesRequiredByOpcode.put("la", 1);
+		_cyclesRequiredByOpcode.put("li", 1);
+		_cyclesRequiredByOpcode.put("lb", 1);
+		_cyclesRequiredByOpcode.put("sb", 1);
+		_cyclesRequiredByOpcode.put("andi", 1);
+		_cyclesRequiredByOpcode.put("ori", 1);
+		_cyclesRequiredByOpcode.put("addiu", 1);
+		_cyclesRequiredByOpcode.put("beqz", 1);
 	}
 
 	/* Getters/Setters */

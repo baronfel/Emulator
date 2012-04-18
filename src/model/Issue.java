@@ -43,7 +43,7 @@ public class Issue extends AbstractModel implements IIssueUnit {
 			return;
 		if (!registry.isRegisterInUse(instruction.getRS())
 				|| !registry.isRegisterInUse(instruction.getRD())) {
-			if (instruction.getType().equals(InstructionType.R))
+			if (instruction.getType() == InstructionType.R)
 				if (!registry.isRegisterInUse(instruction.getRT())) {
 					int op1 = 0;
 					int op2 = 0;

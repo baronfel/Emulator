@@ -54,6 +54,17 @@ public class Registry extends AbstractModel {
 		registers.get(regNumber).setValue(value);
 	}
 	
+	/**
+	 * Tells weather the specified register is in use
+	 * @param registerNumber The number of the register to check
+	 */
+	public boolean isRegisterInUse(int registerNumber)
+	{
+		if(registerNumber == 0)
+			return false;
+		return registers.get(registerNumber).isInUse();
+	}
+	
 	public void addListener(int registerToWatch, IModelListener listener)
 	{
 

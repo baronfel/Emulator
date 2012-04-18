@@ -30,31 +30,44 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 
 	public void FetchInstruction() {
 		IInstruction instruction = ilist.get(index);
-		index++;
 		switch (instruction.getOpcode().toLowerCase()) {
 		case "jr":
-			index = registry.getValue(instruction.getRS());
+			if (!registry.isRegisterInUse(instruction.getRS()))
+				index = registry.getValue(instruction.getRS());
 			break;
 		case "bne":
-			if (registry.getValue(instruction.getRD()) != registry
-					.getValue(instruction.getRS()))
-				index = instruction.getImmediate();
+			if (!registry.isRegisterInUse(instruction.getRS())
+					|| !registry.isRegisterInUse(instruction.getRD()))
+				if (registry.getValue(instruction.getRD()) != registry
+						.getValue(instruction.getRS()))
+					index = instruction.getImmediate();
+				else
+					index++;
 			break;
 		case "j":
 			index = instruction.getJumpdest();
 			break;
 		case "beq":
-			if (registry.getValue(instruction.getRD()) == registry
-					.getValue(instruction.getRS()))
-				index = instruction.getImmediate();
+			if (!registry.isRegisterInUse(instruction.getRS())
+					|| !registry.isRegisterInUse(instruction.getRD()))
+				if (registry.getValue(instruction.getRD()) == registry
+						.getValue(instruction.getRS()))
+					index = instruction.getImmediate();
+				else
+					index++;
 			break;
 		case "beqz":
-			if (registry.getValue(instruction.getRS()) == 0)
-				index = instruction.getImmediate();
+			if (!registry.isRegisterInUse(instruction.getRS()))
+				if (registry.getValue(instruction.getRS()) == 0)
+					index = instruction.getImmediate();
+				else
+					index++;
+			break;
 		default:
+			issue.addToPreIssue(instruction);
+			index++;
 			break;
 		}
-		issue.addToPreIssue(instruction);
 
 	}
 

@@ -12,6 +12,7 @@ import interfaces.ProcStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FetchUnit extends AbstractModel implements IFetchUnit {
 
@@ -68,7 +69,10 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 			index++;
 			break;
 		}
-
+		if(GetStatus() == ProcStatus.Active)
+		{
+			notifyChanged(new ModelEvent(this, new Random().nextInt(), "Fetch changed!", 0));
+		}
 	}
 
 	@Override

@@ -59,6 +59,9 @@ public class Simulation extends AbstractController {
 				_instructionList);
 	}
 
+	public Memory getMemory(){
+		return _processor.getMemory();
+	}
 	public Registry getRegistry() {
 		return _processor.getRegistry();
 	}

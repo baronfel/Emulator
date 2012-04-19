@@ -55,6 +55,12 @@ public class Processor extends AbstractModel implements IProcessor {
 	}
 
 	@Override
+	public Memory getMemory()
+	{
+		return memoryBanks;
+	}
+	
+	@Override
 	public Registry getRegistry() {
 		return registers;
 	}

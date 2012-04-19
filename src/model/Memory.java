@@ -23,6 +23,25 @@ public class Memory {
 			_memory.add(tmp);
 		}
 	}
+	
+	public Memory(int cap, String Input)
+	{
+		this(cap);
+		char[] input = Input.toCharArray();
+		for(int i = 0; i < Input.length(); i++)
+		{
+			setValueAt(i, (int) input[i]);
+		}
+	}
+	
+	public void setMemoryToString(String Input)
+	{
+		char[] input = Input.toCharArray();
+		for(int i = 0; i < Input.length(); i++)
+		{
+			setValueAt(i, (int) input[i]);
+		}
+	}
 
 	public int getValueAt(int location)
 	{

@@ -8,6 +8,7 @@ package interfaces;
 import java.util.List;
 import java.util.ArrayList;
 
+import model.Memory;
 import model.Registry;
 
 public interface IProcessor extends IModel{
@@ -26,4 +27,6 @@ public interface IProcessor extends IModel{
 	List<IMemoryAccess> getMemUnits();
 
 	IFetchUnit getFetchUnit();
+
+	Memory getMemory();
 }

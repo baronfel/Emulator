@@ -7,6 +7,9 @@ import interfaces.ProcStatus;
 //import java.awt.Event;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
+import org.eclipse.swt.internal.win32.NOTIFYICONDATA;
 
 public class ALU extends AbstractModel implements IALU{
 	private int bufferSize;
@@ -134,6 +137,7 @@ public class ALU extends AbstractModel implements IALU{
 
 			// clear the current instruction
 			currentInstruction = new PreALUBufferEntry();
+			notifyChanged(new ModelEvent(this, new Random().nextInt(), "ALU performed an operation", 0));
 
 		} else {
 			// just decrement the stallCycles and wait for the next clock cycle

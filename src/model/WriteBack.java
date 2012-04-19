@@ -8,6 +8,7 @@ import interfaces.ProcStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WriteBack extends AbstractModel implements IWriteBack {
 	private Registry registers;
@@ -39,6 +40,7 @@ public class WriteBack extends AbstractModel implements IWriteBack {
 			progSeqNum = memUnit.getPostMEMSequenceNum(true);
 			registers.setRegister(memUnit.getPostMEMDestReg(), memUnit.getPostMEMOpResult());
 		}
+		notifyChanged(new ModelEvent(this, new Random().nextInt(), "Writeback issued things!", 0));
 	}
 
 	/*

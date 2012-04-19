@@ -9,6 +9,7 @@ import interfaces.ProcStatus;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 
@@ -95,6 +96,7 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 
 			// clear the current instruction
 			currentInstruction = new PreMEMBufferEntry();
+			notifyChanged(new ModelEvent(this, new Random().nextInt(), "MEM did something!", 0));
 
 		} else {
 			// just decrement the stallCycles and wait for the next clock cycle

@@ -13,6 +13,7 @@ import interfaces.ProcStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
@@ -228,6 +229,7 @@ public class Issue extends AbstractModel implements IIssueUnit {
 		}
 		PreIssueBuffer.poll();
 		numInPreIssue--;
+		notifyChanged(new ModelEvent(this, new Random().nextInt(), "Issued an instruction", 0));
 		// GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 		// instruction.getSeqNum(), op1, op2, dst);
 	}

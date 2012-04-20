@@ -29,6 +29,8 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 	}
 
 	public void FetchInstruction() {
+		if(index == ilist.size())
+			return;
 		IInstruction instruction = ilist.get(index);
 		switch (instruction.getOpcode().toLowerCase()) {
 		case "jr":

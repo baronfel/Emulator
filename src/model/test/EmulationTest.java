@@ -43,6 +43,13 @@ public class EmulationTest {
 	public void FullTest() {
 		emu.cycleToEnd();
 		printMemory();
+		char[] output = new char[16];
+		for(int i = 0; i < 16; i++)
+		{
+			output[i] = (char) mem.getValueAt(i);
+		}
+		String outPut = new String(output);
+		assertEquals(outPut, "James is awesome");
 	}
 
 }

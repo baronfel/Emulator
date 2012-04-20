@@ -80,25 +80,25 @@ public class Processor extends AbstractModel implements IProcessor {
 
 	@Override
 	public ProcStatus getStatus() {
-		ProcStatus myStatus = ProcStatus.Active;
-		if (issue.GetStatus() == ProcStatus.Inactive) {
-			myStatus = ProcStatus.Inactive;
+		ProcStatus myStatus = ProcStatus.Inactive;
+		if (issue.GetStatus() == ProcStatus.Active) {
+			myStatus = ProcStatus.Active;
 		}
-		if (fetch.GetStatus() == ProcStatus.Inactive) {
-			myStatus = ProcStatus.Inactive;
+		if (fetch.GetStatus() == ProcStatus.Active) {
+			myStatus = ProcStatus.Active;
 		}
 		for (IMemoryAccess mem : memories) {
-			if (mem.GetStatus() == ProcStatus.Inactive) {
-				myStatus = ProcStatus.Inactive;
+			if (mem.GetStatus() == ProcStatus.Active) {
+				myStatus = ProcStatus.Active;
 			}
 		}
 		for (IALU alu : alus) {
-			if (alu.GetStatus() == ProcStatus.Inactive) {
-				myStatus = ProcStatus.Inactive;
+			if (alu.GetStatus() == ProcStatus.Active) {
+				myStatus = ProcStatus.Active;
 			}
 		}
-		if (writeBack.GetStatus() == ProcStatus.Inactive) {
-			myStatus = ProcStatus.Inactive;
+		if (writeBack.GetStatus() == ProcStatus.Active) {
+			myStatus = ProcStatus.Active;
 		}
 
 		return myStatus;

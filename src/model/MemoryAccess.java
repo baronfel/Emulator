@@ -22,7 +22,6 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 	private Memory memList;
 	private Map<String, Integer> cycleCountByOpname;
 
-
 	/**
 	 * Class constructor takes the processor memory and the pre-MEM buffer size
 	 * as parameters
@@ -297,8 +296,9 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 	 */
 	@Override
 	public ProcStatus GetStatus() {
-		if (preMEMBuffer.length == 0 && postMEMBuffer == null
-				&& currentInstruction == null) {
+		// if (preMEMBuffer.length == 0 && postMEMBuffer == null
+		// && currentInstruction == null) {
+		if (getAmountInPreMEM() == 0) {
 			return ProcStatus.Inactive;
 		} else
 			return ProcStatus.Active;
@@ -347,7 +347,6 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 
 	}
 
-
 	@Override
 	public int addToPreMEM(String opName, int seq, int rs, int rt, int cycles) {
 		// TODO Auto-generated method stub
@@ -357,7 +356,12 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 	@Override
 	public int getAmountInPreMEM() {
 		// TODO Auto-generated method stub
-		return 0;
+		int count = 0;
+		for (int i = 0; i < preMEMBuffer.length; i++) {
+			if (!(preMEMBuffer[i].opName == ""))
+				count++;
+		}
+		return count;
 	}
 
 	@Override

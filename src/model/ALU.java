@@ -8,7 +8,7 @@ import interfaces.ProcStatus;
 import java.util.List;
 import java.util.Map;
 
-public class ALU extends AbstractModel implements IALU{
+public class ALU extends AbstractModel implements IALU {
 	private int bufferSize;
 	private int aluNumber; // which ALU within the core is it
 	private int stallCycles; // stalls the ALU for the number of cycles
@@ -70,7 +70,7 @@ public class ALU extends AbstractModel implements IALU{
 
 		if (stallCycles == 0) {
 			// go ahead and process the instruction
-			int[] operationResult = {0,0};
+			int[] operationResult = { 0, 0 };
 
 			switch (currentInstruction.opName) {
 			case "mul":
@@ -148,12 +148,12 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform an slt operation
 	 */
 	private int[] slt() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		if (currentInstruction.op1Value < currentInstruction.op2Value)
 			ret[0] = 1;
 		else
 			ret[0] = 0;
-		
+
 		return (ret);
 	}
 
@@ -161,7 +161,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform a nor operation
 	 */
 	private int[] nor() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = ~(currentInstruction.op1Value | currentInstruction.op2Value);
 		return (ret);
 	}
@@ -170,7 +170,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform an or operation
 	 */
 	private int[] or() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = currentInstruction.op1Value | currentInstruction.op2Value;
 		return (ret);
 	}
@@ -179,7 +179,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform an and operation
 	 */
 	private int[] and() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = currentInstruction.op1Value & currentInstruction.op2Value;
 		return (ret);
 	}
@@ -188,7 +188,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform a shift right logical operation
 	 */
 	private int[] srl() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = currentInstruction.op1Value >> currentInstruction.op2Value;
 		return (ret);
 	}
@@ -197,7 +197,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform a shift left logical operation
 	 */
 	private int[] sll() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = currentInstruction.op1Value << currentInstruction.op2Value;
 		return (ret);
 	}
@@ -206,7 +206,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform an addition operation
 	 */
 	private int[] add() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = currentInstruction.op1Value + currentInstruction.op2Value;
 		return (ret);
 	}
@@ -215,7 +215,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform a subtraction operation
 	 */
 	private int[] sub() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = currentInstruction.op1Value - currentInstruction.op2Value;
 		return (ret);
 	}
@@ -224,16 +224,18 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform a division operation
 	 */
 	private int[] div() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		if (currentInstruction.op2Value == 0) {
 			// return an error code?
 		} else {
 			ret[0] = (int) (currentInstruction.op1Value / currentInstruction.op2Value);
 			ret[1] = (currentInstruction.op1Value % currentInstruction.op2Value);
 		}
-		currentInstruction.destinationRegister = 33;	//Lo register for the quotient
-		currentInstruction.destinationRegister2 = 32;	//Hi register for the remainder
-		
+		currentInstruction.destinationRegister = 33; // Lo register for the
+														// quotient
+		currentInstruction.destinationRegister2 = 32; // Hi register for the
+														// remainder
+
 		return (ret);
 	}
 
@@ -241,7 +243,7 @@ public class ALU extends AbstractModel implements IALU{
 	 * Method to perform a multiplication operation
 	 */
 	private int[] mult() {
-		int[] ret = {0,0};
+		int[] ret = { 0, 0 };
 		ret[0] = currentInstruction.op1Value * currentInstruction.op2Value;
 		return (ret);
 	}
@@ -260,7 +262,8 @@ public class ALU extends AbstractModel implements IALU{
 				preALUBuffer[i].op1Value = op1;
 				preALUBuffer[i].op2Value = op2;
 				preALUBuffer[i].destinationRegister = dest;
-				preALUBuffer[i].numCycles = cycleCountByOpname.get(opName.toLowerCase());
+				preALUBuffer[i].numCycles = cycleCountByOpname.get(opName
+						.toLowerCase());
 				return 0;
 			}
 		}
@@ -302,8 +305,8 @@ public class ALU extends AbstractModel implements IALU{
 			postALUBuffer.progSequenceNumber = currentInstruction.progSequenceNumber;
 			postALUBuffer.destinationRegister = currentInstruction.destinationRegister;
 			postALUBuffer.destinationRegister2 = currentInstruction.destinationRegister2;
-			postALUBuffer.opResult = result[0];		//goes to destRegister
-			postALUBuffer.opResult2 = result[1];	//goes to destRegister2
+			postALUBuffer.opResult = result[0]; // goes to destRegister
+			postALUBuffer.opResult2 = result[1]; // goes to destRegister2
 			return 0;
 		} else {
 			return -1;
@@ -340,10 +343,11 @@ public class ALU extends AbstractModel implements IALU{
 
 		return tmpDestReg;
 	}
-	
+
 	/**
-	 * Method to get the 2nd destination register number from the post-ALU buffer.
-	 * Stores the "Hi" (remainder) value of a div instruction. Will be used by the Writeback unit.
+	 * Method to get the 2nd destination register number from the post-ALU
+	 * buffer. Stores the "Hi" (remainder) value of a div instruction. Will be
+	 * used by the Writeback unit.
 	 */
 	public int getPostALUDestReg2(boolean clear) {
 		int tmpDestReg = postALUBuffer.destinationRegister2;
@@ -370,7 +374,7 @@ public class ALU extends AbstractModel implements IALU{
 	public int getPostALUOpResult2() {
 		return postALUBuffer.opResult2;
 	}
-	
+
 	/**
 	 * Method to get the ALU number. Used only for class testing.
 	 */
@@ -466,10 +470,12 @@ public class ALU extends AbstractModel implements IALU{
 	 */
 	private class PostALUBufferEntry {
 		private int progSequenceNumber;
-		private int destinationRegister; // register number to store the result (Lo for div quotient)
-		private int destinationRegister2; // register of Hi register (for div instruction remainder)
+		private int destinationRegister; // register number to store the result
+											// (Lo for div quotient)
+		private int destinationRegister2; // register of Hi register (for div
+											// instruction remainder)
 		private int opResult;
-		private int opResult2;         //for the remainder in a div instruction
+		private int opResult2; // for the remainder in a div instruction
 
 		private PostALUBufferEntry() {
 			progSequenceNumber = -1;
@@ -482,8 +488,9 @@ public class ALU extends AbstractModel implements IALU{
 
 	@Override
 	public ProcStatus GetStatus() {
-		if (preALUBuffer.length == 0 && postALUBuffer == null
-				&& currentInstruction == null) {
+		// if (preALUBuffer.length == 0 && postALUBuffer == null
+		// && currentInstruction == null) {
+		if (getAmountInPreALU() == 0) {
 			return ProcStatus.Inactive;
 		} else {
 			return ProcStatus.Active;

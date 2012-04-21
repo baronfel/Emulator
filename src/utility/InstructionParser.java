@@ -42,6 +42,12 @@ public class InstructionParser {
 	 * @return A list of instructions that the simulation can use.
 	 */
 	public static Package LoadInstructions(String aInfilePath) {
+		listPackage = new Package();
+		ilist = new ArrayList<IInstruction>();
+		invalidlist = new ArrayList<String>();
+		labellist = new ArrayList<Label>();
+		parserCommands = new ArrayList<String>();
+
 		LoadLabelsAndCommands(aInfilePath);
 		try {
 			file = new Scanner(new File(aInfilePath));

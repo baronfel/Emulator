@@ -12,10 +12,11 @@ import java.util.List;
 public class WriteBack extends AbstractModel implements IWriteBack {
 	private Registry registers;
 	private List<IALU> aluList;
-	private IMemoryAccess memUnit;
+	private List<IMemoryAccess> memUnits;
 
-	public WriteBack(IMemoryAccess memAccess, List<IALU> alus, Registry regs) {
-		memUnit = memAccess;
+	public WriteBack(List<IMemoryAccess> memories, List<IALU> alus,
+			Registry regs) {
+		memUnits = memories;
 		aluList = alus;
 		registers = regs;
 	}
@@ -28,19 +29,39 @@ public class WriteBack extends AbstractModel implements IWriteBack {
 
 			if (alu.getPostALUSequenceNum(false) >= 0) {
 				progSeqNum = alu.getPostALUSequenceNum(true);
-				registers.setRegister(alu.getPostALUDestReg(true), alu.getPostALUOpResult());
+				int dstReg = alu.getPostALUDestReg(true);
+				registers.setRegister(dstReg,
+						alu.getPostALUOpResult());
 				if (alu.getPostALUDestReg2(false) >= 0)
-					registers.setRegister(alu.getPostALUDestReg2(true), alu.getPostALUOpResult2());
+					registers.setRegister(alu.getPostALUDestReg2(true),
+							alu.getPostALUOpResult2());
+				registers.setRegisterToNotInUse(dstReg);
 			}
 		}
 
 		// check the MEM unit for completed instructions
-		if (memUnit.getPostMEMSequenceNum(false) >= 0) {
-			progSeqNum = memUnit.getPostMEMSequenceNum(true);
-			registers.setRegister(memUnit.getPostMEMDestReg(), memUnit.getPostMEMOpResult());
+		for (IMemoryAccess mem : memUnits) {
+
+			if (mem.getPostMEMSequenceNum(false) >= 0) {
+				progSeqNum = mem.getPostMEMSequenceNum(true);
+				int dstReg = mem.getPostMEMDestReg();
+				registers.setRegister(dstReg,
+						mem.getPostMEMOpResult());
+				if (mem.getPostMEMDestReg2(false) >= 0)
+					registers.setRegister(mem.getPostMEMDestReg2(true),
+							mem.getPostMEMOpResult());
+				registers.setRegisterToNotInUse(dstReg);
+			}
 		}
 	}
 
+	/*
+	 * //RELIC FROM WHEN WE ONLY HAD ONE MEM if
+	 * (memUnit.getPostMEMSequenceNum(false) >= 0) { progSeqNum =
+	 * memUnit.getPostMEMSequenceNum(true);
+	 * registers.setRegister(memUnit.getPostMEMDestReg(),
+	 * memUnit.getPostMEMOpResult()); } }
+	 */
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -55,8 +76,10 @@ public class WriteBack extends AbstractModel implements IWriteBack {
 			}
 		}
 
-		if (memUnit.GetStatus() == ProcStatus.Active) {
-			status = ProcStatus.Active;
+		for (IMemoryAccess mem : memUnits) {
+			if (mem.GetStatus() == ProcStatus.Active) {
+				status = ProcStatus.Active;
+			}
 		}
 		return status;
 	}

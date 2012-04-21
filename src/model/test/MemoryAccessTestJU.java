@@ -33,7 +33,7 @@ public class MemoryAccessTestJU {
   
   @Before
  	public void ResetState() {
-	  testMEM = new MemoryAccess( memoryBanks, 1, cycles);
+	  testMEM = new MemoryAccess( memoryBanks, 1, cycles,0);
  	}  
   
   
@@ -103,7 +103,7 @@ public class MemoryAccessTestJU {
  @Test
  public void testBufferFull() {
      //inserting an instruction into a full buffer should fail and return -1
-	 testMEM = new MemoryAccess( memoryBanks, 2, cycles);
+	 testMEM = new MemoryAccess( memoryBanks, 2, cycles,0);
      assertEquals(testMEM.addToPreMEM("lw", 100, 0, 5, 4, 2), 0);    
      assertEquals(testMEM.addToPreMEM("sw", 101, 4, 55, 4, 3), 0);
      assertEquals(testMEM.addToPreMEM("lb", 100, 8, 6, 4, 1), -1);

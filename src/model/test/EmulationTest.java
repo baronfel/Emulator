@@ -37,10 +37,12 @@ public class EmulationTest {
 	public void printMemory() {
 		for (int i = 0; i < 16; i++)
 			System.out.print((char) mem.getValueAt(i));
+		System.out.println();
 	}
 
 	@Test
 	public void FullTest() {
+		printMemory();
 		emu.cycleToEnd();
 		printMemory();
 		char[] output = new char[16];

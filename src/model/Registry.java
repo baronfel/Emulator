@@ -65,6 +65,15 @@ public class Registry extends AbstractModel {
 		return registers.get(registerNumber).isInUse();
 	}
 	
+	/**
+	 * Sets a register to be in use.
+	 * @param registerNumber The register to set to be in use.
+	 */
+	public void setRegisterToInUse(int registerNumber)
+	{
+		registers.get(registerNumber).setInUse(true);
+	}
+	
 	public void addListener(int registerToWatch, IModelListener listener)
 	{
 
@@ -74,5 +83,15 @@ public class Registry extends AbstractModel {
 	public void removeListener(int registerToWatch, IModelListener listener)
 	{
 		registers.get(registerToWatch).removeListener(listener);
+	}
+	
+	/**
+	 * Sets a register to not be in use.
+	 * @param registerNumber The register to set to not be in use.
+	 */
+	public void setRegisterToNotInUse(int registerNumber) {
+		// TODO Auto-generated method stub
+		registers.get(registerNumber).setInUse(false);
+		
 	}
 }

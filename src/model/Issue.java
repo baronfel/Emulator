@@ -42,11 +42,13 @@ public class Issue extends AbstractModel implements IIssueUnit {
 		if (instruction == null)
 			return;
 		if (registry.isRegisterInUse(instruction.getRS())
-				|| registry.isRegisterInUse(instruction.getRD()))
+				|| registry.isRegisterInUse(instruction.getRD())) {
 			return;
+		}
 		if (instruction.getType() == InstructionType.R)
-			if (registry.isRegisterInUse(instruction.getRT()))
+			if (registry.isRegisterInUse(instruction.getRT())) {
 				return;
+			}
 		int op1 = 0;
 		int op2 = 0;
 		int dst = 0;
@@ -54,53 +56,59 @@ public class Issue extends AbstractModel implements IIssueUnit {
 		int reg = 0;
 		switch (instruction.getOpcode().toLowerCase()) {
 		case "lw":
-			val = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD())
+			reg = instruction.getRD();
+			dst = registry.getValue(instruction.getRS())
 					+ instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
-					instruction.getSeqNum(), val, dst, 1);
+					instruction.getSeqNum(), dst, reg);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "addi":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = instruction.getImmediate();
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "addiu":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = instruction.getImmediate();
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "andi":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = instruction.getImmediate();
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "ori":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = instruction.getImmediate();
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "sw":
-			reg = instruction.getRS();
-			dst = registry.getValue(instruction.getRD())
-					+ instruction.getImmediate();
-			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
-					instruction.getSeqNum(), reg, dst, 1);
-			break;
-		case "lb":
 			val = registry.getValue(instruction.getRS());
 			dst = registry.getValue(instruction.getRD())
 					+ instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
-					instruction.getSeqNum(), val, dst, 1);
+					instruction.getSeqNum(), dst, val);
+			break;
+		case "lb":
+			reg = instruction.getRD();
+			dst = registry.getValue(instruction.getRS())
+					+ instruction.getImmediate();
+			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
+					instruction.getSeqNum(), dst, reg);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "la":
 			// NOT SURE IF HERE OR WRITE BACK
@@ -109,6 +117,7 @@ public class Issue extends AbstractModel implements IIssueUnit {
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), instruction.getImmediate(), 0,
 					instruction.getRD());
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "li":
 			// NOT SURE IF HERE OR WRITE BACK
@@ -117,48 +126,54 @@ public class Issue extends AbstractModel implements IIssueUnit {
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), instruction.getImmediate(), 0,
 					instruction.getRD());
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "sb":
-			reg = instruction.getRS();
+			val = registry.getValue(instruction.getRS());
 			dst = registry.getValue(instruction.getRD())
 					+ instruction.getImmediate();
 			GetFirstAvailableMEM().addToPreMEM(instruction.getOpcode(),
-					instruction.getSeqNum(), reg, dst, 1);
+					instruction.getSeqNum(), dst, val);
 			break;
 		case "mul":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "add":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "sub":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "sll":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getSHAMT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "srl":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getSHAMT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "nop":
 			op1 = 0;
@@ -169,59 +184,67 @@ public class Issue extends AbstractModel implements IIssueUnit {
 			break;
 		case "and":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "or":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "slt":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "slti":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = instruction.getImmediate();
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "sltu":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "sltiu":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = instruction.getImmediate();
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "nor":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		case "div":
 			op1 = registry.getValue(instruction.getRS());
-			dst = registry.getValue(instruction.getRD());
+			dst = instruction.getRD();
 			op2 = registry.getValue(instruction.getRT());
 			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 					instruction.getSeqNum(), op1, op2, dst);
+			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		default:
 			break;

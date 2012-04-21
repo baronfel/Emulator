@@ -13,6 +13,7 @@ import java.util.Map;
 public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 
 	private int bufferSize;
+	private int memNumber; // which MEM within the core is it
 	private int stallCycles; // stalls the MEM unit for the number of cycles
 								// specified
 	private int cyclesProcessed; // for testing purposes
@@ -27,10 +28,12 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 	 * as parameters
 	 * 
 	 */
-	public MemoryAccess(Memory mem, int buffSize, Map<String, Integer> cycleMap) {
+	public MemoryAccess(Memory mem, int buffSize,
+			Map<String, Integer> cycleMap, int memNumber) {
 		stallCycles = 0;
 		bufferSize = buffSize;
 		memList = mem;
+		this.memNumber = memNumber;
 		preMEMBuffer = new PreMEMBufferEntry[bufferSize];
 		for (int i = 0; i < bufferSize; i++) {
 			preMEMBuffer[i] = new PreMEMBufferEntry();
@@ -68,7 +71,7 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 		if (stallCycles == 0) {
 			// go ahead and process the instruction
 
-			switch (currentInstruction.opName) {
+			switch (currentInstruction.opName.toLowerCase()) {
 			case "lw":
 				addToPostMEM(memList.getValueAt(currentInstruction.rs
 						+ currentInstruction.immediate));
@@ -87,7 +90,6 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 						(currentInstruction.rs + currentInstruction.immediate),
 						(Integer) currentInstruction.rt);
 				break;
-
 			default:
 				break;
 			}
@@ -281,6 +283,7 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 		private int progSequenceNumber;
 		private int destinationRegister; // register number to store the result
 		private int opResult;
+		public int destinationRegister2;
 
 		private PostMEMBufferEntry() {
 			progSequenceNumber = -1;
@@ -348,9 +351,21 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 	}
 
 	@Override
-	public int addToPreMEM(String opName, int seq, int rs, int rt, int cycles) {
+	public int addToPreMEM(String opName, int seq, int rs, int rt) {
 		// TODO Auto-generated method stub
-		return 0;
+		for (int i = 0; i < preMEMBuffer.length; i++) {
+			if (preMEMBuffer[i].opName == "") { // then add the new instruction
+												// here
+				preMEMBuffer[i].opName = opName;
+				preMEMBuffer[i].progSequenceNumber = seq;
+				preMEMBuffer[i].rs = rs;
+				preMEMBuffer[i].rt = rt;
+				preMEMBuffer[i].immediate = 0;
+				preMEMBuffer[i].numCycles = cycleCountByOpname.get(opName.toLowerCase());
+				return 0;
+			}
+		}
+		return -1;
 	}
 
 	@Override
@@ -367,7 +382,19 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 	@Override
 	public int getMEMNumber() {
 		// TODO Auto-generated method stub
-		return 0;
+		return memNumber;
+	}
+
+	@Override
+	public int getPostMEMDestReg2(boolean b) {
+		int tmpDestReg = postMEMBuffer.destinationRegister2;
+
+		if (tmpDestReg >= 0 && b == true) {
+			postMEMBuffer.destinationRegister2 = -1;
+		}
+
+		return tmpDestReg;
+
 	}
 
 }

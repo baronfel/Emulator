@@ -72,7 +72,7 @@ public class ALU extends AbstractModel implements IALU {
 			// go ahead and process the instruction
 			int[] operationResult = { 0, 0 };
 
-			switch (currentInstruction.opName) {
+			switch (currentInstruction.opName.toLowerCase()) {
 			case "mul":
 				operationResult = mult();
 				break;

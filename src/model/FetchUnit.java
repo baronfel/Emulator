@@ -29,9 +29,18 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 	}
 
 	public void FetchInstruction() {
-		if(index == ilist.size())
+		if (index == ilist.size())
 			return;
 		IInstruction instruction = ilist.get(index);
+		ArrayList<IInstruction> preIssueList = (ArrayList<IInstruction>) issue
+				.CurrentInstructions();
+		for (int i = 0; i < preIssueList.size(); i++) {
+			if (instruction.getRD() == preIssueList.get(i).getRD()
+					|| instruction.getRS() == preIssueList.get(i).getRD()
+					|| instruction.getRT() == preIssueList.get(i).getRD()) {
+				return;
+			}
+		}
 		switch (instruction.getOpcode().toLowerCase()) {
 		case "jr":
 			if (!registry.isRegisterInUse(instruction.getRS()))

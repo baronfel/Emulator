@@ -19,6 +19,7 @@ import org.junit.Test;
 public class WriteBackTest {
 
 	private List<IALU> alus = new ArrayList<IALU>(2);
+	private List<IMemoryAccess> memories = new ArrayList<IMemoryAccess>(2);
 	private final IMemoryAccess memory = mock(IMemoryAccess.class);
 	private Registry registers = new Registry();
 
@@ -42,7 +43,7 @@ public class WriteBackTest {
 		alus.add(fake1);
 		alus.add(fake2);
 		
-		WriteBack writeBack = new WriteBack(memory, alus, registers);
+		WriteBack writeBack = new WriteBack(memories, alus, registers);
 		writeBack.processClockCycle();
 		
 		assertEquals(registers.getValue(2), 222);
@@ -58,8 +59,8 @@ public class WriteBackTest {
 		when(memory.getPostMEMDestReg()).thenReturn(4);
 		when(memory.getPostMEMOpResult()).thenReturn(444);
 		alus.add(fakeALU);
-
-		WriteBack writeBack = new WriteBack(memory, alus, registers);
+		memories.add(memory);
+		WriteBack writeBack = new WriteBack(memories, alus, registers);
 		writeBack.processClockCycle();
 		
 		assertEquals(registers.getValue(4), 444);

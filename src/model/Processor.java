@@ -35,7 +35,7 @@ public class Processor extends AbstractModel implements IProcessor {
 	private List<IMemoryAccess> memories;
 
 	public Processor(int aluCount, Map<String, Integer> opCycles,
-			List<IInstruction> instrs) {
+			List<IInstruction> instrs, int memCount) {
 		instructions = instrs;
 		alus = new ArrayList<IALU>(aluCount);
 		//memories = new ArrayList<IMemoryAccess>(memCount);  //This should probably also receive a memCount variable, so the processor knows how many mems it has
@@ -49,9 +49,12 @@ public class Processor extends AbstractModel implements IProcessor {
 		memoryBanks = new Memory(1000000);
 		issue = new Issue(alus, memories, registers);
 		fetch = new FetchUnit(instructions, issue, registers);
-		memory = new MemoryAccess(memoryBanks, 1, opCycles);
-		memories.add(memory);
-		writeBack = new WriteBack(memory, alus, registers);
+		for(int i = 0; i < memCount; i++)
+		{
+
+			memories.add(new MemoryAccess(memoryBanks, 1, opCycles, i));
+		}
+		writeBack = new WriteBack(memories, alus, registers);
 	}
 
 	@Override
@@ -72,7 +75,9 @@ public class Processor extends AbstractModel implements IProcessor {
 		for (IALU alu : alus) {
 			alu.Cycle();
 		}
-		memory.Cycle();
+		for (IMemoryAccess mem : memories) {
+			mem.Cycle();
+		}
 		issue.Cycle();
 		fetch.Cycle();
 

@@ -27,7 +27,7 @@ class MemoryAccessTest{
      Integer memAdd = new Integer(55);
      memoryBanks.setValueAt(100,memAdd);
      
-     testMEM = new MemoryAccess( memoryBanks, buffSize, cycles);
+     testMEM = new MemoryAccess( memoryBanks, buffSize, cycles,0);
      System.out.println(testMEM);
      System.out.println("Pre MEM buffer size: " + testMEM.getBufferSize());
      System.out.println("----------------------------");

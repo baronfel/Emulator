@@ -56,7 +56,7 @@ public class Simulation extends AbstractController {
 	 */
 	private IProcessor CreateProcessor(ProcessorConfiguration config) {
 		return new Processor(config.GetALUCount(), config.GetCycleMap(),
-				_instructionList);
+				_instructionList, config.getMEMCount());
 	}
 
 	public Memory getMemory(){

@@ -46,7 +46,7 @@ public class InstructionParserTest {
 		assertTrue(ilist.get(0).toString().equals("JR 7\n"));
 		assertTrue(ilist.get(1).toString().equals("BNE 2, 3, LBL1\n"));
 //		assertTrue(ilist.get(2).toString().equals("J 16\n"));            //THIS TEST WAS FOR THE ORIGIONAL JUMP INSTRUCTION
-		assertTrue(ilist.get(2).toString().equals("J 10\n"));			//THIS TEST IS FOR THE UPDATED (B) JUMP INSTRUCTION
+		assertTrue(ilist.get(2).toString().equals("J 9\n"));			//THIS TEST IS FOR THE UPDATED (B) JUMP INSTRUCTION
 		assertTrue(ilist.get(3).toString().equals("LW 12, 4(5)\n"));
 		assertTrue(ilist.get(4).toString().equals("BEQ 0, 1, LBL1\n"));
 		assertTrue(ilist.get(5).toString().equals("ADDI 6, 7, 1337\n"));
@@ -78,24 +78,24 @@ public class InstructionParserTest {
 	
 	@Test
 	public void InvalidTest(){
-		assertTrue(invalidlist.get(0).equals("Line: 6\tAND1"));
+		assertTrue(invalidlist.get(0).equals("Line: 5\tAND1"));
 		//assertTrue(invalidlist.get(1).equals("Line: 11\tLBL1:"));
-		assertTrue(invalidlist.get(1).equals("Line: 13\tSERIAL"));
-		assertTrue(invalidlist.get(2).equals("Line: 19\tSUPER CERIAL"));
+		assertTrue(invalidlist.get(1).equals("Line: 12\tSERIAL"));
+		assertTrue(invalidlist.get(2).equals("Line: 18\tSUPER CERIAL"));
 	}
 	
 	@Test
 	public void LabelTest(){
-		assertEquals(ilist.get(1).getImmediate(), 10);
-		assertEquals(ilist.get(4).getImmediate(), 10);
-		assertEquals(ilist.get(25).getImmediate(), 10);
+		assertEquals(ilist.get(1).getImmediate(), 9);
+		assertEquals(ilist.get(4).getImmediate(), 9);
+		assertEquals(ilist.get(25).getImmediate(), 9);
 		assertTrue(labellist.get(0).getName().equals("LBL1"));
-		assertEquals(labellist.get(0).getLineNumber(),10);
+		assertEquals(labellist.get(0).getLineNumber(),9);
 	}
 	
 	@Test
 	public void CommandTest(){
-		assertTrue(commandlist.get(0).equals("Line: 30\t.data "));
+		assertTrue(commandlist.get(0).equals("Line: 29\t.data "));
 	}
 
 }

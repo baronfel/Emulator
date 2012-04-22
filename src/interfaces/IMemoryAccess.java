@@ -47,11 +47,8 @@ public interface IMemoryAccess extends ICoreComponent {
 	 *            The first operator for the instruction.
 	 * @param rt
 	 *            The second operator for the instruction.
-	 * @param imm
-	 *            The immediate value for the operation.
 	 */
-	public int addToPreMEM(String opName, int seq, int rs, int rt,
-			int cycles);
+	public int addToPreMEM(String opName, int seq, int rs, int rt);
 
 	/**
 	 * Get the instruction sequence number from the post memory access buffer.
@@ -100,4 +97,6 @@ public interface IMemoryAccess extends ICoreComponent {
 	public int getAmountInPreMEM();
 
 	public int getMEMNumber();
+
+	public int getPostMEMDestReg2(boolean b);
 }

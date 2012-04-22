@@ -44,9 +44,12 @@ public class IssueTest {
 		cycleMap.put("sub", 1);
 		cycleMap.put("and", 1);
 		cycleMap.put("or", 1);
+		cycleMap.put("lw", 1);
+		cycleMap.put("sw", 1);
+		cycleMap.put("sb", 1);
 		IInstruction instruction = new ITypeInstruction("nop", 0, 0, 0, 0);
 		issue.addToPreIssue(instruction);
-		issue.addToPreIssue(new RTypeInstruction("add", 1, 2, 3, 4, 5, 6));
+		issue.addToPreIssue(new RTypeInstruction("add", 19, 20, 21, 22, 23, 24));
 		IALU alu = new ALU(1, 4, cycleMap);
 		IALU alu2 = new ALU(2, 4, cycleMap);
 		IALU alu3 = new ALU(3, 4, cycleMap);
@@ -57,25 +60,25 @@ public class IssueTest {
 		alus.add(alu);
 		
 		
-		IMemoryAccess mem1 = new MemoryAccess(null, 4, cycleMap);
-		IMemoryAccess mem2 = new MemoryAccess(null, 4, cycleMap);
-		IMemoryAccess mem3 = new MemoryAccess(null, 4, cycleMap);
+		IMemoryAccess mem1 = new MemoryAccess(null, 4, cycleMap,0);
+		IMemoryAccess mem2 = new MemoryAccess(null, 4, cycleMap,0);
+		IMemoryAccess mem3 = new MemoryAccess(null, 4, cycleMap,0);
 		mems.add(mem1);
 		mems.add(mem2);
 		mems.add(mem3);
 		
 		issue2.addToPreIssue(new RTypeInstruction("sub", 1, 2, 3, 4, 5, 6));
-		issue2.addToPreIssue(new RTypeInstruction("or", 1, 2, 3, 4, 5, 6));
-		issue2.addToPreIssue(new RTypeInstruction("and", 1, 2, 3, 4, 5, 6));
+		issue2.addToPreIssue(new RTypeInstruction("or", 7, 8, 9, 10, 11, 12));
+		issue2.addToPreIssue(new RTypeInstruction("and", 13, 14, 15, 16, 17, 18));
 		issue3.addToPreIssue(new RTypeInstruction("lw", 1, 2, 3, 4, 5, 6));
-		issue3.addToPreIssue(new RTypeInstruction("sw", 1, 2, 3, 4, 5, 6));
-		issue3.addToPreIssue(new RTypeInstruction("sb", 1, 2, 3, 4, 5, 6));
+		issue3.addToPreIssue(new RTypeInstruction("sw", 7, 8, 9, 10, 11, 12));
+		issue3.addToPreIssue(new RTypeInstruction("sb", 13, 14, 15, 16, 17, 18));
 		alu2.addToPreALU("add", 0, 0, 0, 0);
 		alu2.addToPreALU("add", 0, 0, 0, 0);
 		alu3.addToPreALU("add", 0, 0, 0, 0);
-		mem2.addToPreMEM("LW", 0, 0, 0, 0);
-		mem2.addToPreMEM("SW", 0, 0, 0, 0);
-		mem3.addToPreMEM("SW", 0, 0, 0, 0);
+		mem2.addToPreMEM("LW", 0, 0, 0);
+		mem2.addToPreMEM("SW", 0, 0, 0);
+		mem3.addToPreMEM("SW", 0, 0, 0);
 	}
 
 	@Test

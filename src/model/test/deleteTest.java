@@ -24,7 +24,7 @@ public class deleteTest {
      Integer memAdd = new Integer(55);
      memoryBanks.setValueAt(4,memAdd);
      
-     testMEM = new MemoryAccess( memoryBanks, 2, cycles);
+     testMEM = new MemoryAccess( memoryBanks, 2, cycles, 0);
      
      testMEM.addToPreMEM("lw", 100, 0, 5, 4, 2);
      testMEM.addToPreMEM("sw", 101, 4, 55, 4, 3);

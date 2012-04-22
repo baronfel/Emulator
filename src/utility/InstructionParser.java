@@ -42,6 +42,12 @@ public class InstructionParser {
 	 * @return A list of instructions that the simulation can use.
 	 */
 	public static Package LoadInstructions(String aInfilePath) {
+		listPackage = new Package();
+		ilist = new ArrayList<IInstruction>();
+		invalidlist = new ArrayList<String>();
+		labellist = new ArrayList<Label>();
+		parserCommands = new ArrayList<String>();
+
 		LoadLabelsAndCommands(aInfilePath);
 		try {
 			file = new Scanner(new File(aInfilePath));
@@ -50,7 +56,7 @@ public class InstructionParser {
 			listPackage.setIlist(ilist);
 			return listPackage;
 		}
-		lineCounter = 1;
+		lineCounter = 0;
 		invalidFlag = false;
 		while (file.hasNext()) {
 			String name = file.next();
@@ -154,11 +160,11 @@ public class InstructionParser {
 					break;
 				default:
 					InvalidInstruction(name);
+					lineCounter--;
 					break;
 				}
+				lineCounter++;
 			}
-			lineCounter++;
-
 		}
 		listPackage.setIlist(ilist);
 		listPackage.setInvalidlist(invalidlist);
@@ -257,25 +263,94 @@ public class InstructionParser {
 	private static void LoadLabelsAndCommands(String aInfilePath) {
 		try {
 			file = new Scanner(new File(aInfilePath));
-			file.useDelimiter("[, ()\\r\\n\\t]+");
+			file.useDelimiter("[, ()\\r\\n\\t\t]+");
 		} catch (FileNotFoundException e) {
 			listPackage.setIlist(ilist);
 			return;
 		}
-		lineCounter = 1;
-		while (file.hasNextLine()) {
-			String name = file.nextLine();
-			if (name.equals(""))
+		lineCounter = 0;
+		//while (file.hasNextLine()) {
+		while (file.hasNext()) {
+			String name = file.next();
+			String body = name + file.nextLine();
+			if (body.equals(""))
 				;
-			else if (name.charAt(0) == '.')
-				Command(name);
-			else if (name.charAt(name.length() - 1) == ':')
-				Label(name);
-			lineCounter++;
+			else if (body.charAt(0) == '.')
+				Command(body);
+			else if (body.charAt(body.length() - 1) == ':')
+				Label(body);
+			if(validInstruction(name))
+				lineCounter++;
 		}
 		file = null;
 		listPackage.setLabellist(labellist);
 		listPackage.setParserCommands(parserCommands);
+	}
+
+	private static boolean validInstruction(String name) {
+		switch (name.toLowerCase()) {
+		case "jr":
+			break;
+		case "bne":
+			break;
+		case "j":
+			break;
+		case "lw":
+			break;
+		case "beq":
+			break;
+		case "beqz":
+			break;
+		case "addi":
+			break;
+		case "addiu":
+			break;
+		case "sw":
+			break;
+		case "lb":
+			break;
+		case "la":
+			break;
+		case "li":
+			break;
+		case "sb":
+			break;
+		case "mul":
+			break;
+		case "add":
+			break;
+		case "sub":
+			break;
+		case "sll":
+			break;
+		case "srl":
+			break;
+		case "nop":
+			break;
+		case "and":
+			break;
+		case "andi":
+			break;
+		case "or":
+			break;
+		case "ori":
+			break;
+		case "slt":
+			break;
+		case "slti":
+			break;
+		case "sltu":
+			break;
+		case "sltiu":
+			break;
+		case "nor":
+			break;
+		case "div":
+			break;
+		default:
+			return false;
+		}
+		return true;
 	}
 
 	private static void Command(String name) {
@@ -518,7 +593,7 @@ public class InstructionParser {
 	private static void JInstruction() {
 		// int jdst = file.next(); //THIS IS FOR REAL J INSTRUCTION, WE ARE
 		// USING J INSTRUCTION LIKE PSUEDO B INSTRUCTION
-		int jdst = lineCounter + getImmediateFromLabel(file.next());
+		int jdst = getImmediateFromLabel(file.next());
 		// THIS IS FOR B PSEUDO INSTRUCTION, WE ARE USING J INSTRUCTION LIKE IT
 		file.nextLine();
 		ilist.add((IInstruction) new JTypeInstruction(jdst, lineCounter));
@@ -555,7 +630,7 @@ public class InstructionParser {
 				index = i;
 			}
 		}
-		return labellist.get(index).getLineNumber() - lineCounter;
+		return labellist.get(index).getLineNumber();
 	}
 
 	private static int getValue(String regName) {

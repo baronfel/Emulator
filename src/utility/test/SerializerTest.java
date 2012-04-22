@@ -79,7 +79,7 @@ public class SerializerTest {
 	{
 		Map<String, Integer> cycleMap = new HashMap<String, Integer>();
 		cycleMap.put("add immediate", 2);
-		ProcessorConfiguration config = new ProcessorConfiguration("Filled Configuration", 10, cycleMap);
+		ProcessorConfiguration config = new ProcessorConfiguration("Filled Configuration", 10, cycleMap, 0);
 		String actual = Serializer.serializeConfiguration(config);
 		assertEquals(filledConfigurationString, actual);
 	}
@@ -98,7 +98,7 @@ public class SerializerTest {
 		cycleMap.put("add immediate", 2);
 		
 		ProcessorConfiguration newConfig = Serializer.deserializeConfigFromXML(filledConfigurationString);
-		ProcessorConfiguration expected = new ProcessorConfiguration("Filled Configuration", 10, cycleMap);
+		ProcessorConfiguration expected = new ProcessorConfiguration("Filled Configuration", 10, cycleMap, 0);
 		
 		assertTrue(expected.equals(newConfig));
 	}

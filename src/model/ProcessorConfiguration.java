@@ -24,16 +24,18 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 	 */
 	private static final long serialVersionUID = 4578090939379015303L;
 	private int _aluCount = 1;
+	private int _memCount = 1;
 	private Map<String, Integer> _cyclesRequiredByOpcode = new HashMap<String, Integer>(50);
 	private String _configurationName = "Unknown Configuration";
 	
 	
 	/* Constructors */
-	public ProcessorConfiguration( String name, int aluCount, Map<String, Integer> cycleMap)
+	public ProcessorConfiguration( String name, int aluCount, Map<String, Integer> cycleMap, int memCount)
 	{
 		_configurationName = name;
 		_cyclesRequiredByOpcode = cycleMap;
 		_aluCount = aluCount;
+		_memCount = memCount;
 	}
 
 	public ProcessorConfiguration(int aluCount)
@@ -55,23 +57,23 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 		_cyclesRequiredByOpcode.put("add", 1);
 		_cyclesRequiredByOpcode.put("sub", 1);
 		_cyclesRequiredByOpcode.put("addi", 1);
-		_cyclesRequiredByOpcode.put("lodw", 2);
-		_cyclesRequiredByOpcode.put("stow", 2);
+		_cyclesRequiredByOpcode.put("lw", 2);
+		_cyclesRequiredByOpcode.put("sw", 2);
 		_cyclesRequiredByOpcode.put("and", 1);
 		_cyclesRequiredByOpcode.put("or", 1);
 		_cyclesRequiredByOpcode.put("nor", 1);
 		_cyclesRequiredByOpcode.put("andi", 1);
 		_cyclesRequiredByOpcode.put("ori", 1);
-		_cyclesRequiredByOpcode.put("shl", 1);
-		_cyclesRequiredByOpcode.put("shr", 1);
+		_cyclesRequiredByOpcode.put("sll", 1);
+		_cyclesRequiredByOpcode.put("srl", 1);
 		_cyclesRequiredByOpcode.put("beq", 1);
-		_cyclesRequiredByOpcode.put("bneq", 1);
+		_cyclesRequiredByOpcode.put("bne", 1);
 		_cyclesRequiredByOpcode.put("slt", 1);
 		_cyclesRequiredByOpcode.put("sltu", 1);
 		_cyclesRequiredByOpcode.put("slti", 1);
 		_cyclesRequiredByOpcode.put("sltiu", 1);
-		_cyclesRequiredByOpcode.put("jmp", 1);
-		_cyclesRequiredByOpcode.put("jmpr", 1);
+		_cyclesRequiredByOpcode.put("j", 1);
+		_cyclesRequiredByOpcode.put("jr", 1);
 		_cyclesRequiredByOpcode.put("la", 1);
 		_cyclesRequiredByOpcode.put("li", 1);
 		_cyclesRequiredByOpcode.put("lb", 1);
@@ -154,5 +156,10 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 		return _configurationName.equalsIgnoreCase(other.GetName()) && 
 				 other.GetALUCount() == _aluCount &&
 				other.GetCycleMap().equals(_cyclesRequiredByOpcode);
+	}
+
+	public int getMEMCount() {
+		// TODO Auto-generated method stub
+		return _memCount;
 	}
 }

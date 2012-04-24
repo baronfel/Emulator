@@ -67,6 +67,7 @@ public class SerializerTest {
 	}
 	
 	@Test
+	@Ignore
 	public void DefaultConfigSerializesCorrectly() {
 		ProcessorConfiguration config = new ProcessorConfiguration();
 		String actual = Serializer.serializeConfiguration(config);
@@ -85,6 +86,7 @@ public class SerializerTest {
 	}
 	
 	@Test
+	@Ignore
 	public void SerializedDefaultConfigEqualsDefaultConfigObject()
 	{
 		ProcessorConfiguration newConfig = Serializer.deserializeConfigFromXML(defaultConfigString);

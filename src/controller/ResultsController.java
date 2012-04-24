@@ -5,6 +5,7 @@ package controller;
 
 import model.BenchmarkResult;
 import model.ProcessorConfiguration;
+import model.Simulation;
 import utility.Package;
 
 /**
@@ -31,6 +32,25 @@ public class ResultsController {
 
 	public Package getProgram() {
 		return _result.simulation.getPackage();
+	}
+	
+	public int getCyclesToFinish()
+	{
+		return _result._cyclesToComplete;
+	}
+	
+	public int getNoops()
+	{
+		return _result._noops;
+	}
+	
+	public int getMemoryValueAt(int position)
+	{
+		return _result.simulation.getMemory().getValueAt(position);
+	}
+
+	public Simulation getSimulation() {
+		return _result.simulation;
 	}
 
 }

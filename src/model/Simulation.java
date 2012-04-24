@@ -27,6 +27,7 @@ public class Simulation extends AbstractController {
 	public BenchmarkResult _result;
 	public Memory internalMemory;
 	private Package programInfo;
+	private int _cycles;
 
 	public Simulation(ProcessorConfiguration config, Package programInfo) {
 		super(config);
@@ -36,6 +37,7 @@ public class Simulation extends AbstractController {
 		_processor = CreateProcessor(_processorConfiguration);
 		_result = new BenchmarkResult();
 		_result.simulation = this;
+		_cycles = 0;
 	}
 
 	/**
@@ -43,8 +45,12 @@ public class Simulation extends AbstractController {
 	 * 
 	 * @return The Benchmark Results of the previous Simulation.
 	 */
-	public BenchmarkResult GetBenchmarkResult() {
-		return _result;
+	public BenchmarkResult getBenchmarkResult() {
+		BenchmarkResult r = new BenchmarkResult();
+		r.simulation = this;
+		r._cyclesToComplete = _cycles;
+		r._noops = _processor.getNoops();
+		return r;
 	}
 
 	/**
@@ -99,6 +105,10 @@ public class Simulation extends AbstractController {
 		while(_processor.getStatus() == ProcStatus.Active)
 		{
 			_processor.Cycle();
+			_cycles++;
 		}
+		
+		_result._cyclesToComplete = _cycles;
+		_result._noops = _processor.getNoops();
 	}
 }

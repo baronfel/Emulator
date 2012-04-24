@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import utility.InstructionParser;
+
 import controller.ProcessorController;
 import controller.RegisterController;
 
@@ -136,11 +138,25 @@ public class SimulationView {
 	}
 
 	private void goToStartView(Shell shell) {
-		// TODO Auto-generated method stub
+		Shell newShell = new Shell(shell.getDisplay());
+		newShell.setText(shell.getText());
+		newShell.setLayout(shell.getLayout());
 
+		StartView sView = new StartView(newShell);
+
+		newShell.pack();
+		newShell.open();
 	}
 
 	private void goToResultsView(Shell shell) {
-	}
+		Shell newShell = new Shell(shell.getDisplay());
+		newShell.setText(shell.getText());
+		newShell.setLayout(shell.getLayout());
 
+		ResultsView sView = new ResultsView(newShell, SWT.None,
+				sim.getBenchmarkResult());
+
+		newShell.pack();
+		newShell.open();
+	}
 }

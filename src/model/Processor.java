@@ -143,4 +143,9 @@ public class Processor extends AbstractModel implements IProcessor {
 	public IWriteBack getWriteback() {
 		return writeBack;
 	}
+
+	@Override
+	public int getNoops() {
+		return issue.getNoops();
+	}
 }

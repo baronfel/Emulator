@@ -14,6 +14,7 @@ public interface IIssueUnit extends ICoreComponent {
 	public IMemoryAccess GetFirstAvailableMEM();
 	public IALU GetFirstAvailableALU();
 	public int getNumInPreIssue();
+	public int getNoops();
 
 
 }

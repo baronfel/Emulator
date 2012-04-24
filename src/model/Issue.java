@@ -28,11 +28,13 @@ public class Issue extends AbstractModel implements IIssueUnit {
 			buffSize);
 	private int numInPreIssue = 0;
 	private List<IMemoryAccess> mems;
+	private int _noops;
 
 	public Issue(List<IALU> alus, List<IMemoryAccess> mems, Registry registry) {
 		this.alus = alus;
 		this.registry = registry;
 		this.mems = mems;
+		_noops = 0;
 	}
 
 	/**
@@ -41,13 +43,18 @@ public class Issue extends AbstractModel implements IIssueUnit {
 	 */
 	public void IssueInstructions(IInstruction instruction) {
 		if (instruction == null)
-			return;
+			{
+				_noops++;
+				return;
+			}
 		if (registry.isRegisterInUse(instruction.getRS())
 				|| registry.isRegisterInUse(instruction.getRD())) {
+			_noops++;
 			return;
 		}
 		if (instruction.getType() == InstructionType.R)
 			if (registry.isRegisterInUse(instruction.getRT())) {
+				_noops++;
 				return;
 			}
 		int op1 = 0;
@@ -248,6 +255,7 @@ public class Issue extends AbstractModel implements IIssueUnit {
 			registry.setRegisterToInUse(instruction.getRD());
 			break;
 		default:
+			_noops++;
 			break;
 		}
 		PreIssueBuffer.poll();
@@ -303,7 +311,6 @@ public class Issue extends AbstractModel implements IIssueUnit {
 
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
 		if (numInPreIssue > 0)
 			return new ArrayList<IInstruction>(PreIssueBuffer);
 		return new ArrayList<IInstruction>();
@@ -319,6 +326,11 @@ public class Issue extends AbstractModel implements IIssueUnit {
 
 	public int getNumInPreIssue() {
 		return numInPreIssue;
+	}
+
+	@Override
+	public int getNoops() {
+		return _noops;
 	}
 
 }

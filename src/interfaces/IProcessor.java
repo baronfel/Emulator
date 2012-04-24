@@ -35,4 +35,6 @@ public interface IProcessor extends IModel{
 	IMemoryAccess getMemUnit(int memToGet);
 
 	IWriteBack getWriteback();
+
+	int getNoops();
 }

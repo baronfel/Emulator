@@ -29,4 +29,10 @@ public interface IProcessor extends IModel{
 	IFetchUnit getFetchUnit();
 
 	Memory getMemory();
+
+	IALU getALU(int aluToGet);
+	
+	IMemoryAccess getMemUnit(int memToGet);
+
+	IWriteBack getWriteback();
 }

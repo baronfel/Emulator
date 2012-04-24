@@ -7,6 +7,7 @@ import interfaces.IInstruction;
 import interfaces.IMemoryAccess;
 import interfaces.ProcStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -326,8 +327,128 @@ public class MemoryAccess extends AbstractModel implements IMemoryAccess {
 	 */
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		// TODO Auto-generated method stub
-		return null;
+		List<IInstruction> current = new ArrayList<IInstruction>();
+		if(GetStatus() != ProcStatus.Inactive)
+		{
+			current.add(new IInstruction() {
+				
+				@Override
+				public void setSHAMT(int aSHAMT) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void setRT(int aRT) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void setRS(int aRS) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void setRD(int aRD) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void setOpcode(String aOpcode) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void setJumpdest(int aJumpdest) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void setImmediate(int aImmediate) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void setFUNCT(int aFUNCT) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public InstructionType getType() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public int getSeqNum() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public int getSHAMT() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public int getRT() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public int getRS() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public int getRD() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public String getOpcode() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public int getJumpdest() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public int getImmediate() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public int getFUNCT() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public String toString()
+				{
+					PreMEMBufferEntry x = preMEMBuffer[0];
+					return x.opName.toUpperCase() + " " +x.rs + " " + x.rt + " " + x.immediate;
+				}
+			});
+		}
+		return current;
 	}
 
 	/*

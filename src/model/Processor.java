@@ -128,4 +128,19 @@ public class Processor extends AbstractModel implements IProcessor {
 	public IFetchUnit getFetchUnit() {
 		return fetch;
 	}
+
+	@Override
+	public IALU getALU(int aluToGet) {
+		return alus.get(aluToGet);
+	}
+
+	@Override
+	public IMemoryAccess getMemUnit(int memToGet) {
+		return memories.get(memToGet);
+	}
+
+	@Override
+	public IWriteBack getWriteback() {
+		return writeBack;
+	}
 }

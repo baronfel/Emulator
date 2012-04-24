@@ -102,7 +102,9 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 
 	@Override
 	public List<IInstruction> CurrentInstructions() {
-		return new ArrayList<IInstruction>(ilist);
+		ArrayList<IInstruction> current = new ArrayList<IInstruction>();
+		current.add(ilist.get(index));
+		return current;
 	}
 
 	public int getPC() {

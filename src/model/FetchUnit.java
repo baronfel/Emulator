@@ -68,6 +68,15 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 				else
 					index++;
 			break;
+		case "bge":
+			if (!registry.isRegisterInUse(instruction.getRS())
+					|| !registry.isRegisterInUse(instruction.getRD()))
+				if (registry.getValue(instruction.getRD()) < registry
+						.getValue(instruction.getRS()))
+					index = instruction.getImmediate();
+				else
+					index++;
+			break;
 		case "beqz":
 			if (!registry.isRegisterInUse(instruction.getRS()))
 				if (registry.getValue(instruction.getRS()) == 0)
@@ -80,9 +89,9 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 			index++;
 			break;
 		}
-		if(GetStatus() == ProcStatus.Active)
-		{
-			notifyChanged(new ModelEvent(this, new Random().nextInt(), "Fetch changed!", 0));
+		if (GetStatus() == ProcStatus.Active) {
+			notifyChanged(new ModelEvent(this, new Random().nextInt(),
+					"Fetch changed!", 0));
 		}
 	}
 
@@ -103,8 +112,7 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 	@Override
 	public List<IInstruction> CurrentInstructions() {
 		ArrayList<IInstruction> current = new ArrayList<IInstruction>();
-		if(index < ilist.size())
-		{
+		if (index < ilist.size()) {
 			current.add(ilist.get(index));
 		}
 		return current;

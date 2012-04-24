@@ -1,0 +1,779 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+        <link rel="SHORTCUT ICON" href="img/clover.ico" />
+
+    <style type="text/css" media="screen">
+        @import url('style.css');
+        @import url('roundedcorners.css');
+        @import url('tree.css');
+            </style>
+    
+    <script src="sorttable.js" type="text/javascript"></script>
+    <script src="overlibmws.js" type="text/javascript"><!-- overLIB (c) Erik Bosrup --></script>
+    <script src="overlibmws_shadow.js" type="text/javascript" ></script>
+    <script src="clover.js" type="text/javascript"></script>
+    <script src="cloud.js" type="text/javascript"></script>
+    <script src="help.js" type="text/javascript"></script>
+  <title>Emulator Coverage Report</title>
+</head><body onload="setBrowserTitle('Emulator Coverage Report: Dashboard')">
+<table cellspacing="0" cellpadding="2" class="barGraph">
+
+  <tr>
+    <td colspan="2">
+
+    <div class="roundedLarge">
+      <b class="ctop"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+      <div class="roundedContent">
+    <table width="100%" class="" cellspacing="0"><tr class="reportHeader">
+    <td valign="top" class="titleText">Clover Coverage  Report -  Emulator Coverage Report <div class="timestamp"><b>Coverage timestamp:</b>&nbsp;Tue Apr 24 2012 13:23:33 CDT</div>
+
+        
+    
+            <div class="navBar"><span class="navBarCurrent">Overview</span>&nbsp;&nbsp;&nbsp;Package&nbsp;&nbsp;&nbsp;File</div>
+    
+    <div class="navBarLink">
+        &nbsp;&nbsp;&nbsp;
+        <a href="index.html" target="_top">FRAMES</a>&nbsp;&nbsp;
+        <a href="dashboard.html" target="_top">NO FRAMES</a>&nbsp;&nbsp;
+        <label onclick="toggleHelp(this);" class="nonHelpItem">SHOW HELP</label>&nbsp;&nbsp;
+    </div>
+
+    </td>
+
+    
+        
+
+     <td  id="td-header-stats" class="headerStats" valign="top" style="font-weight: normal;width:40%; text-align: right; display: ;">
+         <table style="text-align: right; white-space:nowrap;">
+         <tr>
+           <td colspan="11" class="totalText" style="text-align: left"><label>Statistics for project Clover database Tue Apr 24 2012 13:21:44 CDT:</label></td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_stmts + 'project';">Stmts:</label></td>
+           <td >      2,036
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_loc + 'project';">LOC:</label></td>
+           <td >      6,543
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp + 'project';">Total cmp:</label></td>
+           <td >      734
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_stmts_per_method;">Stmts/Method:</label></td>
+           <td >      4.21
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_branches + 'project';">Branches:</label></td>
+           <td >      214
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_ncloc + 'project';">NCLOC:</label></td>
+           <td >      4,233
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp_density + 'project';">Cmp density:</label></td>
+           <td >      0.36
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_methods_per_class;">Methods/Class:</label></td>
+           <td >      7.12
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_methods + 'project';">Methods:</label></td>
+           <td >      484
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                    <td  class="totalText"><label onkeyup="return help_files + 'project';">Files:</label></td>
+           <td >      64
+  </td>
+                    <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_avg_method_cmp + 'project';">Avg method cmp:</label></td>
+           <td >      1.52
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                     <td  class="totalText"><label onkeyup="return help_classes_per_package;">Classes/Pkg:</label></td>
+           <td >      11.33
+  </td>
+          
+         </tr>
+           <tr>
+            <td  class="totalText"><label onkeyup="return help_classes + 'project';">Classes:</label></td>
+            <td >      68
+  </td>
+            <td style="width: 5%">&nbsp;</td>
+                      <td  class="totalText"><label onkeyup="return help_packages + 'project';">Packages:</label></td>
+            <td >      6
+  </td>
+                     <td style="width: 10%">&nbsp;</td>
+         </tr>
+             </table>
+     </td>
+
+    
+    
+    
+
+     <td  id="td-filtered-header-stats" class="headerStats" valign="top" style="font-weight: normal;width:40%; text-align: right; display: none;">
+         <table style="text-align: right; white-space:nowrap;">
+         <tr>
+           <td colspan="11" class="totalText" style="text-align: left"><label>Statistics for project Clover database Tue Apr 24 2012 13:21:44 CDT:</label></td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_stmts + 'project';">Stmts:</label></td>
+           <td >      2,036
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_loc + 'project';">LOC:</label></td>
+           <td >      6,543
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp + 'project';">Total cmp:</label></td>
+           <td >      734
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_stmts_per_method;">Stmts/Method:</label></td>
+           <td >      4.21
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_branches + 'project';">Branches:</label></td>
+           <td >      214
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_ncloc + 'project';">NCLOC:</label></td>
+           <td >      4,233
+  </td>
+           <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_cmp_density + 'project';">Cmp density:</label></td>
+           <td >      0.36
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_methods_per_class;">Methods/Class:</label></td>
+           <td >      7.12
+  </td>
+         </tr>
+         <tr>
+           <td  class="totalText"><label onkeyup="return help_methods + 'project';">Methods:</label></td>
+           <td >      484
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                    <td  class="totalText"><label onkeyup="return help_files + 'project';">Files:</label></td>
+           <td >      64
+  </td>
+                    <td style="width: 10%">&nbsp;</td>
+           <td  class="totalText"><label onkeyup="return help_avg_method_cmp + 'project';">Avg method cmp:</label></td>
+           <td >      1.52
+  </td>
+           <td style="width: 5%">&nbsp;</td>
+                     <td  class="totalText"><label onkeyup="return help_classes_per_package;">Classes/Pkg:</label></td>
+           <td >      11.33
+  </td>
+          
+         </tr>
+           <tr>
+            <td  class="totalText"><label onkeyup="return help_classes + 'project';">Classes:</label></td>
+            <td >      68
+  </td>
+            <td style="width: 5%">&nbsp;</td>
+                      <td  class="totalText"><label onkeyup="return help_packages + 'project';">Packages:</label></td>
+            <td >      6
+  </td>
+                     <td style="width: 10%">&nbsp;</td>
+         </tr>
+             </table>
+     </td>
+</tr>
+
+    </table>
+  </div>
+  <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+  </div>
+
+   </td>
+  </tr>
+
+
+<tr class="titleText">
+    <td class="evalBar" colspan="2">
+        This report was generated with an evaluation server license.  <a href="http://www.atlassian.com/software/clover">Purchase Clover</a> or <a href="http://confluence.atlassian.com/x/JAgQCQ">configure your license.</a>
+    </td>
+</tr>
+
+
+<tr><td class="hbreak" colspan="2" ></td></tr>
+
+        
+<tr valign="top">
+
+    <td class="hbreak" colspan="1">
+    <div class="left-third">
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                
+            <label class="titleText link" onkeyup="return help_dash_coverage;" onclick="self.location='pkg-summary.html'">Coverage</label><span> 68 classes, 1,757 / 2,734 elements</span>
+            <table><tr><td>64.3%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.64264816</span>
+<div>
+    <div style="width: 200px; font-size:0px;"></div>
+    <div title="35.7% Not Covered"  style="min-width: 200px;"  class="barNegative ">
+       <div title="64.3% Covered" class="barPositive " style="width: 64.3%"></div>
+    </div>
+</div></td></tr></table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+                        <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <div><label class="titleText link" onkeyup="return help_dash_coverage;" onclick="self.location='pkg-summary.html'">Class Coverage Distribution</label></div>
+            <div class="center"><img src="img/classDistrubutionChart.png" alt="img/classDistrubutionChart.png" usemap="#classDistrubutionChart.png"/>
+            <map id="classDistrubutionChart.png" name="classDistrubutionChart.png">
+<area shape="rect" coords="245,87,263,149" title="10 classes have 91-100% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="225,131,243,149" title="3 classes have 81-90% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="204,119,222,150" title="5 classes have 71-80% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="183,138,201,150" title="2 classes have 61-70% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="162,138,180,150" title="2 classes have 51-60% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="142,138,160,150" title="2 classes have 41-50% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="121,138,139,150" title="2 classes have 31-40% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="100,131,118,149" title="3 classes have 21-30% coverage" alt="" nohref="nohref"/>
+<area shape="rect" coords="38,12,56,149" title="22 classes have 0% coverage" alt="" nohref="nohref"/>
+</map></div>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+            
+                        <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <div><label class="titleText link" onkeyup="return help_dash_risks;" onclick="self.location='proj-risks.html'">Class Complexity</label></div>
+            <div class="center"><img src="img/classComplexityChart.png" alt="img/classComplexityChart.png" usemap="#classComplexityChart.png"/>
+            <map id="classComplexityChart.png" name="classComplexityChart.png">
+<area shape="poly" coords="52,150,49,153,47,150,49,148,52,150,52,150" title="Cmp: 2; Cov: 0%; ALUView" alt="" href="view/ALUView.html#ALUView"/>
+<area shape="poly" coords="52,135,49,137,47,135,49,132,52,135,52,135" title="Cmp: 14; Cov: 0%; ConfigurationView" alt="" href="view/ConfigurationView.html#ConfigurationView"/>
+<area shape="poly" coords="52,149,49,151,47,149,49,146,52,149,52,149" title="Cmp: 3; Cov: 0%; FetchView" alt="" href="view/FetchView.html#FetchView"/>
+<area shape="poly" coords="52,150,49,153,47,150,49,148,52,150,52,150" title="Cmp: 2; Cov: 0%; ALUView" alt="" href="view/ALUView.html#ALUView"/>
+<area shape="poly" coords="52,150,49,153,47,150,49,148,52,150,52,150" title="Cmp: 2; Cov: 0%; ALUView" alt="" href="view/ALUView.html#ALUView"/>
+<area shape="poly" coords="52,150,49,153,47,150,49,148,52,150,52,150" title="Cmp: 2; Cov: 0%; ALUView" alt="" href="view/ALUView.html#ALUView"/>
+<area shape="poly" coords="52,149,49,151,47,149,49,146,52,149,52,149" title="Cmp: 3; Cov: 0%; FetchView" alt="" href="view/FetchView.html#FetchView"/>
+<area shape="poly" coords="52,149,49,151,47,149,49,146,52,149,52,149" title="Cmp: 3; Cov: 0%; FetchView" alt="" href="view/FetchView.html#FetchView"/>
+<area shape="poly" coords="52,149,49,151,47,149,49,146,52,149,52,149" title="Cmp: 3; Cov: 0%; FetchView" alt="" href="view/FetchView.html#FetchView"/>
+<area shape="poly" coords="52,142,49,145,47,142,49,140,52,142,52,142" title="Cmp: 8; Cov: 0%; ResultsView" alt="" href="view/ResultsView.html#ResultsView"/>
+<area shape="poly" coords="52,131,49,133,47,131,49,128,52,131,52,131" title="Cmp: 17; Cov: 0%; SimulationView" alt="" href="view/SimulationView.html#SimulationView"/>
+<area shape="poly" coords="52,144,49,146,47,144,49,141,52,144,52,144" title="Cmp: 7; Cov: 0%; StartView" alt="" href="view/StartView.html#StartView"/>
+<area shape="poly" coords="52,150,49,153,47,150,49,148,52,150,52,150" title="Cmp: 2; Cov: 0%; ALUView" alt="" href="view/ALUView.html#ALUView"/>
+<area shape="poly" coords="102,147,100,150,97,147,100,145,102,147,102,147" title="Cmp: 4; Cov: 25%; AbstractController" alt="" href="controller/AbstractController.html#AbstractController"/>
+<area shape="poly" coords="52,133,49,136,47,133,49,131,52,133,52,133" title="Cmp: 15; Cov: 0%; ConfigurationController" alt="" href="controller/ConfigurationController.html#ConfigurationController"/>
+<area shape="poly" coords="52,126,49,128,47,126,49,123,52,126,52,126" title="Cmp: 21; Cov: 0%; ProcessorController" alt="" href="controller/ProcessorController.html#ProcessorController"/>
+<area shape="poly" coords="52,146,49,149,47,146,49,144,52,146,52,146" title="Cmp: 5; Cov: 0%; RegisterController" alt="" href="controller/RegisterController.html#RegisterController"/>
+<area shape="poly" coords="52,142,49,145,47,142,49,140,52,142,52,142" title="Cmp: 8; Cov: 0%; ResultsView" alt="" href="view/ResultsView.html#ResultsView"/>
+<area shape="poly" coords="52,149,49,151,47,149,49,146,52,149,52,149" title="Cmp: 3; Cov: 0%; FetchView" alt="" href="view/FetchView.html#FetchView"/>
+<area shape="poly" coords="52,150,49,153,47,150,49,148,52,150,52,150" title="Cmp: 2; Cov: 0%; ALUView" alt="" href="view/ALUView.html#ALUView"/>
+<area shape="poly" coords="254,118,252,121,249,118,252,116,254,118,254,118" title="Cmp: 27; Cov: 100%; ALUTestJU" alt="" href="model/test/ALUTestJU.html#ALUTestJU"/>
+<area shape="poly" coords="254,142,252,145,249,142,252,140,254,142,254,142" title="Cmp: 8; Cov: 100%; MemoryAccessTestJU" alt="" href="model/test/MemoryAccessTestJU.html#MemoryAccessTestJU"/>
+<area shape="poly" coords="52,147,49,150,47,147,49,145,52,147,52,147" title="Cmp: 4; Cov: 0%; InstructionDoesNotHaveFieldException" alt="" href="interfaces/InstructionDoesNotHaveFieldException.html#InstructionDoesNotHaveFieldException"/>
+<area shape="poly" coords="250,15,248,17,245,15,248,12,250,15,250,15" title="Cmp: 108; Cov: 98%; InstructionParser" alt="" href="utility/InstructionParser.html#InstructionParser"/>
+<area shape="poly" coords="254,142,252,145,249,142,252,140,254,142,254,142" title="Cmp: 8; Cov: 100%; MemoryAccessTestJU" alt="" href="model/test/MemoryAccessTestJU.html#MemoryAccessTestJU"/>
+<area shape="poly" coords="153,146,150,149,148,146,150,144,153,146,153,146" title="Cmp: 5; Cov: 50%; Register" alt="" href="utility/Register.html#Register"/>
+<area shape="poly" coords="112,144,110,146,107,144,110,141,112,144,112,144" title="Cmp: 7; Cov: 30%; Serializer" alt="" href="utility/Serializer.html#Serializer"/>
+<area shape="poly" coords="254,151,252,154,249,151,252,149,254,151,254,151" title="Cmp: 1; Cov: 100%; ALU.PostALUBufferEntry" alt="" href="model/ALU.html#ALU.PostALUBufferEntry"/>
+<area shape="poly" coords="254,150,252,153,249,150,252,148,254,150,254,150" title="Cmp: 2; Cov: 100%; ALU.PreALUBufferEntry" alt="" href="model/ALU.html#ALU.PreALUBufferEntry"/>
+<area shape="poly" coords="204,35,201,38,199,35,201,33,204,35,204,35" title="Cmp: 92; Cov: 75%; ALU" alt="" href="model/ALU.html#ALU"/>
+<area shape="poly" coords="108,149,106,151,103,149,106,146,108,149,108,149" title="Cmp: 3; Cov: 28%; AbstractModel" alt="" href="model/AbstractModel.html#AbstractModel"/>
+<area shape="poly" coords="167,145,165,147,162,145,165,142,167,145,167,145" title="Cmp: 6; Cov: 57%; BranchInstruction" alt="" href="model/BranchInstruction.html#BranchInstruction"/>
+<area shape="poly" coords="52,147,49,150,47,147,49,145,52,147,52,147" title="Cmp: 4; Cov: 0%; InstructionDoesNotHaveFieldException" alt="" href="interfaces/InstructionDoesNotHaveFieldException.html#InstructionDoesNotHaveFieldException"/>
+<area shape="poly" coords="226,117,223,119,221,117,223,114,226,117,226,117" title="Cmp: 28; Cov: 86%; FetchUnit" alt="" href="model/FetchUnit.html#FetchUnit"/>
+<area shape="poly" coords="204,116,201,118,199,116,201,113,204,116,204,116" title="Cmp: 29; Cov: 75%; ITypeInstruction" alt="" href="model/ITypeInstruction.html#ITypeInstruction"/>
+<area shape="poly" coords="52,147,49,150,47,147,49,145,52,147,52,147" title="Cmp: 4; Cov: 0%; InstructionDoesNotHaveFieldException" alt="" href="interfaces/InstructionDoesNotHaveFieldException.html#InstructionDoesNotHaveFieldException"/>
+<area shape="poly" coords="167,89,165,91,162,89,165,86,167,89,167,89" title="Cmp: 50; Cov: 57%; Issue" alt="" href="model/Issue.html#Issue"/>
+<area shape="poly" coords="114,125,112,127,109,125,112,122,114,125,114,125" title="Cmp: 22; Cov: 31%; JTypeInstruction" alt="" href="model/JTypeInstruction.html#JTypeInstruction"/>
+<area shape="poly" coords="208,147,205,150,203,147,205,145,208,147,208,147" title="Cmp: 4; Cov: 77%; Label" alt="" href="model/Label.html#Label"/>
+<area shape="poly" coords="191,142,189,145,186,142,189,140,191,142,191,142" title="Cmp: 8; Cov: 69%; Memory" alt="" href="model/Memory.html#Memory"/>
+<area shape="poly" coords="254,151,252,154,249,151,252,149,254,151,254,151" title="Cmp: 1; Cov: 100%; ALU.PostALUBufferEntry" alt="" href="model/ALU.html#ALU.PostALUBufferEntry"/>
+<area shape="poly" coords="254,150,252,153,249,150,252,148,254,150,254,150" title="Cmp: 2; Cov: 100%; ALU.PreALUBufferEntry" alt="" href="model/ALU.html#ALU.PreALUBufferEntry"/>
+<area shape="poly" coords="177,67,175,70,172,67,175,65,177,67,177,67" title="Cmp: 67; Cov: 62%; MemoryAccess" alt="" href="model/MemoryAccess.html#MemoryAccess"/>
+<area shape="poly" coords="129,146,126,149,124,146,126,144,129,146,129,146" title="Cmp: 5; Cov: 38%; ModelEvent" alt="" href="model/ModelEvent.html#ModelEvent"/>
+<area shape="poly" coords="208,127,205,130,203,127,205,125,208,127,208,127" title="Cmp: 20; Cov: 77%; Processor" alt="" href="model/Processor.html#Processor"/>
+<area shape="poly" coords="224,133,221,136,219,133,221,131,224,133,224,133" title="Cmp: 15; Cov: 85%; ProcessorConfiguration" alt="" href="model/ProcessorConfiguration.html#ProcessorConfiguration"/>
+<area shape="poly" coords="220,108,217,110,215,108,217,105,220,108,220,108" title="Cmp: 35; Cov: 83%; RTypeInstruction" alt="" href="model/RTypeInstruction.html#RTypeInstruction"/>
+<area shape="poly" coords="254,146,252,149,249,146,252,144,254,146,254,146" title="Cmp: 5; Cov: 100%; Register" alt="" href="model/Register.html#Register"/>
+<area shape="poly" coords="210,137,207,140,205,137,207,135,210,137,210,137" title="Cmp: 12; Cov: 78%; Registry" alt="" href="model/Registry.html#Registry"/>
+<area shape="poly" coords="145,135,142,137,140,135,142,132,145,135,145,135" title="Cmp: 14; Cov: 46%; Simulation" alt="" href="model/Simulation.html#Simulation"/>
+<area shape="poly" coords="236,137,233,140,231,137,233,135,236,137,236,137" title="Cmp: 12; Cov: 91%; WriteBack" alt="" href="model/WriteBack.html#WriteBack"/>
+</map></div>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+            
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+            <label class="titleText link" onkeyup="return help_dash_packages;" onclick="self.location='pkg-summary.html'">Most Complex Packages</label>
+        
+        <table>
+                    
+                        <tr><td>1. </td><td>69.3%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.69340974</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="30.7% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="69.3% Covered" class="barPositive " style="width: 69.3%"></div>
+    </div>
+</div></td><td><a class="tag" href="model/pkg-summary.html">model</a> (441)</td></tr>
+                    
+                        <tr><td>2. </td><td>93.5%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.9352381</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="6.5% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="93.5% Covered" class="barPositive " style="width: 93.5%"></div>
+    </div>
+</div></td><td><a class="tag" href="utility/pkg-summary.html">utility</a> (128)</td></tr>
+                    
+                        <tr><td>3. </td><td>0%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.0</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="100% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="0% Covered" class="barPositive " style="width: 0%"></div>
+    </div>
+</div></td><td><a class="tag" href="view/pkg-summary.html">view</a> (68)</td></tr>
+                    
+                        <tr><td>4. </td><td>1.4%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.014285714</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="98.6% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="1.4% Covered" class="barPositive " style="width: 1.4%"></div>
+    </div>
+</div></td><td><a class="tag" href="controller/pkg-summary.html">controller</a> (58)</td></tr>
+                    
+                        <tr><td>5. </td><td>100%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">1.0</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="0% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="100% Covered" class="barPositive " style="width: 100%"></div>
+    </div>
+</div></td><td><a class="tag" href="model/test/pkg-summary.html">model.test</a> (35)</td></tr>
+                </table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+                    <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+            <label class="titleText link" onkeyup="return help_dash_classes;" onclick="self.location='pkg-summary.html'">Most Complex Classes</label>
+        <table>
+                    
+                        <tr><td>1. </td><td>98.1%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.9808102</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="1.9% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="98.1% Covered" class="barPositive " style="width: 98.1%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="utility/InstructionParser.html#InstructionParser"  title="utility.InstructionParser">InstructionParser</a>
+                (108)
+            </td></tr>
+                    
+                        <tr><td>2. </td><td>75.1%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.75091577</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="24.9% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="75.1% Covered" class="barPositive " style="width: 75.1%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="model/ALU.html#ALU"  title="model.ALU">ALU</a>
+                (92)
+            </td></tr>
+                    
+                        <tr><td>3. </td><td>62.4%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.6243386</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="37.6% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="62.4% Covered" class="barPositive " style="width: 62.4%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="model/MemoryAccess.html#MemoryAccess"  title="model.MemoryAccess">MemoryAccess</a>
+                (67)
+            </td></tr>
+                    
+                        <tr><td>4. </td><td>57.1%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.57086617</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="42.9% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="57.1% Covered" class="barPositive " style="width: 57.1%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="model/Issue.html#Issue"  title="model.Issue">Issue</a>
+                (50)
+            </td></tr>
+                    
+                        <tr><td>5. </td><td>83.5%
+</td>
+<td class="graphBar " align="center">
+<span class="sortValue">0.8352941</span>
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+    <div title="16.5% Not Covered"  style="min-width: 40px;"  class="barNegative ">
+       <div title="83.5% Covered" class="barPositive " style="width: 83.5%"></div>
+    </div>
+</div></td><td>
+                    <a  class="tag" href="model/RTypeInstruction.html#RTypeInstruction"  title="model.RTypeInstruction">RTypeInstruction</a>
+                (35)
+            </td></tr>
+                </table>
+
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+    </div>
+    <div class="right-twothirds">
+
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                                        <label class="titleText link" onkeyup="return help_dash_test_results;" onclick="self.location='test-pkg-summary.html'">Test Results</label>
+                <span> <span class="red">20 / 22</span> tests 0.45 secs</span>
+            <table>
+                                <tr>
+                    <td>90.9%</td>
+                    <td style="width:200px">
+                                                
+
+<div>
+    <div style="width: 40px; font-size:0px;"></div>
+
+    <div title="0% Errors" style="min-width: 40px;" class="testBarError">
+        <div title="9.1% of Tests Failed" class="testBarFail" style="width: 100%">
+            <div title="90.9% of Tests Passed" class="testBarPass" style="width: 90.9%"></div>
+        </div>
+    </div>
+</div>                    </td>
+                </tr>
+                            </table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+                <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <label class="titleText link" onkeyup="return help_dash_risks;" onclick="self.location='proj-risks.html'">Top 20 Project Risks</label>
+            <div>
+            
+                                           <a class="tag" href="view/Program.html#Program"
+               style="font-size: 18px;color:#e4051a"
+               title="Average Method Complexity - 3 , Coverage - 0% ">Program</a>
+                          
+                                           <a class="tag" href="view/RegistryView.html#RegistryView"
+               style="font-size: 13px;color:#e4051a"
+               title="Average Method Complexity - 1.5 , Coverage - 0% ">RegistryView</a>
+                          
+                                           <a class="tag" href="controller/ProcessorController.html#ProcessorController"
+               style="font-size: 13px;color:#e4051a"
+               title="Average Method Complexity - 1.4 , Coverage - 0% ">ProcessorController</a>
+                          
+                                           <a class="tag" href="view/StartView.html#StartView"
+               style="font-size: 13px;color:#e4051a"
+               title="Average Method Complexity - 1.4 , Coverage - 0% ">StartView</a>
+                          
+                                           <a class="tag" href="controller/ConfigurationController.html#ConfigurationController"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1.154 , Coverage - 0% ">ConfigurationController</a>
+                          
+                                           <a class="tag" href="view/ResultsView.html#ResultsView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1.143 , Coverage - 0% ">ResultsView</a>
+                          
+                                           <a class="tag" href="view/ConfigurationView.html#ConfigurationView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1.077 , Coverage - 0% ">ConfigurationView</a>
+                          
+                                           <a class="tag" href="view/SimulationView.html#SimulationView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1.062 , Coverage - 0% ">SimulationView</a>
+                          
+                                           <a class="tag" href="model/Issue.html#Issue"
+               style="font-size: 25px;color:#4d05b1"
+               title="Average Method Complexity - 5 , Coverage - 57.1% ">Issue</a>
+                          
+                                           <a class="tag" href="view/ProcessorView.html#ProcessorView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">ProcessorView</a>
+                          
+                                           <a class="tag" href="controller/ResultsController.html#ResultsController"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">ResultsController</a>
+                          
+                                           <a class="tag" href="view/FetchView.html#FetchView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">FetchView</a>
+                          
+                                           <a class="tag" href="view/MemView.html#MemView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">MemView</a>
+                          
+                                           <a class="tag" href="view/ALUView.html#ALUView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">ALUView</a>
+                          
+                                           <a class="tag" href="model/Memory.html#Memory"
+               style="font-size: 14px;color:#3405ca"
+               title="Average Method Complexity - 1.6 , Coverage - 69.6% ">Memory</a>
+                          
+                                           <a class="tag" href="model/ALU.html#ALU"
+               style="font-size: 14px;color:#3405ca"
+               title="Average Method Complexity - 1.673 , Coverage - 75.1% ">ALU</a>
+                          
+                                           <a class="tag" href="view/WriteBackView.html#WriteBackView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">WriteBackView</a>
+                          
+                                           <a class="tag" href="model/MemoryAccess.html#MemoryAccess"
+               style="font-size: 13px;color:#4d05b1"
+               title="Average Method Complexity - 1.457 , Coverage - 62.4% ">MemoryAccess</a>
+                          
+                                           <a class="tag" href="model/FetchUnit.html#FetchUnit"
+               style="font-size: 23px;color:#1b05e3"
+               title="Average Method Complexity - 4.667 , Coverage - 86.9% ">FetchUnit</a>
+                          
+                                           <a class="tag" href="view/IssueView.html#IssueView"
+               style="font-size: 12px;color:#e4051a"
+               title="Average Method Complexity - 1 , Coverage - 0% ">IssueView</a>
+                                      </div>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+    
+                        <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <label class="titleText link" onkeyup="return help_dash_treemap;" onclick="self.location='treemap.html'">
+                Coverage Tree Map
+            </label>
+            <p/>
+            <div>
+                <div id="infovis" style="width:600px; height:200px;">
+                    <div id="treemap-loader" style="position:relative;top:50px;">
+                        <p>
+                            Generating Coverage Tree Map. Please wait...
+                        </p>
+                        <p>
+                            <img src="img/ajax-loader.gif" alt="Loading Treemap"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+            
+
+                        <div class="tags roundedLarge" style="padding: 5px;">
+            <b class="ctop $cnrclass"><b class="cb1"></b><b class="cb2"></b><b class="cb3"></b><b class="cb4"></b></b>
+        <div class="roundedContent" style="padding: 5px;">
+                <label class="titleText link" onkeyup="return help_dash_untested_methods;" onclick="self.location='test-pkg-summary.html'">Least Tested Methods</label>
+            <table>
+                
+                <tr>
+                    <td align="right">1.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ConfigurationView.initControls(Composite)&nbsp;:&nbsp;void" href="view/ConfigurationView.html?line=60#src-60">ConfigurationView.initControls(Composite)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">2.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="StartView.StartView(Shell)" href="view/StartView.html?line=39#src-39">StartView.StartView(Shell)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">3.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ProcessorView.InitControls(Composite)&nbsp;:&nbsp;void" href="view/ProcessorView.html?line=31#src-31">ProcessorView.InitControls(Composite)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">4.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ResultsView.InitControls(Composite)&nbsp;:&nbsp;void" href="view/ResultsView.html?line=38#src-38">ResultsView.InitControls(Composite)&nbsp;:&nbsp;void</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">5.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="Program.main(String[])&nbsp;:&nbsp;void" href="view/Program.html?line=22#src-22">Program.main(String[])&nbsp;:&nbsp;void</a> (3)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">6.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="SimulationView.makePlayBackSection(Shell)&nbsp;:&nbsp;void" href="view/SimulationView.html?line=47#src-47">SimulationView.makePlayBackSection(Shell)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">7.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ConfigurationView.SelectConfig(Shell)&nbsp;:&nbsp;void" href="view/ConfigurationView.html?line=160#src-160">ConfigurationView.SelectConfig(Shell)&nbsp;:&nbsp;void</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">8.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="MemView.MemView(Composite,ProcessorController,int)" href="view/MemView.html?line=27#src-27">MemView.MemView(Composite,ProcessorController,int)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">9.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ALUView.ALUView(Composite,ProcessorController,int)" href="view/ALUView.html?line=26#src-26">ALUView.ALUView(Composite,ProcessorController,int)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">10.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="WriteBackView.WriteBackView(Composite,ProcessorController)" href="view/WriteBackView.html?line=25#src-25">WriteBackView.WriteBackView(Composite,ProcessorController)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">11.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="SimulationView.makeNavigationSection(Shell)&nbsp;:&nbsp;void" href="view/SimulationView.html?line=87#src-87">SimulationView.makeNavigationSection(Shell)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">12.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="IssueView.IssueView(Composite,ProcessorController)" href="view/IssueView.html?line=25#src-25">IssueView.IssueView(Composite,ProcessorController)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">13.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="FetchView.FetchView(Composite,ProcessorController)" href="view/FetchView.html?line=26#src-26">FetchView.FetchView(Composite,ProcessorController)</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">14.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="StartView.widgetSelected(SelectionEvent)&nbsp;:&nbsp;void" href="view/StartView.html?line=101#src-101">StartView.widgetSelected(SelectionEvent)&nbsp;:&nbsp;void</a> (1)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">15.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ProcessorController.getIssueStatus()&nbsp;:&nbsp;ComponentStatus" href="controller/ProcessorController.html?line=39#src-39">ProcessorController.getIssueStatus()&nbsp;:&nbsp;ComponentStatus</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">16.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ProcessorController.getFetchStatus()&nbsp;:&nbsp;ComponentStatus" href="controller/ProcessorController.html?line=48#src-48">ProcessorController.getFetchStatus()&nbsp;:&nbsp;ComponentStatus</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">17.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ProcessorController.getALUStatus(int)&nbsp;:&nbsp;ComponentStatus" href="controller/ProcessorController.html?line=57#src-57">ProcessorController.getALUStatus(int)&nbsp;:&nbsp;ComponentStatus</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">18.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ProcessorController.getMemStatus(int)&nbsp;:&nbsp;ComponentStatus" href="controller/ProcessorController.html?line=66#src-66">ProcessorController.getMemStatus(int)&nbsp;:&nbsp;ComponentStatus</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">19.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="ProcessorController.getWritebackStatus()&nbsp;:&nbsp;ComponentStatus" href="controller/ProcessorController.html?line=75#src-75">ProcessorController.getWritebackStatus()&nbsp;:&nbsp;ComponentStatus</a> (2)
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td align="right">20.</td>
+                    <td align="right">0%</td>
+                    <td>                      <a class="tag" title="SimulationView.makeRegistrySection(Composite,RegisterController)&nbsp;:&nbsp;void" href="view/SimulationView.html?line=129#src-129">SimulationView.makeRegistrySection(Composite,RegisterController)&nbsp;:&nbsp;void</a> (2)
+                    </td>
+                </tr>
+                            </table>
+                </div>
+            <b class="cbottom"><b class="cb4"></b><b class="cb3"></b><b class="cb2"></b><b class="cb1"></b></b>
+        </div>
+            
+    </div>
+
+    </td>
+</tr>
+
+<tr><td class="hbreak" colspan="2">&nbsp;</td></tr>
+<tr><td class="hbreak" colspan="2">&nbsp;</td></tr>
+<tr><td class="footer" colspan="2">
+<table>
+<tr>
+ <td><a target="_new" href="http://www.atlassian.com/software/clover"><img alt="Clover" src="img/logo.gif" style="border:none"/></a></td><td style="white-space:nowrap;"><i>Report generated by </i>Clover <a target="_new" href="http://www.atlassian.com/software/clover">Code Coverage</a> v3.1.4<i><br/>Tue Apr 24 2012 13:27:24 CDT</i>.</td>
+<td>&nbsp;</td><td style="BORDER-LEFT: #9c9c9c 1px solid;">&nbsp;</td><td>Clover Evaluation License registered to Clover Plugin. You have 29 day(s) before your license expires.</td>
+</tr>
+</table>
+</td>
+</tr></table>
+<script type="text/javascript" src="jit.js" ></script>
+<script type="text/javascript" src="treemap-dash-json.js" ></script>
+</body>
+
+</html>

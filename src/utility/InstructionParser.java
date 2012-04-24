@@ -164,6 +164,9 @@ public class InstructionParser {
 				case "bge":
 					BGEInstruction();
 					break;
+				case "bnez":
+					BNEZInstruction();
+					break;
 				default:
 					InvalidInstruction(name);
 					lineCounter--;
@@ -179,6 +182,17 @@ public class InstructionParser {
 		 * The code to use invalid flag to determine how to throw an invalid
 		 * instruction exception would go just above here.
 		 */
+	}
+
+	private static void BNEZInstruction() {
+		// TODO Auto-generated method stub
+		int rs = getValue(file.next());
+		String label = file.next();
+		file.nextLine();
+		int imm = getImmediateFromLabel(label);
+		String opc = "BNEZ";
+		ilist.add((IInstruction) new BranchInstruction(opc, 0, rs, imm,
+				lineCounter, label));	
 	}
 
 	private static void BGEInstruction() {

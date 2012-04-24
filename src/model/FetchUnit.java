@@ -84,6 +84,13 @@ public class FetchUnit extends AbstractModel implements IFetchUnit {
 				else
 					index++;
 			break;
+		case "bnez":
+			if (!registry.isRegisterInUse(instruction.getRS()))
+				if (registry.getValue(instruction.getRS()) != 0)
+					index = instruction.getImmediate();
+				else
+					index++;
+			break;
 		default:
 			issue.addToPreIssue(instruction);
 			index++;

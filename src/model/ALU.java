@@ -101,6 +101,9 @@ public class ALU extends AbstractModel implements IALU {
 			case "li":
 				operationResult[0] = currentInstruction.op2Value;
 				break;
+			case "move":
+				operationResult[0] = currentInstruction.op2Value;
+				break;
 			case "sll":
 				operationResult = sll();
 				break;

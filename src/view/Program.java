@@ -40,7 +40,6 @@ public class Program {
 			}
 		}
 		display.dispose();
-		System.exit(0);
 	}
 
 }

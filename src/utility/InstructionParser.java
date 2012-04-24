@@ -158,6 +158,9 @@ public class InstructionParser {
 				case "div":
 					DIVInstruction();
 					break;
+				case "move":
+					MOVInstruction();
+					break;
 				default:
 					InvalidInstruction(name);
 					lineCounter--;
@@ -173,6 +176,17 @@ public class InstructionParser {
 		 * The code to use invalid flag to determine how to throw an invalid
 		 * instruction exception would go just above here.
 		 */
+	}
+
+	private static void MOVInstruction() {
+		// TODO Auto-generated method stub
+		int rd = getValue(file.next());
+		int rs = getValue(file.next());
+		int imm = 0;
+		file.nextLine();
+		String opc = "MOVE";
+		ilist.add((IInstruction) new ITypeInstruction(opc, rd, rs, imm,
+				lineCounter));		
 	}
 
 	private static void ORIInstruction() {

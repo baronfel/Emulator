@@ -41,6 +41,19 @@ public class Memory {
 		{
 			setValueAt(i, (int) input[i]);
 		}
+	}	
+	
+	public int setMemoryToString2(String Input, int j)
+	{
+		int i;
+		char[] input = Input.toCharArray();
+		for(i = j; i < j + Input.length(); i++)
+		{
+			setValueAt(i, (int) input[i - j]);
+		}
+		
+		
+		return i;
 	}
 
 	public int getValueAt(int location)

@@ -42,11 +42,10 @@ public class Issue extends AbstractModel implements IIssueUnit {
 	 * to the ALU or MEM.
 	 */
 	public void IssueInstructions(IInstruction instruction) {
-		if (instruction == null)
-			{
-				_noops++;
-				return;
-			}
+		if (instruction == null) {
+			_noops++;
+			return;
+		}
 		if (registry.isRegisterInUse(instruction.getRS())
 				|| registry.isRegisterInUse(instruction.getRD())) {
 			_noops++;
@@ -254,13 +253,21 @@ public class Issue extends AbstractModel implements IIssueUnit {
 					instruction.getSeqNum(), op1, op2, dst);
 			registry.setRegisterToInUse(instruction.getRD());
 			break;
+		case "move":
+			dst = instruction.getRD();
+			op1 = registry.getValue(instruction.getRS());
+			GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
+					instruction.getSeqNum(), op1, 0, dst);
+			registry.setRegisterToInUse(instruction.getRD());
+			break;
 		default:
 			_noops++;
 			break;
 		}
 		PreIssueBuffer.poll();
 		numInPreIssue--;
-		notifyChanged(new ModelEvent(this, new Random().nextInt(), "Issued an instruction", 0));
+		notifyChanged(new ModelEvent(this, new Random().nextInt(),
+				"Issued an instruction", 0));
 		// GetFirstAvailableALU().addToPreALU(instruction.getOpcode(),
 		// instruction.getSeqNum(), op1, op2, dst);
 	}

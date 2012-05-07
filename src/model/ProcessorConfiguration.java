@@ -85,6 +85,9 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 		_cyclesRequiredByOpcode.put("bge", 1);
 		_cyclesRequiredByOpcode.put("move", 1);
 		_cyclesRequiredByOpcode.put("bnez", 1);
+		_cyclesRequiredByOpcode.put("div", 1);
+		_cyclesRequiredByOpcode.put("mul", 1);
+		_cyclesRequiredByOpcode.put("nop", 1);
 	}
 
 	/* Getters/Setters */

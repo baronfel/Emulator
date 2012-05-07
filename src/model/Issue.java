@@ -274,10 +274,9 @@ public class Issue extends AbstractModel implements IIssueUnit {
 
 	public IMemoryAccess GetFirstAvailableMEM() {
 		for (int i = 0; i < mems.size(); i++)
-
 			if (mems.get(i).GetStatus() == ProcStatus.Inactive)
 				return mems.get(i);
-		int PreMEMQueueSize = Integer.MAX_VALUE;
+		int PreMEMQueueSize = mems.get(0).getAmountInPreMEM();
 		IMemoryAccess memToUse = mems.get(0);
 		for (int i = 1; i < mems.size(); i++) {
 			if ((mems.get(i)).getAmountInPreMEM() < PreMEMQueueSize) {

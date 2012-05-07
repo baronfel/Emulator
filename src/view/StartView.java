@@ -34,7 +34,7 @@ public class StartView {
 	private static Object currentView;
 
 	/**
-	 * @param args
+	 * @param shell
 	 */
 	public StartView(final Shell shell) {
 

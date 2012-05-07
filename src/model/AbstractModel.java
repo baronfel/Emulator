@@ -25,7 +25,7 @@ public abstract class AbstractModel implements IModel {
 	}
 /**
  * Adds a listener to the list of listeners listening.
- * @param aL The listener to add to the list.
+ * @param newGuy The listener to add to the list.
  * @see IModelListener
  */
 	public void addListener(IModelListener newGuy) {

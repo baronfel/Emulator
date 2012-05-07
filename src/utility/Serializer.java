@@ -31,7 +31,7 @@ public class Serializer {
 	/**
 	 * Given a processor configuration, returns the xml string that describes that configuration.
 	 * @param config
-	 * @return
+	 * @return The xml string that describes that configuration.
 	 */
 	public static String serializeConfiguration(ProcessorConfiguration config)
 	{
@@ -42,7 +42,6 @@ public class Serializer {
 	 * Writes a config to a specified File.
 	 * @param config
 	 * @param file
-	 * @return
 	 * @throws IOException
 	 */
 	public static void serializeConfigTo(File file, ProcessorConfiguration config) throws IOException {
@@ -55,7 +54,6 @@ public class Serializer {
 	 * Writes a config to a specified file Path.
 	 * @param config
 	 * @param filePath
-	 * @return
 	 * @throws IOException
 	 */
 	public static void serializeConfigTo(String filePath, ProcessorConfiguration config) throws IOException {
@@ -77,7 +75,7 @@ public class Serializer {
 	/**
 	 * Given a File, returns the ProcessorConfiguration described by that File.
 	 * @param file
-	 * @return
+	 * @return The ProcessorConfiguration described by that File.
 	 * @throws IOException
 	 */
 	public static ProcessorConfiguration deserializeConfigFrom(File file) throws IOException {
@@ -90,7 +88,7 @@ public class Serializer {
 	/**
 	 * Given a file path, returns the ProcessorConfiguration described at that path.
 	 * @param filePath
-	 * @return
+	 * @return The ProcessorConfiguration described at that path.
 	 * @throws IOException
 	 */
 	public static ProcessorConfiguration deserializeConfigFrom(String filePath) throws IOException {

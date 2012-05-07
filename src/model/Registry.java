@@ -32,7 +32,7 @@ public class Registry extends AbstractModel {
 	/**
 	 * gets the value of a given register
 	 * @param registerNumber
-	 * @return
+	 * @return the value of the register to return
 	 */
 	public int getValue(int registerNumber)
 	{

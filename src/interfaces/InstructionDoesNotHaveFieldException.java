@@ -18,6 +18,7 @@ public class InstructionDoesNotHaveFieldException extends
 	private static final long serialVersionUID = 330655546005050961L;
 
 	/**
+	 * The default form of this exception, with a default message.
 	 * Changed to have a default message.
 	 */
 	public InstructionDoesNotHaveFieldException() {
@@ -26,7 +27,8 @@ public class InstructionDoesNotHaveFieldException extends
 	}
 
 	/**
-	 * @param message
+	 * A form of this exception with a customizable message.
+	 * @param message The message you want this instruction to carry.
 	 */
 	public InstructionDoesNotHaveFieldException(String message) {
 		super(message);
@@ -34,7 +36,8 @@ public class InstructionDoesNotHaveFieldException extends
 	}
 
 	/**
-	 * @param cause
+	 * A form of this exception with a customizable cause;
+	 * @param cause The cause you want this exception to carry.
 	 */
 	public InstructionDoesNotHaveFieldException(Throwable cause) {
 		super(cause);
@@ -42,8 +45,9 @@ public class InstructionDoesNotHaveFieldException extends
 	}
 
 	/**
-	 * @param message
-	 * @param cause
+	 * A form of this exception with a customizable message and cause.
+	 * @param message The message you want this instruction to carry.
+	 * @param cause The cause you want this exception to carry.
 	 */
 	public InstructionDoesNotHaveFieldException(String message, Throwable cause) {
 		super(message, cause);

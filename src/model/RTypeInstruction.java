@@ -120,7 +120,7 @@ public class RTypeInstruction implements IInstruction {
 	}
 	/**
 	 * Sets the third Register field for this instruction.
-	 * @param aRS The new Source Register for this instruction.
+	 * @param aRT The new Source Register for this instruction.
 	 */
 	public void setRT(int aRT) {
 		rt = aRT;

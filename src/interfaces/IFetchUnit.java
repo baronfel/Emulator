@@ -14,5 +14,9 @@ public interface IFetchUnit extends ICoreComponent {
 	 */
 
 	public void FetchInstruction();
+	/**
+	 * Returns the program counter of the program.
+	 * @return The program counter.
+	 */
 	public int getPC();
 }

@@ -95,13 +95,13 @@ public interface IInstruction {
 
 	public InstructionType getType();
 	/**
-	 * Sets the type of the instruction, I for I type, J for J type, or R for R type.
-	 * @param aType The type of the instruction, I for I type, J for J type, or R for R type.
+	 * Gets the jump destination of the instruction, bits 6-31.
+	 * @return The jump destination of the instruction, bits 6-31.
 	 */
 	
 	public int getJumpdest();
 	/**
-	 * Gets the jump destination of the instruction, bits 6-31.
+	 * Sets the jump destination of the instruction, bits 6-31.
 	 * @param aJumpdest The jump destination of the instruction, bits 6-31.
 	 */
 

@@ -103,7 +103,7 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 	
 	/**
 	 * Gets the number of ALUs that instances of this Configuration will contain.
-	 * @return
+	 * @return The number of ALUs that instances of this Configuration will contain.
 	 */
 	public int GetALUCount()
 	{
@@ -111,8 +111,8 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 	}
 	
 	/**
-	 * Sets the name of this Configuration
-	 * @param newName
+	 * Sets the name of this Configuration,
+	 * @param newName The new name of this configuration.
 	 */
 	public void SetName(String newName)
 	{
@@ -120,8 +120,8 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 	}
 	
 	/**
-	 * Gets the name of this Configuration
-	 * @return
+	 * Gets the name of this Configuration.
+	 * @return The name of this Configuration.
 	 */
 	public String GetName()
 	{
@@ -130,7 +130,7 @@ public class ProcessorConfiguration extends AbstractModel implements Serializabl
 	
 	/**
 	 * Returns the current Mapping of ALU Opcodes to Cycles Required.
-	 * @return
+	 * @return The current Mapping of ALU Opcodes to Cycles Required.
 	 */
 	public Map<String, Integer> GetCycleMap()
 	{

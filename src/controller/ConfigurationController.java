@@ -48,8 +48,7 @@ public class ConfigurationController extends AbstractController {
 
 	/**
 	 * Loads the configuration located at the given path.
-	 * @param selected
-	 * @return
+	 * @param path The path to the processor configuration.
 	 */
 	public void SelectNewConfig(String path) {
 		try {
@@ -78,7 +77,7 @@ public class ConfigurationController extends AbstractController {
 
 	/**
 	 * Accessor for underlying model alu count
-	 * @return
+	 * @return The number of ALUs this configuration has.
 	 */
 	public int getAluCount() {
 		return model.GetALUCount();
@@ -96,7 +95,7 @@ public class ConfigurationController extends AbstractController {
 	
 	/**
 	 * View accessor for the Config name.
-	 * @return
+	 * @return The name of the configuration.
 	 */
 	public String getName() {
 		return model.GetName();
@@ -104,7 +103,7 @@ public class ConfigurationController extends AbstractController {
 
 	/**
 	 * Returns the list of operations this config supports.
-	 * @return
+	 * @return The list of operations this config supports.
 	 */
 	public String[] getItemArray() {
 		return model.GetCycleMap().keySet().toArray(new String[model.GetCycleMap().size()]);

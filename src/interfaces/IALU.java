@@ -57,55 +57,94 @@ public interface IALU extends ICoreComponent {
 
 	/**
 	 * Get the destination register for the op result from the post ALU access
-	 * buffer.
+	 * buffer and possibly clears the buffer.
+	 * @param clear True if the buffer will be cleared, false if the buffer will stay.
+	 * @return The destination register for the result.
 	 */
 	public int getPostALUDestReg(boolean clear);
 	
 	/**
 	 * Get the destination register 2 for the op result from the post ALU access
-	 * buffer. For ops that require multiple destination registers
+	 * buffer and possibly clears the buffer. For ops that require multiple destination registers
+	 * @param clear True if the buffer will be cleared, false if the buffer will stay.
+	 * @return The other destination register for the result.
 	 */
 	public int getPostALUDestReg2(boolean clear);
 
 	/**
 	 * Get the op result from the post ALU access buffer.
+	 * @return The result of the operation.
 	 */
 	public int getPostALUOpResult();
 	
 	/**
 	 * Get the op result 2 from the post ALU access buffer.
 	 *  For ops that require multiple destination registers
+	 *  @return The other result of the operation.
 	 */
 	public int getPostALUOpResult2();
 
 	/**
 	 * * Method to get the ALU number. Used only for class testing.
+	 * @return The ID number of the ALU.
 	 */
 	public int getALUNumber();
 
 	/**
 	 * Method to get the buffer size. Used only for class testing.
+	 * @return The Size of the ALU's buffer.
 	 */
 	public int getBufferSize();
 
 	/**
-	 * Methods to get/set contents of the ALU buffers. Used only for class
-	 * testing.
+	 * Method to return the op code of an instruction waiting in the preALU.
+	 * @param index The index of the instruction in the preALU.
+	 * @return The op code of the specified instruction.
 	 */
 	public String getPreALUOpName(int index);
+	/**
+	 * Method to return the sequence number of an instruction waiting in the preALU.
+	 * @param index The index of the instruction in the preALU.
+	 * @return The sequence number of the specified instruction.
+	 */
 
 	public int getPreALUProgSeqNum(int index);
+	/**
+	 * Method to return the a value of an instruction waiting in the preALU.
+	 * @param index The index of the instruction in the preALU.
+	 * @return The a value of the specified instruction.
+	 */
 
 	public int getPreALUOp1Val(int index);
+	/**
+	 * Method to return the other value of an instruction waiting in the preALU.
+	 * @param index The index of the instruction in the preALU.
+	 * @return The other value of the specified instruction.
+	 */
 
 	public int getPreALUOp2Val(int index);
+	/**
+	 * Method to return the destination register of an instruction waiting in the preALU.
+	 * @param index The index of the instruction in the preALU.
+	 * @return The destination register of the specified instruction.
+	 */
 
 	public int getPreALUDestReg(int index);
-
+	/**
+	 * Method to return the number of cycles an instruction waiting in the preALU takes.
+	 * @param index The index of the instruction in the preALU.
+	 * @return The number of cycles the specified instruction takes.
+	 */
 	public int getPreALUNumCycles(int index);
-
+/**
+ * Method to get the op code of the current instruction.
+ * @return The op code of the current instruction.
+ */
 	public String getCurrentInstrOpName();
-
+/**
+ * Method to get the number of cycles this component has been in use.
+ * @return The number of cycles this component has been in use.
+ */
 	public int getCyclesProcessed();
 
 }

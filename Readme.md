@@ -25,7 +25,7 @@ Given a file that contains a listing of MIPS instructions to be executed, the In
 
 ### Model ###
 
-![Processor Diagram](https://github.com/baronfel/Emulator/raw/master/vpproject/diagrams/Processor.png0 "Processor Diagram")
+![Processor Diagram](https://github.com/baronfel/Emulator/raw/master/vpproject/diagrams/Processor.png "Processor Diagram")
 
 The meat of the Emulator implementation come in with the Model.  All elements of the Model implement the IModel class via the AbstractModel base class.  This Interface provides a notifyChanged() method that is used to notify any attached IModelListeners when a property changes on this model.
 

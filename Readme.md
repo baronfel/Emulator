@@ -31,7 +31,7 @@ The meat of the Emulator implementation come in with the Model.  All elements of
 
 The largest unit of the model is the Processor, which is created when a Simulation is begun by the UI according to some ProcessorConfiguration.  The ProcessorConfiguration specifies some combination of ALUs and a listing of supported operations and associated processor cycles to complete that instruction.
 
-The processor also contains references to implementations of a Fetch Unit, an Issue Unit, some number of Arithmetic Logic Units, some number of MEmory Access Units, and a single WriteBack unit.  In addition to these functional segments of the Processor, it also contains a Registry with the typical 32 registers of the MIPS processor, as well as a Memory implementation that abstracts away the storage and retrieval of integers from memory.
+The processor also contains references to implementations of a Fetch Unit, an Issue Unit, some number of Arithmetic Logic Units, some number of Memory Access Units, and a single WriteBack unit.  In addition to these functional segments of the Processor, it also contains a Registry with the typical 32 registers of the MIPS processor, as well as a Memory implementation that abstracts away the storage and retrieval of integers from memory.
 
 ### View ###
 
@@ -45,3 +45,7 @@ The views operate by using their controller to hook up the some notifyChanged ev
 
 ## Difficulties During Implementation ##
 
+* Sprint-style development is hard to adhere to without some sort of tracking mechanism, especially when every member of the group has wildly disparate schedules.
+* Group members had differing levels of experience with both the language used to implement the project as well as the subject matter for the project.  This meant that we had to task appropriately for each member, as well as find ways to introduce new concepts and features in a manner that could be learned from and iterated upon.
+* The aim of the project was not concretely established at the beginning of the work, so midway through the implementation we had to reconcile differing ideas about how components interacted to achieve the final result.
+* Writing test assembly programs from generated C code turned out to be a large stumbling block, with the code generated from GCC being incredibly complex and intricate for even the most simple of workloads.  This meant that test programs has to be writeen and tested by hand in another MIPS simulator and IDE, then run against our Emulator.

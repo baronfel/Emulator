@@ -17,11 +17,15 @@ The Emulator was writen in an MVC style, as mentioned above, using the Standard 
 
 ### Instructions ###
 
+![Instruction Class Diagram](https://github.com/baronfel/Emulator/blob/master/vpproject/diagrams/Instructions.png "Instruction Class Diagram")
+
 The instruction set that was implemented for this processor was a subset of the overall MIPS instruction set, numbering 30 in total.  This selection included a variety of branching operations, arithmetic operations, and memory storage and retrieval operations.
 
 Given a file that contains a listing of MIPS instructions to be executed, the InstructionParser static class is called to parse that file into a list of IInstruction, the the canonical class for an instruction.  This class encapsulates all the different classes of instructions, the I-, J-, and R-Types.  The parser also supports Labals, which are often used in branching instructions as targets for the branch.
 
 ### Model ###
+
+![Processor Diagram](https://github.com/baronfel/Emulator/blob/master/vpproject/diagrams/Processor.png0 "Processor Diagram")
 
 The meat of the Emulator implementation come in with the Model.  All elements of the Model implement the IModel class via the AbstractModel base class.  This Interface provides a notifyChanged() method that is used to notify any attached IModelListeners when a property changes on this model.
 
@@ -31,6 +35,8 @@ The processor also contains references to implementations of a Fetch Unit, an Is
 
 ### View ###
 
+![View Diagram](https://github.com/baronfel/Emulator/blob/master/vpproject/diagrams/Views.png "View Diagram")
+
 The View is implemented using the Standard Widget Toolkit, as mentioned above.  It follows a pattern of using some base class described above as the model, then writing a Controller implementation that provides access to properties of the Model, and then a SWT View that exposes those to the user.
 
 Many Views are composed of smaller, focused sub-Views.  A good example of this is the SimulationView.  It has a ProcessorView, a NavigationView, and a PlayBackView.  The ProcessorView shows the state of the processor at that instant; the NavigationView allows the user to go back to the Simulation Configuration, or forward to the Results View; and the PlaybackView allows the user to play one cycle or run to the end of the Simulation.
@@ -39,4 +45,3 @@ The views operate by using their controller to hook up the some notifyChanged ev
 
 ## Difficulties During Implementation ##
 
-   
